@@ -1,0 +1,19 @@
+{
+  "name": "lionmiss-back",
+  "version": "0.0.0",
+  "description": "LionMiss back",
+  "main": "index.js",
+  "author": "Kode Neko",
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^4.1.2",
+    "faker": "^5.5.3",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.1.5",
+    "yargs": "^17.2.1"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongodb": "^4.1.2"
+  }
+}
