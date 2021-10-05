@@ -30,8 +30,8 @@ function putCartProduct(req: Request, res: Response): void {
 function delCart(req: Request, res: Response): void {
   const { idCart } = req.body;
   CartModel.deleteOne({ _id: idCart })
-    .then(({ ok, count }) =>
-      count > 0 ? res.status(200).json(cart) : res.status(404).json()
+    .then(({ deletedCount }) =>
+      deletedCount > 0 ? res.status(200).json() : res.status(404).json()
     )
     .catch((err) => res.status(500).json(err));
 }
