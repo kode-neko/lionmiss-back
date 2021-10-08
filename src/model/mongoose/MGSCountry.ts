@@ -4,19 +4,19 @@ import { ICountry } from "../ICountry";
 import { schemaCountry } from "./schemas";
 import { LMBError } from "../LMB";
 
-const CountryModel = model<LMCountry>("Country", schemaCountry, "country");
-
 class MGSCountry implements ICountry {
+  CountryModel = model<LMCountry>("Country", schemaCountry, "countries");
+
   getCountry(id: string): Promise<LMCountry | LMBError> {
-    return CountryModel.findById(id)
+    return this.CountryModel.findById(id)
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ error: err }));
+      .catch((err) => Promise.reject({ ...err }));
   }
 
   getCountryAll(): Promise<LMCountry[] | LMBError> {
-    return CountryModel.find({})
+    return this.CountryModel.find({})
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ error: err }));
+      .catch((err) => Promise.reject({ ...err }));
   }
 }
 

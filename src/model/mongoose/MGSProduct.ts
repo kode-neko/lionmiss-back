@@ -4,44 +4,44 @@ import { IProduct } from "../IProduct";
 import { schemaProduct } from "./schemas";
 import { LMBError } from "../LMB";
 
-const ProductModel = model<LMProduct>("Product", schemaProduct, "product");
-
 class MGSProduct implements IProduct {
+  ProductModel = model<LMProduct>("Product", schemaProduct, "product");
+
   getProduct(id: string): Promise<LMProduct | LMBError> {
-    return ProductModel.findById(id)
+    return this.ProductModel.findById(id)
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ error: err }));
+      .catch((err) => Promise.reject({ ...err }));
   }
 
   getProductAll(): Promise<LMProduct[] | LMBError> {
-    return ProductModel.find({})
+    return this.ProductModel.find({})
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ error: err }));
+      .catch((err) => Promise.reject({ ...err }));
   }
 
   postProduct(product: LMProduct): Promise<boolean | LMBError> {
-    const productModel = new ProductModel(product);
+    const productModel = new this.ProductModel(product);
     return productModel
       .validate()
       .then(() => productModel.save())
       .then(() => Promise.resolve(true))
-      .catch((err) => Promise.reject({ error: err }));
+      .catch((err) => Promise.reject({ ...err }));
   }
 
   updateProduct(product: LMProduct): Promise<boolean | LMBError> {
-    return ProductModel.findByIdAndUpdate(product._id, product, {
+    return this.ProductModel.findByIdAndUpdate(product._id, product, {
       runValidators: true,
     })
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ error: err }));
+      .catch((err) => Promise.reject({ ...err }));
   }
 
   deleteProduct(id: string): Promise<boolean | LMBError> {
-    return ProductModel.findByIdAndDelete(id)
+    return this.ProductModel.findByIdAndDelete(id)
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ error: err }));
+      .catch((err) => Promise.reject({ ...err }));
   }
 }
 
