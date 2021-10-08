@@ -3,7 +3,7 @@ import { model } from "mongoose";
 import { ICart } from "../ICart";
 import { LMBError } from "../LMB";
 
-import { schemaCart, schemaCartProduct, schemaUserInfo } from "./schemas";
+import { schemaCartProduct, schemaUserInfo } from "./schemas";
 
 const UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "usrInfo");
 const CartProduct = model<LMCartProduct>("CartProduct", schemaCartProduct);

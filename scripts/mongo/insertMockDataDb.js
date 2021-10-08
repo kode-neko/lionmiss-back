@@ -1,5 +1,11 @@
 const { collections } = require("./constants");
-const { countries, locales, products, userInfo } = require("./createMockData");
+const {
+  fixtureCountries,
+  fixtureProducts,
+  fixtureUserInfo,
+  fixtureCart,
+  fixtureLocales,
+} = require("../../fixtures");
 
 async function insertData(db) {
   const countryColl = db.collection(collections.COUNTRY);
@@ -9,12 +15,12 @@ async function insertData(db) {
   const shippingColl = db.collection(collections.SHIPPING);
   const localeColl = db.collection(collections.LOCALE);
 
-  await countryColl.insertMany(countries);
-  await productColl.insertMany(products);
-  await userInfoColl.insertMany(userInfo);
-  await cartColl.insertMany(countries);
+  await countryColl.insertMany(fixtureCountries);
+  await productColl.insertMany(fixtureProducts);
+  await userInfoColl.insertMany([fixtureUserInfo]);
+  await cartColl.insertMany([fixtureCart]);
   //await shippingColl.insertMany();
-  await localeColl.insertMany(locales);
+  await localeColl.insertMany(fixtureLocales);
 }
 
 module.exports = {
