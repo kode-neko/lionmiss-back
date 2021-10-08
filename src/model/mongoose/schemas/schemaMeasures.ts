@@ -5,7 +5,7 @@ const schemaMeasures = new Schema<LMMeasures>({
   chest: { type: Number, required: true },
   waist: { type: Number, required: true },
   hip: { type: Number, required: true },
-  size: { type: String, required: true },
+  size: { type: String },
 });
 
 export { schemaMeasures };

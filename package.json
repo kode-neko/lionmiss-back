@@ -10,7 +10,7 @@
     "build": "tsc",
     "dev": "yarn run build && node ./dist",
     "lint": "eslint . --ext .ts",
-    "test": "jest --coverage",
+    "test": "jest",
     "format": "prettier src/**/*.{js,html,css} --write",
     "dist:tsc": "tsc",
     "dist:style": "gulp",

@@ -11,7 +11,7 @@ const CartProduct = model<LMCartProduct>("CartProduct", schemaCartProduct);
 class MGSCart implements ICart {
   getCart(idUser: string): Promise<LMCart | LMBError> {
     return UserInfoModel.findById(idUser)
-      .then((userInfo) => Promise.resolve(userInfo.cart))
+      .then((userInfo) => Promise.resolve(userInfo?.cart))
       .catch((err) => Promise.reject({ error: err }));
   }
 
@@ -51,6 +51,7 @@ class MGSCart implements ICart {
       { $push: { "cart.products": cartProduct } },
       { runValidators: true }
     )
+      .count()
       .then((count) => Promise.resolve(count > 0))
       .catch((err) => Promise.reject({ error: err }));
   }

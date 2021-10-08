@@ -6,7 +6,7 @@ import { LMBError } from "../LMB";
 
 const ProductModel = model<LMProduct>("Product", schemaProduct, "product");
 
-class MGSProducts implements IProduct {
+class MGSProduct implements IProduct {
   getProduct(id: string): Promise<LMProduct | LMBError> {
     return ProductModel.findById(id)
       .then(Promise.resolve)
@@ -45,4 +45,4 @@ class MGSProducts implements IProduct {
   }
 }
 
-export { MGSProducts };
+export { MGSProduct };

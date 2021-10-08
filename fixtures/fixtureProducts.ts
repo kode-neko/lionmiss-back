@@ -25,7 +25,7 @@ const fixtureProducts: LMProduct[] = Array(constants.NUM_PRODUCTS)
     ],
     colors: [LMColor.Red, LMColor.Green, LMColor.Blue],
     unds: 100,
-    imgs: fixtureImgs,
+    imgs: fixtureImgs.slice(0, 1),
   }));
 
 export { fixtureProducts };
