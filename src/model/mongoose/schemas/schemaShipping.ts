@@ -1,16 +1,14 @@
-import { Schema, model } from "mongoose";
+import { Schema } from "mongoose";
 import { LMShipping } from "lionmiss-core";
-import { cartSchema } from "./LMBCart";
+import { schemaCart } from './schemaCart';
 
-const shippingSchema = new Schema<LMShipping>({
+const schemaShipping = new Schema<LMShipping>({
   initDate: { type: Date, required: true },
   finishDate: { type: Date, required: true },
   priceShipping: { type: Number, required: true },
   shippingMethod: { type: String, required: true },
   paymentMethod: { type: String, required: true },
-  cart: cartSchema,
+  cart: schemaCart,
 });
 
-const ShippingModel = model<LMShipping>("Shipping", shippingSchema, "shipping");
-
-export { shippingSchema, ShippingModel };
+export { schemaShipping };

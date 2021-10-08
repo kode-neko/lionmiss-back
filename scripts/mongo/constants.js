@@ -1,14 +1,11 @@
 const collections = {
-  USER: "user",
+  COUNTRY: "country",
   PRODUCT: "product",
+  USER_INFO: "userInfo",
   PRODUCT_LANG: "productLang",
   CART: "cart",
   SHIPPING: "shipping",
-  PROMO: "promo",
   LOCALE: "locale",
-  COUNTRY: "country",
-  COLOR: "color",
-  SIZE: "size",
 };
 
 const db = {

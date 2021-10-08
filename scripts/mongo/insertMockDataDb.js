@@ -1,29 +1,20 @@
 const { collections } = require("./constants");
-const {
-  countries,
-  locales,
-  colors,
-  sizes,
-  products,
-  users,
-} = require("./createMockData");
+const { countries, locales, products, userInfo } = require("./createMockData");
 
 async function insertData(db) {
-  const userColl = db.collection(collections.USER);
-  const productColl = db.collection(collections.PRODUCT);
-  const productLangColl = db.collection(collections.PRODUCT_LANG);
-  const cartColl = db.collection(collections.CART);
-  const promoColl = db.collection(collections.PROMO);
-  const localeColl = db.collection(collections.LOCALE);
   const countryColl = db.collection(collections.COUNTRY);
-  const colorColl = db.collection(collections.COLOR);
-  const sizeColl = db.collection(collections.SIZE);
-  await userColl.insertMany(users);
-  await productColl.insertMany(products);
-  await localeColl.insertMany(locales);
+  const productColl = db.collection(collections.PRODUCT);
+  const userInfoColl = db.collection(collections.USER_INFO);
+  const cartColl = db.collection(collections.CART);
+  const shippingColl = db.collection(collections.SHIPPING);
+  const localeColl = db.collection(collections.LOCALE);
+
   await countryColl.insertMany(countries);
-  await colorColl.insertMany(colors);
-  await sizeColl.insertMany(sizes);
+  await productColl.insertMany(products);
+  await userInfoColl.insertMany(userInfo);
+  await cartColl.insertMany(countries);
+  //await shippingColl.insertMany();
+  await localeColl.insertMany(locales);
 }
 
 module.exports = {

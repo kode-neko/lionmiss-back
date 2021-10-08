@@ -1,8 +1,7 @@
 const faker = require("faker");
-const colors = require("./data/colors.json");
-const sizes = require("./data/sizes.json");
 const countryRaw = require("./data/countryRaw.json");
 const locales = require("./data/locales.json");
+const { LMPromoType, LMSize, LMColor } = require("lionmiss-core");
 
 const NUM_PRODUCTS = 50;
 const NUM_USERS = 2;
@@ -80,13 +79,26 @@ const users = Array(NUM_USERS)
     addresses: addresses,
   }));
 
+const cart = {
+  products: products.slice(0, 10).map((p) => ({
+    size: LMSize.S,
+    color: LMColor.Red,
+    unds: 1,
+    product: p,
+  })),
+  promo: { type: LMPromoType.Qty, qty: 10 },
+  taxes: 21,
+};
+
+const userInfo = {
+  cart: cart,
+  user: users[0],
+  favProducts: products.slice(0, 3).map((p) => p._id),
+};
+
 module.exports = {
   countries,
   locales,
-  colors,
-  sizes,
-  imgs,
-  addresses,
   products,
-  users,
+  userInfo,
 };
