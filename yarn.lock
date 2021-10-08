@@ -3304,10 +3304,10 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lionmiss-core@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/lionmiss-core/-/lionmiss-core-0.2.6.tgz#3a44aa1dc4a2b08ef1db5904607ef92c60bc06d0"
-  integrity sha512-fMOfVVO//wxKISv58/Oxa51S6UZ/1vwhtroiGgnNynQFT354GeglvDNrta/4kAohNBKNmrH00bRxc0Rc3T9RFg==
+lionmiss-core@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/lionmiss-core/-/lionmiss-core-0.2.8.tgz#e52c65dafdeb50564b266cf9784ae80ef73b61c5"
+  integrity sha512-xUGthE7fARqnd9sxmbnrn1pUTfsYCZQSQ5JJODrj0ikOpdFWUkjzf/uVcEs2FbjPg0Ahtg16WO5DbDprSCu1Hw==
   dependencies:
     "@js-joda/core" "^4.0.0"
     "@types/react-dom" "^17.0.9"

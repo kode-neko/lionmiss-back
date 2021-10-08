@@ -10,6 +10,13 @@ const UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");
 
 const mgsCart = new MGSCart();
 
+async function getUserInfoObj(): Promise<LMUserInfo> {
+  await UserInfoModel.insertMany([fixtureUserInfo]);
+  const userInfoList = await UserInfoModel.find({});
+  const userInfo = userInfoList[0];
+  return userInfo;
+}
+
 describe("MGSCart", () => {
   beforeAll(async function () {
     await setUp();
@@ -24,9 +31,7 @@ describe("MGSCart", () => {
   });
 
   it("getCart: get a single cart", async () => {
-    await UserInfoModel.insertMany([fixtureUserInfo]);
-    const userInfoList = await UserInfoModel.find({});
-    const userInfo = userInfoList[0];
+    const userInfo = await getUserInfoObj();
     const cart = (await mgsCart.getCart(userInfo._id)) as LMCart;
     expect(cart._id).toStrictEqual(userInfo.cart._id);
     expect(cart.promo).toStrictEqual(userInfo.cart.promo);
@@ -39,19 +44,31 @@ describe("MGSCart", () => {
   });
 
   it("postCart: a valid one", async () => {
-    await UserInfoModel.insertMany([fixtureUserInfo]);
-    const userInfoList = await UserInfoModel.find({});
-    const userInfo = userInfoList[0];
+    const userInfo = await getUserInfoObj();
     const ok = await mgsCart.postCart(userInfo._id, fixtureCart);
     expect(ok).toBeTruthy();
   });
 
   it("postCart: missing fields", async () => {
-    await UserInfoModel.insertMany([fixtureUserInfo]);
-    const userInfoList = await UserInfoModel.find({});
-    const userInfo = userInfoList[0];
+    const userInfo = await getUserInfoObj();
     expect(
       mgsCart.postCart(userInfo._id, { taxes: 21 } as LMCart)
     ).rejects.toEqual(expect.anything());
+  });
+
+  it("updateCart: update one succesfully", async () => {
+    const userInfo = await getUserInfoObj();
+    const cart = (await mgsCart.getCart(userInfo._id)) as LMCart;
+    cart.taxes = 42;
+    const ok = await mgsCart.updateCart(userInfo._id, cart);
+    expect(ok).toBeTruthy();
+  });
+
+  it("updateCart: the id doesn't existe", async () => {
+    const userInfo = await getUserInfoObj();
+    const cart = (await mgsCart.getCart(userInfo._id)) as LMCart;
+    cart.taxes = 42;
+    const ok = await mgsCart.updateCart("123456789000", cart);
+    expect(ok).toBeFalsy();
   });
 });
