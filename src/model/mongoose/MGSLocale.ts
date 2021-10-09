@@ -9,7 +9,7 @@ class MGSLocale implements ILocale {
   getLocaleAll(): Promise<LMBLocale[] | LMBError> {
     return this.LocaleModel.find({})
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 }
 

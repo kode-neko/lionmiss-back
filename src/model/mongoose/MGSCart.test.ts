@@ -39,10 +39,11 @@ describe("MGSCart", () => {
     expect(cart.products.length).toStrictEqual(userInfo.cart.products.length);
   });
 
-  it("getCart: the cart doesn't exist", () => {
-    expect(mgsCart.getCart("123456789000")).rejects.toEqual({});
+  it("getCart: the cart doesn't exist", async () => {
+    const cart = await mgsCart.getCart("123456789000");
+    expect(cart).toEqual({});
   });
-
+  
   it("postCart: a valid one", async () => {
     const userInfo = await getUserInfoObj();
     const ok = await mgsCart.postCart(userInfo._id, fixtureCart);

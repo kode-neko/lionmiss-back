@@ -10,13 +10,13 @@ class MGSShipping implements IShipping {
   getShipping(id: string): Promise<LMShipping | LMBError> {
     return this.ShippingModel.findById(id)
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   getShippingAll(): Promise<LMShipping[] | LMBError> {
     return this.ShippingModel.find()
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   postShipping(shipping: LMShipping): Promise<boolean | LMBError> {
@@ -25,7 +25,7 @@ class MGSShipping implements IShipping {
       .validate()
       .then(() => shippingModel.save())
       .then(() => Promise.resolve(true))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   updateShipping(shipping: LMShipping): Promise<boolean | LMBError> {
@@ -34,14 +34,14 @@ class MGSShipping implements IShipping {
     })
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   deleteShipping(id: string): Promise<boolean | LMBError> {
     return this.ShippingModel.findByIdAndDelete(id)
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 }
 

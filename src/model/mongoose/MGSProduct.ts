@@ -10,13 +10,13 @@ class MGSProduct implements IProduct {
   getProduct(id: string): Promise<LMProduct | LMBError> {
     return this.ProductModel.findById(id)
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   getProductAll(): Promise<LMProduct[] | LMBError> {
     return this.ProductModel.find({})
       .then(Promise.resolve)
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   postProduct(product: LMProduct): Promise<boolean | LMBError> {
@@ -25,7 +25,7 @@ class MGSProduct implements IProduct {
       .validate()
       .then(() => productModel.save())
       .then(() => Promise.resolve(true))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   updateProduct(product: LMProduct): Promise<boolean | LMBError> {
@@ -34,14 +34,14 @@ class MGSProduct implements IProduct {
     })
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   deleteProduct(id: string): Promise<boolean | LMBError> {
     return this.ProductModel.findByIdAndDelete(id)
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 }
 

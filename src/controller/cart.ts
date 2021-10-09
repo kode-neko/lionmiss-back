@@ -1,39 +1,39 @@
 import { Request, Response } from "express";
-import { CartModel } from "../model";
+import { builderCart } from "../model";
+import { statusErrorCode } from "./utils";
+
+const userInfo = builderCart();
 
 function getCart(req: Request, res: Response): void {
   const { id } = req.body;
-  CartModel.findById(id)
-    .then((cart) =>
-      cart
-        ? res.status(200).json(cart)
-        : res.status(404).json({ error: "Not found" })
-    )
+  userInfo
+    .getCart(id)
+    .then((cart) => res.status(200).json(cart))
     .catch((err) => res.status(500).json(err));
+}
+
+function postCartProduct(req: Request, res: Response): void {
+  const { idUser, cartProduct } = req.body;
+  userInfo
+    .postProductCart(idUser, cartProduct)
+    .then((cart) => res.status(200).json(cart))
+    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }
 
 function putCartProduct(req: Request, res: Response): void {
-  const { cartProduct, idCart } = req.body;
-  let newCartProducts = [];
-  CartModel.findById(idCart)
-    .then((cart) => {
-      newCartProducts = cart.products.filter((product) =>
-        product._id === cartProduct._id ? cartProduct : product
-      );
-      const newCart = { ...cart, products: newCartProducts };
-      CartModel.updateOne({ _id: idCart }, { $set: newCart });
-    })
-    .then(() => res.status(200).json(newCartProducts))
-    .catch((err) => res.status(500).json(err));
+  const { idUser, cartProduct } = req.body;
+  userInfo
+    .updateProductCart(idUser, cartProduct)
+    .then((cart) => res.status(200).json(cart))
+    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }
 
-function delCart(req: Request, res: Response): void {
-  const { idCart } = req.body;
-  CartModel.deleteOne({ _id: idCart })
-    .then(({ deletedCount }) =>
-      deletedCount > 0 ? res.status(200).json() : res.status(404).json()
-    )
-    .catch((err) => res.status(500).json(err));
+function delCartProduct(req: Request, res: Response): void {
+  const { idUser, idProduct } = req.body;
+  userInfo
+    .deleteProductCart(idUser, idProduct)
+    .then((cart) => res.status(200).json(cart))
+    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }
 
-export { getCart, putCartProduct, delCart };
+export { getCart, postCartProduct, putCartProduct, delCartProduct };

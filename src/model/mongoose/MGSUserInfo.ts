@@ -10,13 +10,13 @@ class MGSUserInfo implements IUserInfo {
   getUser(id: string): Promise<LMUser | LMBError> {
     return this.UserInfoModel.findById(id)
       .then((userInfo) => Promise.resolve(userInfo.user))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   getUserAll(): Promise<LMUser[] | LMBError> {
     return this.UserInfoModel.find({}, { user: 1 })
       .then((usersInfo) => Promise.resolve(usersInfo.map((u) => u.user)))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   postUser(user: LMUser): Promise<boolean | LMBError> {
@@ -24,7 +24,7 @@ class MGSUserInfo implements IUserInfo {
     return this.UserInfoModel.validate()
       .then(() => userInfoModel.save())
       .then(() => Promise.resolve(true))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   updateUser(id: string, user: LMUser): Promise<boolean | LMBError> {
@@ -35,14 +35,14 @@ class MGSUserInfo implements IUserInfo {
     )
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   deleteUser(id: string): Promise<boolean | LMBError> {
     return this.UserInfoModel.findByIdAndDelete(id)
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 }
 

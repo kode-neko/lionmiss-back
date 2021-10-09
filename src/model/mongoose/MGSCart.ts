@@ -9,8 +9,8 @@ class MGSCart implements ICart {
 
   getCart(idUser: string): Promise<LMCart | LMBError> {
     return this.UserInfoModel.findById(idUser)
-      .then((userInfo) => Promise.resolve(userInfo.cart))
-      .catch((err) => Promise.reject({ ...err }));
+      .then((userInfo) => Promise.resolve(userInfo ? userInfo.cart : {}))
+      .catch((err) => Promise.reject(err));
   }
 
   postCart(idUser: string, cart: LMCart): Promise<boolean | LMBError> {
@@ -20,7 +20,7 @@ class MGSCart implements ICart {
       { runValidators: true }
     )
       .then(({ modifiedCount }) => Promise.resolve(modifiedCount > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   updateCart(idUser: string, cart: LMCart): Promise<boolean | LMBError> {
@@ -31,13 +31,13 @@ class MGSCart implements ICart {
     )
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   deleteCart(idUser: string): Promise<boolean | LMBError> {
     return this.UserInfoModel.deleteOne({ _id: idUser })
       .then(({ deletedCount }) => Promise.resolve(deletedCount > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   postProductCart(
@@ -51,7 +51,7 @@ class MGSCart implements ICart {
     )
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   updateProductCart(
@@ -68,7 +68,7 @@ class MGSCart implements ICart {
     )
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 
   deleteProductCart(
@@ -82,7 +82,7 @@ class MGSCart implements ICart {
     )
       .count()
       .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject({ ...err }));
+      .catch((err) => Promise.reject(err));
   }
 }
 
