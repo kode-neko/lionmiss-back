@@ -19,12 +19,12 @@ class MGSProduct implements IProduct {
       .catch((err) => Promise.reject(err));
   }
 
-  postProduct(product: LMProduct): Promise<boolean | LMBError> {
+  postProduct(product: LMProduct): Promise<LMProduct | LMBError> {
     const productModel = new this.ProductModel(product);
     return productModel
       .validate()
       .then(() => productModel.save())
-      .then(() => Promise.resolve(true))
+      .then((product) => Promise.resolve(product))
       .catch((err) => Promise.reject(err));
   }
 

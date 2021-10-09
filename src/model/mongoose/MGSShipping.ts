@@ -19,12 +19,12 @@ class MGSShipping implements IShipping {
       .catch((err) => Promise.reject(err));
   }
 
-  postShipping(shipping: LMShipping): Promise<boolean | LMBError> {
+  postShipping(shipping: LMShipping): Promise<LMShipping | LMBError> {
     const shippingModel = new this.ShippingModel(shipping);
     return shippingModel
       .validate()
       .then(() => shippingModel.save())
-      .then(() => Promise.resolve(true))
+      .then((shipping) => Promise.resolve(shipping))
       .catch((err) => Promise.reject(err));
   }
 

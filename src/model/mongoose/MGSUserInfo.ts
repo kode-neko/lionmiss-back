@@ -1,4 +1,4 @@
-import { LMUser, LMUserInfo } from "lionmiss-core";
+import { LMUserInfo } from "lionmiss-core";
 import { model } from "mongoose";
 import { IUserInfo } from "../IUserInfo";
 import { LMBError } from "../LMB";
@@ -7,30 +7,30 @@ import { schemaUserInfo } from "./schemas";
 class MGSUserInfo implements IUserInfo {
   UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");
 
-  getUser(id: string): Promise<LMUser | LMBError> {
+  getUserInfo(id: string): Promise<LMUserInfo | LMBError> {
     return this.UserInfoModel.findById(id)
-      .then((userInfo) => Promise.resolve(userInfo.user))
+      .then((userInfo) => Promise.resolve(userInfo ? userInfo.user : {}))
       .catch((err) => Promise.reject(err));
   }
 
-  getUserAll(): Promise<LMUser[] | LMBError> {
-    return this.UserInfoModel.find({}, { user: 1 })
-      .then((usersInfo) => Promise.resolve(usersInfo.map((u) => u.user)))
+  getUserInfoAll(): Promise<LMUserInfo[] | LMBError> {
+    return this.UserInfoModel.find({})
+      .then((usersInfoList) => Promise.resolve(usersInfoList))
       .catch((err) => Promise.reject(err));
   }
 
-  postUser(user: LMUser): Promise<boolean | LMBError> {
-    const userInfoModel = new this.UserInfoModel(user);
-    return this.UserInfoModel.validate()
+  postUserInfo(userInfo: LMUserInfo): Promise<LMUserInfo | LMBError> {
+    const userInfoModel = new this.UserInfoModel(userInfo);
+    return userInfoModel.validate()
       .then(() => userInfoModel.save())
-      .then(() => Promise.resolve(true))
+      .then((userInfo) => Promise.resolve(userInfo))
       .catch((err) => Promise.reject(err));
   }
 
-  updateUser(id: string, user: LMUser): Promise<boolean | LMBError> {
+  updateUserInfo(id: string, userInfo: LMUserInfo): Promise<boolean | LMBError> {
     return this.UserInfoModel.findByIdAndUpdate(
       id,
-      { user: user },
+      { ...userInfo },
       { runValidators: true }
     )
       .count()

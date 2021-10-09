@@ -1,10 +1,11 @@
-import { LMUser } from "lionmiss-core";
+import { LMUserInfo } from "lionmiss-core";
 import { LMBError } from "./LMB";
 
 interface IUserInfo {
-  getUser: (id: string) => Promise<LMUser | LMBError>;
-  postUser: (user: LMUser) => Promise<boolean | LMBError>;
-  updateUser: (id: string, user: LMUser) => Promise<boolean | LMBError>;
+  getUser: (id: string) => Promise<LMUserInfo | LMBError>;
+  getUserAll: () => Promise<LMUserInfo[] | LMBError>;
+  postUser: (user: LMUserInfo) => Promise<LMUserInfo | LMBError>;
+  updateUser: (id: string, user: LMUserInfo) => Promise<boolean | LMBError>;
   deleteUser: (id: string) => Promise<boolean | LMBError>;
 }
 
