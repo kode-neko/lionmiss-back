@@ -6,9 +6,9 @@ import { isEmpty } from "lodash";
 const userInfo = builderCart();
 
 function getCart(req: Request, res: Response): void {
-  const { id } = req.body;
+  const { idUser } = req.params;
   userInfo
-    .getCart(id)
+    .getCart(idUser)
     .then((cart) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
     .catch((err) => res.status(statusErrorCode(err.name)).json(err));
 }
@@ -30,7 +30,7 @@ function putCartProduct(req: Request, res: Response): void {
 }
 
 function delCartProduct(req: Request, res: Response): void {
-  const { idUser, idProduct } = req.body;
+  const { idUser, idProduct } = req.params;
   userInfo
     .deleteProductCart(idUser, idProduct)
     .then((ok) => res.status(ok ? 200 : 404))

@@ -6,7 +6,7 @@ import { isEmpty } from "lodash";
 const productModel = builderProduct();
 
 function getProduct(req: Request, res: Response): void {
-  const { id } = req.body;
+  const { id } = req.params;
   productModel
     .getProduct(id)
     .then((cart) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
@@ -37,7 +37,7 @@ function updateProduct(req: Request, res: Response): void {
 }
 
 function deleteProduct(req: Request, res: Response): void {
-  const { id } = req.body;
+  const { id } = req.params;
   productModel
     .deleteProduct(id)
     .then((ok) => res.status(ok ? 200 : 404))
