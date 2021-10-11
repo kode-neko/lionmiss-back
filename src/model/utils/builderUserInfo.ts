@@ -1,8 +1,8 @@
-import { IShipping } from "../IShipping";
-import { MGSShipping } from "../mongoose";
+import { IUserInfo } from "../IUserInfo";
+import { MGSUserInfo } from "../mongoose";
 
-function builderShipping(): IShipping {
-  return new MGSShipping();
+function builderUserInfo(): IUserInfo {
+  return new MGSUserInfo();
 }
 
-export { builderShipping };
+export { builderUserInfo };

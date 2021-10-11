@@ -5,43 +5,43 @@ import { isEmpty } from "lodash";
 
 const userInfoModel = builderUserInfo();
 
-function getUserInfo(req: Request, res: Response): void {
+function getUser(req: Request, res: Response): void {
   const { id } = req.body;
   userInfoModel
-    .getUserInfo(id)
+    .getUser(id)
     .then((cart) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
     .catch((err) => res.status(statusErrorCode(err.name)).json(err));
 }
 
-function getUserInfoAll(req: Request, res: Response): void {
+function getUserAll(req: Request, res: Response): void {
   userInfoModel
-    .getUserInfoAll()
+    .getUserAll()
     .then((list) => res.status(200).json(list))
     .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }
 
-function postUserInfo(req: Request, res: Response): void {
+function postUser(req: Request, res: Response): void {
   const { userInfo } = req.body;
   userInfoModel
-    .postUserInfo(userInfo)
+    .postUser(userInfo)
     .then((newUserInfo) => res.status(201).json(newUserInfo))
     .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }
 
-function updateUserInfo(req: Request, res: Response): void {
-  const { userInfo } = req.body;
+function updateUser(req: Request, res: Response): void {
+  const { userInfo, user } = req.body;
   userInfoModel
-    .updateUserInfo(userInfo)
+    .updateUser(userInfo, user)
     .then((ok) => res.status(ok ? 200 : 404))
     .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }
 
-function deleteUserInfo(req: Request, res: Response): void {
+function deleteUser(req: Request, res: Response): void {
   const { id } = req.body;
   userInfoModel
-    .deleteUserInfo(id)
+    .deleteUser(id)
     .then((ok) => res.status(ok ? 200 : 404))
     .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }
 
-export { getUserInfo, getUserInfoAll, postUserInfo, updateUserInfo, deleteUserInfo };
+export { getUser, getUserAll, postUser, updateUser, deleteUser };

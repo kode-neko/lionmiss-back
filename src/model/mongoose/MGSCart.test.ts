@@ -2,7 +2,7 @@ import { model } from "mongoose";
 import { LMCart } from "lionmiss-core";
 import { LMUserInfo } from "lionmiss-core";
 import { setUp, dropDb, dropColls } from "../../test/model/MGS";
-import { fixtureCart, fixtureUserInfo } from "../../../fixtures";
+import { fixtureCart, fixtureUserInfo } from "../../test/fixtures";
 import { MGSCart } from "./index";
 import { schemaUserInfo } from "./schemas";
 

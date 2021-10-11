@@ -7,19 +7,19 @@ import { schemaUserInfo } from "./schemas";
 class MGSUserInfo implements IUserInfo {
   UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");
 
-  getUserInfo(id: string): Promise<LMUserInfo | LMBError> {
+  getUser(id: string): Promise<LMUserInfo | LMBError> {
     return this.UserInfoModel.findById(id)
       .then((userInfo) => Promise.resolve(userInfo ? userInfo.user : {}))
       .catch((err) => Promise.reject(err));
   }
 
-  getUserInfoAll(): Promise<LMUserInfo[] | LMBError> {
+  getUserAll(): Promise<LMUserInfo[] | LMBError> {
     return this.UserInfoModel.find({})
       .then((usersInfoList) => Promise.resolve(usersInfoList))
       .catch((err) => Promise.reject(err));
   }
 
-  postUserInfo(userInfo: LMUserInfo): Promise<LMUserInfo | LMBError> {
+  postUser(userInfo: LMUserInfo): Promise<LMUserInfo | LMBError> {
     const userInfoModel = new this.UserInfoModel(userInfo);
     return userInfoModel.validate()
       .then(() => userInfoModel.save())
@@ -27,7 +27,7 @@ class MGSUserInfo implements IUserInfo {
       .catch((err) => Promise.reject(err));
   }
 
-  updateUserInfo(id: string, userInfo: LMUserInfo): Promise<boolean | LMBError> {
+  updateUser(id: string, userInfo: LMUserInfo): Promise<boolean | LMBError> {
     return this.UserInfoModel.findByIdAndUpdate(
       id,
       { ...userInfo },

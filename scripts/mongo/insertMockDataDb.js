@@ -5,7 +5,7 @@ const {
   fixtureUserInfo,
   fixtureCart,
   fixtureLocales,
-} = require("../../fixtures");
+} = require("../../src/test/fixtures");
 
 async function insertData(db) {
   const countryColl = db.collection(collections.COUNTRY);
