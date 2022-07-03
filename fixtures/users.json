@@ -1,10 +1,10 @@
 [
   {
-    "user": "kodeneko",
+    "email": "kodeneko@gmail.com",
     "pass": "$2y$10$gnk6C42afLAWfceK15/1yeC24yYDdcu.qFIBBeV2O.7ClJPkkCjJq"
   },
   {
-    "user": "test",
+    "email": "test@test.com",
     "pass": "$2y$10$P3O/JiGGcn4eRPVe60cv6.m8SgWrrS8LA4JZ2PXmP/AeBYteCWheK"
   }
 ]

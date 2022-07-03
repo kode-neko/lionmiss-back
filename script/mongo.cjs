@@ -51,12 +51,13 @@ function populate(db) {
 }
 
 function drop(db) {
-  db.listCollections().map((col) => db[col].drop());
+  db.user.drop();
+  db.article.drop();
 }
 
 console.log(
   chalk.bold.magentaBright(
-    figlet.textSync('Cheety BD', {
+    figlet.textSync('Cheety Mongo', {
       font: 'Cosmike',
       horizontalLayout: 'default',
       verticalLayout: 'default',
