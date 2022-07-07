@@ -51,8 +51,10 @@ function populate(db) {
 }
 
 function drop(db) {
-  db.user.drop();
-  db.article.drop();
+  const userCollection = db.collection('user');
+  const articlesCollection = db.collection('article');
+  userCollection.drop();
+  articlesCollection.drop();
 }
 
 console.log(
