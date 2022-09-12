@@ -241,7 +241,7 @@ const choices = {
 console.log(
   chalk.bold.magentaBright(
     figlet.textSync('Cheety SQL', {
-      font: 'AMC Razor2',
+      font: 'Crawford2',
       horizontalLayout: 'default',
       verticalLayout: 'default',
     }),
