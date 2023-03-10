@@ -8,10 +8,17 @@ import {
   routesShipping,
   routesUserInfo,
 } from "./routes";
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpecs from "./config/swagger";
 
 dotenv.config();
 
 const app = express();
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpecs)
+);
 app.use("/cart", routesCart);
 app.use("/country", routesCountry);
 app.use("/locale", routesLocale);

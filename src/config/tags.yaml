@@ -1,0 +1,13 @@
+tags:
+  - name: Cart
+    description: The shopping cart
+  - name: Country
+    description: All country
+  - name: Locale
+    description: All locales
+  - name: Products
+    description: Product shop info
+  - name: Shipping
+    description: Shipping info
+  - name: UserInfo
+    description: User info

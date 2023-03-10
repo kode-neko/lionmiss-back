@@ -1,0 +1,76 @@
+paths:
+  /cart/user/{idUser}:
+    get:
+      summary: Get a user shooping cart
+      tags: [Cart]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: The user id
+      responses:
+        200:
+          description: The user cart
+        404:
+          description: The cart isn't found
+        500:
+          description: Some server error
+  /cart/product:
+    post:
+      summary: Get a user cart
+      tags: [Cart]
+      requestBody:
+        required: true
+        description: A body mann!!!
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idUser:
+                  type: string
+                cartProduct:
+
+      responses:
+        200:
+          description: Cart created
+        404:
+          description: The user not found
+        500:
+          description: Some server error
+    put:
+      summary: Get a user cart
+      tags: [Cart]
+      requestBody:
+        required: true
+        description:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cart"
+      responses:
+        200:
+          description: Cart updated
+        400:
+          description: The user not found
+        500:
+          description: Some server error
+    delete:
+      summary: Get a user cart
+      tags: [Cart]
+      requestBody:
+        required: true
+        description:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cart"
+      responses:
+        200:
+          description: Cart updated
+        400:
+          description: The user not found
+        500:
+          description: Some server error

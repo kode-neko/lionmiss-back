@@ -1,1 +1,0 @@
-{"version":3,"file":"fixtureCountries.js","sourceRoot":"","sources":["fixtureCountries.ts"],"names":[],"mappings":";;;AAAA,iCAAsC;AAEtC,MAAM,gBAAgB,GAAG,mBAAY,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC;IAChD,IAAI,EAAE,CAAC,CAAC,OAAO;IACf,QAAQ,EAAE,CAAC,CAAC,uBAAuB;IACnC,QAAQ,EAAE,CAAC,CAAC,wBAAwB;IACpC,YAAY,EAAE,CAAC,CAAC,aAAa;CAC9B,CAAC,CAAC,CAAC;AAEK,4CAAgB"}
