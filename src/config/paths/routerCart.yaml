@@ -9,8 +9,8 @@ paths:
       parameters:
         - in: path
           name: idUser
-          schema:
-            type: string
+          type: string
+          required: true
       responses:
         200:
           description: The user cart

@@ -4,14 +4,14 @@ const optionsSwaggerJsdoc = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "LogRocket Express API with Swagger",
+      title: "Lion Miss API REST",
       version: "0.1.0",
       description:
-        "This is a simple CRUD API application made with Express and documented with Swagger",
+        "The Lion Miss API REST online shop",
       contact: {
-        name: "LogRocket",
-        url: "https://logrocket.comm",
-        email: "info@email.com",
+        name: "Kode Neko",
+        url: "https://www.kodeneko.com",
+        email: "gema.mo.est@email.com",
       },
     },
   },
