@@ -1,6 +1,6 @@
 components:
   schemas:
-    Size:
+    LMSize:
       type: string
       enum:
         - xs
@@ -9,7 +9,7 @@ components:
         - l
         - xl
         - xxl
-    Color:
+    LMColor:
       type: string
       enum:
         - red
@@ -22,7 +22,7 @@ components:
         - pink
         - white
         - black
-    PromoType:
+    LMPromoType:
       type: string
       enum:
         - Percent
@@ -32,17 +32,17 @@ components:
           type: string
         value:
           type: string
-    Promo:
+    LMPromo:
       type: object
       required:
         - type
         - qty
       properties:
         type:
-          $ref: '#/components/schemas/PromoType'
+          $ref: '#/components/schemas/LMPromoType'
         qty:
           type: number
-    ProductProps:
+    LMProductProps:
       type: object
       required:
         - key
@@ -52,7 +52,7 @@ components:
           type: string
         value:
           type: string
-    Country:
+    LMCountry:
       type: object
       required:
         - name
@@ -68,7 +68,7 @@ components:
           type: string
         currencyName:
           type: string
-    Img:
+    LMImg:
       type: object
       required:
         - src
@@ -86,7 +86,7 @@ components:
           type: string
         main:
           type: boolean
-    Product:
+    LMProduct:
       type: object
       required:
         - name
@@ -106,12 +106,12 @@ components:
         description:
           type: string
         details:
-          $ref: '#/components/schemas/ProductProps'
+          $ref: '#/components/schemas/LMProductProps'
         colors:
-          $ref: '#/components/schemas/Color'
+          $ref: '#/components/schemas/LMColor'
         imgs:
-          $ref: '#/components/schemas/Img'
-    Cart:
+          $ref: '#/components/schemas/LMImg'
+    LMCart:
       type: object
       required:
         - products
@@ -127,7 +127,7 @@ components:
           type: object
         taxes:
           type: number
-    CartProduct:
+    LMCartProduct:
       type: object
       required:
         - size
@@ -137,14 +137,14 @@ components:
         _id:
           type: string
         size:
-          $ref: '#/components/schemas/Size'
+          $ref: '#/components/schemas/LMSize'
         color:
-          $ref: '#/components/schemas/Color'
+          $ref: '#/components/schemas/LMColor'
         unds:
           type: number
         product:
-          $ref: '#/components/schemas/Product'
-    CreditCard:
+          $ref: '#/components/schemas/LMProduct'
+    LMCreditCard:
       type: object
       required:
         - creditNumber
@@ -165,7 +165,7 @@ components:
           type: number
         cvv:
           type: number
-    Measures:
+    LMMeasures:
       type: object
       required:
         - chest
@@ -179,8 +179,8 @@ components:
         hip:
           type: number
         size:
-          $ref: '#/components/schemas/Size'
-    PropsBuy:
+          $ref: '#/components/schemas/LMSize'
+    LMPropsBuy:
       type: object
       required:
         - productId
@@ -189,12 +189,12 @@ components:
         productId:
           type: string
         color:
-          t$ref: '#/components/schemas/Size'
+          t$ref: '#/components/schemas/LMSize'
         size:
-          $ref: '#/components/schemas/Size'
+          $ref: '#/components/schemas/LMSize'
         qty:
           type: number
-    Address:
+    LMAddress:
       type: object
       required:
         - name
@@ -230,7 +230,7 @@ components:
           type: string
         main:
           type: boolean
-    User:
+    LMUser:
       type: object
       required:
         - username
@@ -244,20 +244,20 @@ components:
         username:
           type: string
         avatar:
-          $ref: '#/components/schemas/Size'
+          $ref: '#/components/schemas/LMSize'
         lang:
-          $ref: '#/components/schemas/Color'
+          $ref: '#/components/schemas/LMColor'
         currency:
           type: number
         measures:
-          $ref: '#/components/schemas/Measures'
+          $ref: '#/components/schemas/LMMeasures'
         email:
-          $ref: '#/components/schemas/Product'
+          $ref: '#/components/schemas/LMProduct'
         addresses:
           type: array
           items:
-            $ref: '#/components/schemas/Address'
-    Comment:
+            $ref: '#/components/schemas/LMAddress'
+    LMComment:
       type: object
       required:
         - comment
@@ -270,20 +270,20 @@ components:
         _id:
           type: string
         comment:
-          type: '#/components/schemas/Size'
+          type: '#/components/schemas/LMSize'
         date:
           type: string
         ratting:
           type: number
         measures:
-          $ref: '#/components/schemas/Measures'
+          $ref: '#/components/schemas/LMMeasures'
         user:
-          $ref: '#/components/schemas/User'
+          $ref: '#/components/schemas/LMUser'
         imgs:
           type: array
           items:
-            $ref: '#/components/schemas/Img'
-    Shipping:
+            $ref: '#/components/schemas/LMImg'
+    LMShipping:
       type: object
       required:
         - initDate
@@ -306,4 +306,4 @@ components:
         paymentMethod:
           type: string
         cart:
-          $ref: '#/components/schemas/Cart'
+          $ref: '#/components/schemas/LMCart'

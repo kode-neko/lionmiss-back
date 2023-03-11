@@ -1,0 +1,86 @@
+paths:
+
+  /shipping/{id}:
+
+    get:
+      summary: Get shipping by id
+      tags:
+        - Shipping
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: Shipping found
+        404:
+          description: Shipping not found
+        500:
+          description: Some server error
+
+    delete:
+      summary: Delete shipping by id
+      tags:
+        - Shipping
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: Shipping found and deleted
+        404:
+          description: Shipping not found
+        500:
+          description: Some server error
+
+  /shipping/all:
+
+    get:
+      summary: Get all shipping
+      tags:
+        - Shipping
+      responses:
+        200:
+          description: Shipping list
+        500:
+          description: Some server error
+
+  /shipping:
+
+    post:
+      summary: Create new shipping
+      tags:
+        - Shipping
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LMShipping"
+      responses:
+        201:
+          description: Shipping created
+        500:
+          description: Some server error
+
+    put:
+      summary: Update shipping
+      tags:
+        - Shipping
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LMShipping"
+      responses:
+        200:
+          description: Shipping updated
+        404:
+          description: Shipping not found
+        500:
+          description: Some server error
+

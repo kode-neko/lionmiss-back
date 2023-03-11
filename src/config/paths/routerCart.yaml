@@ -1,15 +1,16 @@
 paths:
+
   /cart/user/{idUser}:
+
     get:
       summary: Get a user shooping cart
-      tags: [Cart]
+      tags:
+        - Cart
       parameters:
         - in: path
-          name: id
+          name: idUser
           schema:
             type: string
-          required: true
-          description: The user id
       responses:
         200:
           description: The user cart
@@ -17,13 +18,15 @@ paths:
           description: The cart isn't found
         500:
           description: Some server error
+
   /cart/product:
+
     post:
-      summary: Get a user cart
-      tags: [Cart]
+      summary: Insert product in the cart
+      tags:
+        - Cart
       requestBody:
         required: true
-        description: A body mann!!!
         content:
           application/json:
             schema:
@@ -32,45 +35,61 @@ paths:
                 idUser:
                   type: string
                 cartProduct:
-
+                  $ref: "#/components/schemas/LMCart"
       responses:
         200:
-          description: Cart created
+          description: Product inserted in the cart
         404:
-          description: The user not found
+          description: Cart not found
         500:
           description: Some server error
+
     put:
-      summary: Get a user cart
-      tags: [Cart]
+      summary: Modify product cart
+      tags: 
+        - Cart
       requestBody:
         required: true
-        description:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Cart"
+              type: object
+              properties:
+                idUser:
+                  type: string
+                cartProduct:
+                  $ref: "#/components/schemas/LMCart"
       responses:
         200:
-          description: Cart updated
+          description: Product cart updated
         400:
-          description: The user not found
+          description: Cart not found
         500:
           description: Some server error
+
+  /cart/user/{idUser}/product/{idProduct}:
+
     delete:
-      summary: Get a user cart
-      tags: [Cart]
-      requestBody:
-        required: true
-        description:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Cart"
+      summary: Delete product cart
+      tags:
+        - Cart
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: string
+            example: patata
+        - in: path
+          name: idProduct
+          required: true
+          schema:
+            type: string
+            example: patata
       responses:
         200:
-          description: Cart updated
-        400:
-          description: The user not found
+          description: Deleted product in teh cart
+        404:
+          description: Cart not found
         500:
           description: Some server error

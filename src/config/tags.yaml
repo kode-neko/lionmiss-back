@@ -5,9 +5,9 @@ tags:
     description: All country
   - name: Locale
     description: All locales
-  - name: Products
+  - name: Product
     description: Product shop info
   - name: Shipping
     description: Shipping info
-  - name: UserInfo
+  - name: User
     description: User info
