@@ -5,7 +5,7 @@ const {
   fixtureUserInfo,
   fixtureCart,
   fixtureLocales,
-} = require("../../src/test/fixtures");
+} = require("../../dist/test/fixtures");
 
 async function insertData(db) {
   const countryColl = db.collection(collections.COUNTRY);
@@ -19,7 +19,7 @@ async function insertData(db) {
   await productColl.insertMany(fixtureProducts);
   await userInfoColl.insertMany([fixtureUserInfo]);
   await cartColl.insertMany([fixtureCart]);
-  //await shippingColl.insertMany();
+  await shippingColl.insertMany();
   await localeColl.insertMany(fixtureLocales);
 }
 

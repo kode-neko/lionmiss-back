@@ -6,7 +6,7 @@ const { insertData } = require("./insertMockDataDb");
 const funcs = {
   createAll: async (db) => {
     await insertData(db);
-    await createUser(db);
+    // await createUser(db);
   },
   dropAll: async (db) => {
     await dropCollections(db);
