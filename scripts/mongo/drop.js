@@ -1,5 +1,9 @@
+const { collections } = require("./constants");
+
 async function dropCollections(db) {
-  await db.listCollections().map(col => db[col].drop());
+  const colls = await db.listCollections().toArray();
+  const promises = colls.map((coll) => db.collection(coll.name).drop());
+  await Promise.all(promises);
 }
 
 async function dropUsers(db) {

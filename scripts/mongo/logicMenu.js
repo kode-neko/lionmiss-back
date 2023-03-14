@@ -10,7 +10,7 @@ const funcs = {
   },
   dropAll: async (db) => {
     await dropCollections(db);
-    await dropUsers(db);
+    // await dropUsers(db);
   },
 };
 
