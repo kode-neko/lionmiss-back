@@ -1,0 +1,6 @@
+type PropsBuy {
+  productId: String!
+  color: LMColor
+  size: LMSize
+  qty: Int!
+}

@@ -1,0 +1,7 @@
+type LMImg {
+  _id: String
+  src: String!
+  title: String
+  alt: String
+  main: Boolean
+}

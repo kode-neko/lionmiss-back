@@ -1,0 +1,21 @@
+enum LMColor {
+  Red
+  Orange
+  Yellow
+  Green
+  Aqua
+  Blue
+  Purple
+  Pink
+  White
+  Black
+}
+
+enum LMSize {
+  XS
+  S
+  M
+  L
+  XL
+  XXL
+}

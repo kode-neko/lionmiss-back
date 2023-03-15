@@ -1,0 +1,8 @@
+type LMCreditCard {
+  _id: String
+  creditNumber: Int!
+  fullName: String!
+  month: Int!
+  year: Int!
+  cvv: Int!
+}

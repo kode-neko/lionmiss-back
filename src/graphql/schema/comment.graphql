@@ -1,0 +1,9 @@
+type LMComment {
+  _id: String
+  comment: String!
+  date: String!
+  ratting: Int!
+  measures: LMMeasures!
+  user: LMUser!
+  imgs: [LMImg]!
+}

@@ -1,0 +1,6 @@
+type LMCountry {
+  name: String!
+  nameCode: String!
+  currency: String!
+  currencyName: String!
+}

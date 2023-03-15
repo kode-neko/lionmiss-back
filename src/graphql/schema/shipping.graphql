@@ -1,0 +1,9 @@
+type LMShipping {
+  _id: String
+  initDate: String!
+  finishDate: String!
+  priceShipping: Float!
+  shippingMethod: String!
+  paymentMethod: String!
+  cart: LMCart!
+}

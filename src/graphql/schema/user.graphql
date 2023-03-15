@@ -1,0 +1,16 @@
+type LMUser {
+  username: String!
+  avatar: String!
+  lang: String!
+  currency: String!
+  measures: LMMeasures!
+  email: String!
+  addresses: [LMAddress]!
+}
+
+type LMUserInfo {
+  _id: String
+  cart: LMCart
+  user: LMUser!
+  favProducts: [String]!
+}

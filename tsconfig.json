@@ -10,6 +10,6 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/graphql/schema.graphql", "src/graphql/typeDefs/userInfo.graphql", "src/graphql/typeDefs/shipping.graphql", "src/graphql/typeDefs/product.graphql", "src/graphql/typeDefs/locale.graphql", "src/graphql/typeDefs/country.graphql", "src/graphql/typeDefs/cart.graphql"],
   "exclude": ["node_modules/**/*.*"]
 }

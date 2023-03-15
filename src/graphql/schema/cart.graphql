@@ -1,0 +1,14 @@
+type LMCartProduct {
+  _id: String
+  size: LMSize!
+  color: LMColor
+  unds: Int!
+  product: LMProduct!
+}
+
+type LMCart {
+  _id: String
+  products: [LMCartProduct]!
+  promo: LMPromo
+  taxes: Float!
+}

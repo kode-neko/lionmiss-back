@@ -1,0 +1,9 @@
+enum LMPromoType {
+  Percent
+  Qty
+}
+
+type LMPromo {
+  type: LMPromoType!
+  qty: Int!
+}

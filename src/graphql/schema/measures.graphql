@@ -1,0 +1,6 @@
+type LMMeasures {
+  chest: Int!
+  waist: Int!
+  hip: Int!
+  size: LMSize
+}

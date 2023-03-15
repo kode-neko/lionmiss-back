@@ -1,0 +1,15 @@
+type LMProductProps {
+  key: String!
+  value: String!
+}
+
+type LMProduct {
+  _id: String
+  name: String!
+  price: Float!
+  description: String!
+  details: [LMProductProps]!
+  colors: [LMColor]!
+  unds: Int!
+  imgs: [LMImg]!
+}
