@@ -8,8 +8,8 @@ class MGSLocale implements ILocale {
 
   getLocaleAll(): Promise<LMBLocale[] | LMBError> {
     return this.LocaleModel.find({})
-      .then(Promise.resolve)
-      .catch((err) => Promise.reject(err));
+      .then(list => list)
+      .catch(err => err);
   }
 }
 

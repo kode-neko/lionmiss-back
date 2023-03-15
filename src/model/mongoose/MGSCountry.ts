@@ -9,14 +9,14 @@ class MGSCountry implements ICountry {
 
   getCountry(id: string): Promise<LMCountry | LMBError> {
     return this.CountryModel.findById(id)
-      .then(Promise.resolve)
-      .catch((err) => Promise.reject(err));
+      .then(country => country)
+      .catch(err => err);
   }
 
   getCountryAll(): Promise<LMCountry[] | LMBError> {
     return this.CountryModel.find({})
-      .then(Promise.resolve)
-      .catch((err) => Promise.reject(err));
+      .then(list => list)
+      .catch(err => err);
   }
 }
 

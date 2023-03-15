@@ -9,8 +9,8 @@ class MGSCart implements ICart {
 
   getCart(idUser: string): Promise<LMCart | LMBError> {
     return this.UserInfoModel.findById(idUser)
-      .then((userInfo) => Promise.resolve(userInfo ? userInfo.cart : {}))
-      .catch((err) => Promise.reject(err));
+      .then(userInfo => userInfo ? userInfo.cart : {})
+      .catch(err => err);
   }
 
   postCart(idUser: string, cart: LMCart): Promise<boolean | LMBError> {
@@ -19,8 +19,8 @@ class MGSCart implements ICart {
       { cart },
       { runValidators: true }
     )
-      .then(({ modifiedCount }) => Promise.resolve(modifiedCount > 0))
-      .catch((err) => Promise.reject(err));
+      .then(({ modifiedCount }) => modifiedCount > 0)
+      .catch(err => err);
   }
 
   updateCart(idUser: string, cart: LMCart): Promise<boolean | LMBError> {
@@ -30,14 +30,14 @@ class MGSCart implements ICart {
       { runValidators: true }
     )
       .count()
-      .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject(err));
+      .then(count => count > 0)
+      .catch(err => err);
   }
 
   deleteCart(idUser: string): Promise<boolean | LMBError> {
     return this.UserInfoModel.deleteOne({ _id: idUser })
-      .then(({ deletedCount }) => Promise.resolve(deletedCount > 0))
-      .catch((err) => Promise.reject(err));
+      .then(({ deletedCount }) => deletedCount > 0)
+      .catch(err => err);
   }
 
   postProductCart(
@@ -50,8 +50,8 @@ class MGSCart implements ICart {
       { runValidators: true }
     )
       .count()
-      .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject(err));
+      .then(count => count > 0)
+      .catch(err => err);
   }
 
   updateProductCart(
@@ -67,8 +67,8 @@ class MGSCart implements ICart {
       { runValidators: true }
     )
       .count()
-      .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject(err));
+      .then(count => count > 0)
+      .catch(err => err);
   }
 
   deleteProductCart(
@@ -81,8 +81,8 @@ class MGSCart implements ICart {
       { runValidators: true }
     )
       .count()
-      .then((count) => Promise.resolve(count > 0))
-      .catch((err) => Promise.reject(err));
+      .then(count => count > 0)
+      .catch(err => err);
   }
 }
 
