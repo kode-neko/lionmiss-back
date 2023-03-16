@@ -14,3 +14,20 @@ type LMUserInfo {
   user: LMUser!
   favProducts: [String]!
 }
+
+input InputLMUser {
+  username: String!
+  avatar: String!
+  lang: String!
+  currency: String!
+  measures: InputLMMeasures!
+  email: String!
+  addresses: [InputLMAddress]!
+}
+
+input InputLMUserInfo {
+  _id: String
+  cart: InputLMCart
+  user: InputLMUser!
+  favProducts: [String]!
+}

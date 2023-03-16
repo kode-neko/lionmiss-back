@@ -13,3 +13,28 @@ type LMProduct {
   unds: Int!
   imgs: [LMImg]!
 }
+
+input InputLMProductProps {
+  key: String!
+  value: String!
+}
+
+input InputLMProduct {
+  _id: String
+  name: String!
+  price: Float!
+  description: String!
+  details: [InputLMProductProps]!
+  colors: [LMColor]!
+  unds: Int!
+  imgs: [InputLMImg]!
+}
+
+type Query {
+  product(id: String!): LMProduct!
+  products: [LMProduct]!
+}
+
+input MessageProduct {
+  product: InputLMProduct
+}

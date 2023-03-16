@@ -7,3 +7,13 @@ type LMShipping {
   paymentMethod: String!
   cart: LMCart!
 }
+
+input InputLMShipping {
+  _id: String
+  initDate: String!
+  finishDate: String!
+  priceShipping: Float!
+  shippingMethod: String!
+  paymentMethod: String!
+  cart: InputLMCart!
+}

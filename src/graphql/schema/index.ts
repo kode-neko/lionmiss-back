@@ -1,5 +1,4 @@
 enum typeDefs {
-  ROOT = 'root',
   ADDRESS = 'address',
   CART = 'cart',
   COMMENT = 'comment',

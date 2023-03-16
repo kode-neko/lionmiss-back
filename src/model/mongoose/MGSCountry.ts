@@ -5,7 +5,7 @@ import { schemaCountry } from "./schemas";
 import { LMBError } from "../LMB";
 
 class MGSCountry implements ICountry {
-  CountryModel = model<LMCountry>("Country", schemaCountry, "countries");
+  CountryModel = model<LMCountry>("Country", schemaCountry, "country");
 
   getCountry(id: string): Promise<LMCountry | LMBError> {
     return this.CountryModel.findById(id)

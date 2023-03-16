@@ -7,3 +7,13 @@ type LMComment {
   user: LMUser!
   imgs: [LMImg]!
 }
+
+input InputLMComment {
+  _id: String
+  comment: String!
+  date: String!
+  ratting: Int!
+  measures: InputLMMeasures!
+  user: InputLMUser!
+  imgs: [InputLMImg]!
+}

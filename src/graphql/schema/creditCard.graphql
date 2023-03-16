@@ -6,3 +6,12 @@ type LMCreditCard {
   year: Int!
   cvv: Int!
 }
+
+input InputLMCreditCard {
+  _id: String
+  creditNumber: Int!
+  fullName: String!
+  month: Int!
+  year: Int!
+  cvv: Int!
+}

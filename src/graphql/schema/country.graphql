@@ -4,3 +4,14 @@ type LMCountry {
   currency: String!
   currencyName: String!
 }
+
+input InputLMCountry {
+  name: String!
+  nameCode: String!
+  currency: String!
+  currencyName: String!
+}
+
+type Query {
+  countries: [LMCountry]
+}

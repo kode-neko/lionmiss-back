@@ -11,3 +11,17 @@ type LMAddress {
   comments: String!
   main: Boolean!
 }
+
+input InputLMAddress {
+  _id: String
+  name: String!
+  adress: String!
+  country: String!
+  state: String!
+  town: String!
+  zip: String!
+  phone: String!
+  mail: String!
+  comments: String!
+  main: Boolean!
+}

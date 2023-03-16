@@ -13,6 +13,30 @@ function getCart(req: Request, res: Response): void {
     .catch((err) => res.status(statusErrorCode(err.name)).json(err));
 }
 
+function createCart(req: Request, res: Response): void {
+  const { idUser, cart } = req.body;
+  userInfo
+    .postCart(idUser, cart)
+    .then((ok) => res.status(ok ? 201 : 404))
+    .catch((err) => res.status(statusErrorCode(err.name)).json(err));
+}
+
+function updateCart(req: Request, res: Response): void {
+  const { idUser, cart } = req.body;
+  userInfo
+    .updateCart(idUser, cart)
+    .then((ok) => res.status(ok ? 200 : 404))
+    .catch((err) => res.status(statusErrorCode(err.name)).json(err));
+}
+
+function deleteCart(req: Request, res: Response): void {
+  const { idUser } = req.params;
+  userInfo
+    .deleteCart(idUser)
+    .then((ok) => res.status(ok ? 200 : 404))
+    .catch((err) => res.status(statusErrorCode(err.name)).json(err));
+}
+
 function postCartProduct(req: Request, res: Response): void {
   const { idUser, cartProduct } = req.body;
   userInfo
@@ -37,4 +61,12 @@ function delCartProduct(req: Request, res: Response): void {
     .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }
 
-export { getCart, postCartProduct, putCartProduct, delCartProduct };
+export { 
+  getCart,
+  createCart,
+  updateCart,
+  deleteCart,
+  postCartProduct, 
+  putCartProduct, 
+  delCartProduct 
+};

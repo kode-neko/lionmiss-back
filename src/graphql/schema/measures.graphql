@@ -4,3 +4,10 @@ type LMMeasures {
   hip: Int!
   size: LMSize
 }
+
+input InputLMMeasures {
+  chest: Int!
+  waist: Int!
+  hip: Int!
+  size: LMSize
+}

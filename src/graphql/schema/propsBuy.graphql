@@ -4,3 +4,10 @@ type PropsBuy {
   size: LMSize
   qty: Int!
 }
+
+input InputPropsBuy {
+  productId: String!
+  color: LMColor
+  size: LMSize
+  qty: Int!
+}

@@ -1,3 +1,7 @@
 type LMBLocale {
   name: String
 }
+
+input InputLMBLocale {
+  name: String
+}

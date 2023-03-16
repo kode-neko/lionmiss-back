@@ -5,3 +5,11 @@ type LMImg {
   alt: String
   main: Boolean
 }
+
+input InputLMImg {
+  _id: String
+  src: String!
+  title: String
+  alt: String
+  main: Boolean
+}

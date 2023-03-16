@@ -37,7 +37,7 @@ function init() {
       return server.listen();
     })
     .then(({port}) => console.log(`Server is runing in port "${port}"`))
-    .catch(err => console.error(err));
+    // .catch(err => console.error(err));
 }
 
 init();

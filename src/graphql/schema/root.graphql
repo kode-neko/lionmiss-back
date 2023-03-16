@@ -1,9 +1,0 @@
-type Query {
-  product(id: String!): LMProduct
-  products: [LMProduct]
-}
-
-type Query {
-  cart(id: String!): LMCart
-  
-}
