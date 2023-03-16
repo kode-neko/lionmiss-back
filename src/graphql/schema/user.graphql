@@ -31,3 +31,18 @@ input InputLMUserInfo {
   user: InputLMUser!
   favProducts: [String]!
 }
+
+input InputMessageUser {
+  user: InputLMUser
+}
+
+type Query {
+  user(id: String!): LMUser!
+  users: [LMUser]!
+}
+
+type Mutation {
+  createUser(input: InputMessageUser): LMUser
+  updateUser(input: InputMessageUser): Boolean
+  deleteuser(idUser: String): Boolean
+}

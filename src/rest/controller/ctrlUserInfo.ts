@@ -29,9 +29,9 @@ function postUser(req: Request, res: Response): void {
 }
 
 function updateUser(req: Request, res: Response): void {
-  const { userInfo, user } = req.body;
+  const { userInfo } = req.body;
   userInfoModel
-    .updateUser(userInfo, user)
+    .updateUser(userInfo)
     .then((ok) => res.status(ok ? 200 : 404))
     .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
 }

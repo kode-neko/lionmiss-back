@@ -22,7 +22,6 @@ const productResolvers = {
     products: async (): Promise<LMProduct[]|LMBError> => 
       await productModel.getProductAll(),
   },
-  /*
   Mutation: {
     createProduct: async (_: Context, {product}: InputMessageProduct): Promise<LMProduct|LMBError> => 
       await productModel.postProduct(product),
@@ -31,7 +30,6 @@ const productResolvers = {
     deleteProduct: async (_: Context, id: string): Promise<boolean|LMBError> => 
       await productModel.deleteProduct(id),
   }
-  */
 };
 
 export default productResolvers;

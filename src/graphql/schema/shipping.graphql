@@ -17,3 +17,18 @@ input InputLMShipping {
   paymentMethod: String!
   cart: InputLMCart!
 }
+
+input InputMessageShipping {
+  shipping: InputLMShipping
+}
+
+type Query {
+  shipping(id: String!): LMShipping!
+  shippings: [LMShipping]!
+}
+
+type Mutation {
+  createShipping(input: InputMessageShipping): LMShipping
+  updateShipping(input: InputMessageShipping): Boolean
+  deleteshipping(idShipping: String): Boolean
+}

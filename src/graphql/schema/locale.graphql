@@ -1,7 +1,11 @@
-type LMBLocale {
+type LMLocale {
   name: String
 }
 
-input InputLMBLocale {
+input InputLMLocale {
   name: String
 }
+
+type Query {
+  locales: [LMLocale]
+} 

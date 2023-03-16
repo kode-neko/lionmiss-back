@@ -27,9 +27,9 @@ class MGSUserInfo implements IUserInfo {
       .catch(err => err);
   }
 
-  updateUser(id: string, userInfo: LMUserInfo): Promise<boolean | LMBError> {
-    return this.UserInfoModel.findByIdAndUpdate(
-      id,
+  updateUser(userInfo: LMUserInfo): Promise<boolean | LMBError> {
+    return this.UserInfoModel.findOneAndUpdate(
+      { user: userInfo.user },
       { ...userInfo },
       { runValidators: true }
     )

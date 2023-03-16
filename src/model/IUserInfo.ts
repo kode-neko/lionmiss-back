@@ -5,7 +5,7 @@ interface IUserInfo {
   getUser: (id: string) => Promise<LMUserInfo | LMBError>;
   getUserAll: () => Promise<LMUserInfo[] | LMBError>;
   postUser: (user: LMUserInfo) => Promise<LMUserInfo | LMBError>;
-  updateUser: (id: string, user: LMUserInfo) => Promise<boolean | LMBError>;
+  updateUser: (user: LMUserInfo) => Promise<boolean | LMBError>;
   deleteUser: (id: string) => Promise<boolean | LMBError>;
 }
 

@@ -30,11 +30,17 @@ input InputLMProduct {
   imgs: [InputLMImg]!
 }
 
+input InputMessageProduct {
+  product: InputLMProduct
+}
+
 type Query {
   product(id: String!): LMProduct!
   products: [LMProduct]!
 }
 
-input MessageProduct {
-  product: InputLMProduct
+type Mutation {
+  createProduct(input: InputMessageProduct): LMProduct
+  updateProduct(input: InputMessageProduct): Boolean
+  deleteProduct(idProduct: String): Boolean
 }
