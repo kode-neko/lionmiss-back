@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { LMBLocale } from "../../LMB";
+import { LMBLocale } from "../../LMB/index.js";
 
 const schemaLocale = new Schema<LMBLocale>(
   {

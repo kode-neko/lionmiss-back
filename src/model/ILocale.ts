@@ -1,4 +1,4 @@
-import { LMBError, LMBLocale } from "./LMB";
+import { LMBError, LMBLocale } from "./LMB/index.js";
 
 interface ILocale {
   getLocaleAll: () => Promise<LMBLocale[] | LMBError>;

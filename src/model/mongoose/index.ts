@@ -1,6 +1,6 @@
-export { MGSCart } from "./MGSCart";
-export { MGSCountry } from "./MGSCountry";
-export { MGSLocale } from "./MGSLocale";
-export { MGSProduct } from "./MGSProduct";
-export { MGSShipping } from "./MGSShipping";
-export { MGSUserInfo } from "./MGSUserInfo";
+export { MGSCart } from "./MGSCart.js";
+export { MGSCountry } from "./MGSCountry.js";
+export { MGSLocale } from "./MGSLocale.js";
+export { MGSProduct } from "./MGSProduct.js";
+export { MGSShipping } from "./MGSShipping.js";
+export { MGSUserInfo } from "./MGSUserInfo.js";

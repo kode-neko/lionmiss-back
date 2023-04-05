@@ -1,15 +1,32 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "rootDir": "src",
-    "outDir": "dist",
+    "rootDir": ".", // Directorio raiz
+    "outDir": "./lib", // Lugar donde coloca el codigo transpilado
+    "declaration": true, // Crear los type defs (d.ts)
+    "lib": [ // Incluir los d.ts de librerías core
+      "DOM", // Propios del navegador
+      "ESNext" // Todas las funcs de la ultima versión de ES
+    ],
+    "allowJs": true, // Poder importar .js dentro de .ts y .tsx
+    "allowSyntheticDefaultImports": true, // Poder hacer 'import React from "react"'
+    "skipLibCheck": true, // No revisa los type defs de las librerías importadas. Mejora mucho el rendimiento.
+    // "strict": true, // Más "nazi" cuando chequea la sintaxis
+    "forceConsistentCasingInFileNames": true, // Win no es case-sensitive en nombres de ficheros. Con esta opción fuerzas a que tsc lo sea
+    "moduleResolution": "nodenext", // Que sistema de módulos usará el código compilado
+    "target": "ESNext",
+    "resolveJsonModule": true, // Poder importar .json
+    "isolatedModules": false, // Evita el uso de "type" en "import" y "export"
+    "noEmit": false, // Hay casos que no interesa que compile. Solo usarlo paar typechecking o que lo haga un transpialdor como babel o swc
+    // "jsx": "react", // Como traducir los jsx
+    "esModuleInterop": true, // Permitir importar CommonJs
     "sourceMap": true,
-    "resolveJsonModule": true,
-    "lib": ["es6", "dom"],
-    "esModuleInterop": true,
-    "moduleResolution": "node"
   },
-  "include": ["src/**/*.ts", "src/graphql/schema.graphql", "src/graphql/typeDefs/userInfo.graphql", "src/graphql/typeDefs/shipping.graphql", "src/graphql/typeDefs/product.graphql", "src/graphql/typeDefs/locale.graphql", "src/graphql/typeDefs/country.graphql", "src/graphql/typeDefs/cart.graphql"],
-  "exclude": ["node_modules/**/*.*"]
+  "include": [ // A que ficheros se aplica la config. Muy útil para ESLint y transpialdores
+    "src/**/*.ts",
+    "src/graphql/schema.graphql",
+    "src/graphql/typeDefs/*.graphql"
+  ],
+  "exclude": [ // Dentro de los ficheros que se aplican, cuales no hacerlo
+    "src/**/*.test.ts",
+  ]
 }

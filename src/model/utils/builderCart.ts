@@ -1,5 +1,5 @@
-import { ICart } from "../ICart";
-import { MGSCart } from "../mongoose";
+import { ICart } from "../ICart.js";
+import { MGSCart } from "../mongoose/index.js";
 
 function builderCart(): ICart {
   return new MGSCart();

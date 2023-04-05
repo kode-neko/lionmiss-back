@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 import { LMShipping } from "lionmiss-core";
-import { schemaCart } from './schemaCart';
+import { schemaCart } from './schemaCart.js';
 
 const schemaShipping = new Schema<LMShipping>({
   initDate: { type: Date, required: true },

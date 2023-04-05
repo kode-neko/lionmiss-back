@@ -1,7 +1,7 @@
 import { Context } from 'apollo-server-core';
 import { LMUserInfo } from 'lionmiss-core';
-import { LMBError } from '../../model/LMB';
-import { builderUserInfo } from "../../model/utils";
+import { LMBError } from '../../model/LMB/index.js';
+import { builderUserInfo } from "../../model/utils/index.js";
 
 // Model Builders
 const userModel = builderUserInfo();

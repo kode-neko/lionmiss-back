@@ -1,8 +1,8 @@
 import { model } from "mongoose";
 import { LMProduct } from "lionmiss-core";
-import { IProduct } from "../IProduct";
-import { schemaProduct } from "./schemas";
-import { LMBError } from "../LMB";
+import { IProduct } from "../IProduct.js";
+import { schemaProduct } from "./schemas/index.js";
+import { LMBError } from "../LMB/index.js";
 
 class MGSProduct implements IProduct {
   ProductModel = model<LMProduct>("Product", schemaProduct, "product");

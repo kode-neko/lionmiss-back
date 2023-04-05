@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../../src/test/fixtures/data/index.ts"],"names":[],"mappings":"AAAA,MAAM,SAAS,GAAG;IAChB,UAAU,EAAE,EAAE;IACd,QAAQ,EAAE,EAAE;IACZ,YAAY,EAAE,GAAG;IACjB,SAAS,EAAE,EAAE;CACd,CAAC;AAEF,OAAO,EAAE,SAAS,EAAE,CAAC;AACrB,OAAO,EAAE,OAAO,IAAI,YAAY,EAAE,MAAM,qBAAqB,CAAC;AAC9D,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,MAAM,mBAAmB,CAAC"}

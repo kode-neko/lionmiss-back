@@ -1,11 +1,11 @@
-import { connection, connect } from "mongoose";
+import { connection, connect, Collection } from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
-let mongo;
+let mongo :MongoMemoryServer;
 
 async function setUp(): Promise<void> {
   mongo = await MongoMemoryServer.create();
-  const url = mongo.getUri();
+  const url: string = mongo.getUri();
   await connect(url);
 }
 
@@ -16,7 +16,7 @@ async function dropDb(): Promise<void> {
 }
 
 async function dropColls(): Promise<void> {
-  const collections = connection.collections;
+  const collections: { [index: string]: Collection } = connection.collections;
   Object.keys(collections).map(async (coll) => {
     await collections[coll].deleteMany({});
   });

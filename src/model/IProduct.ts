@@ -1,5 +1,5 @@
 import { LMProduct } from "lionmiss-core";
-import { LMBError } from "./LMB";
+import { LMBError } from "./LMB/index.js";
 
 interface IProduct {
   getProduct: (id: string) => Promise<LMProduct | LMBError>;

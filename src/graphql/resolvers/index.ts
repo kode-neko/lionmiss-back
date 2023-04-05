@@ -1,1 +1,1 @@
-export * as productResolvers from './product'
+export * as productResolvers from './product.js'

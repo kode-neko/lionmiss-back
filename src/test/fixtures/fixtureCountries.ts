@@ -1,4 +1,4 @@
-import { rawCountries } from "./data";
+import { rawCountries } from "./data/index.js";
 
 const fixtureCountries = rawCountries.map((c) => ({
   name: c.country,

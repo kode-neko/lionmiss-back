@@ -1,4 +1,4 @@
-import { rawLocales } from "./data";
+import { rawLocales } from "./data/index.js";
 
 const fixtureLocales = rawLocales.map((l) => ({
   name: l.name,

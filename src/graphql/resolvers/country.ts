@@ -1,6 +1,6 @@
 import { LMCountry } from 'lionmiss-core';
-import { LMBError } from '../../model/LMB';
-import { builderCountry } from "../../model/utils";
+import { LMBError } from '../../model/LMB/index.js';
+import { builderCountry } from "../../model/utils/index.js";
 
 const countryModel = builderCountry();
 

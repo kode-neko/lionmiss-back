@@ -1,4 +1,4 @@
-import { constants } from "./data";
+import { constants } from "./data/index.js";
 
 const fixtureImgs = Array(constants.NUM_IMGS)
   .fill({})

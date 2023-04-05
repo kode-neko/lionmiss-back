@@ -1,8 +1,8 @@
 import { LMCart, LMCartProduct, LMUserInfo } from "lionmiss-core";
 import { model } from "mongoose";
-import { ICart } from "../ICart";
-import { LMBError } from "../LMB";
-import { schemaUserInfo } from "./schemas";
+import { ICart } from "../ICart.js";
+import { LMBError } from "../LMB/index.js";
+import { schemaUserInfo } from "./schemas/index.js";
 
 class MGSCart implements ICart {
   UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");

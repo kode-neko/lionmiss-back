@@ -1,7 +1,7 @@
 import { Context } from 'apollo-server-core';
 import { LMShipping } from 'lionmiss-core';
-import { LMBError } from '../../model/LMB';
-import { builderShipping } from "../../model/utils";
+import { LMBError } from '../../model/LMB/index.js';
+import { builderShipping } from "../../model/utils/index.js";
 
 // Model Builders
 const shippingModel = builderShipping();

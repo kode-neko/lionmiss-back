@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 import { LMUser } from "lionmiss-core";
-import { schemaMeasures } from "./schemaMeasures";
-import { schemaAddress } from "./schemaAddress";
+import { schemaMeasures } from "./schemaMeasures.js";
+import { schemaAddress } from "./schemaAddress.js";
 
 const schemaUser = new Schema<LMUser>(
   {

@@ -1,64 +1,66 @@
 import { Request, Response } from "express";
-import { builderCart } from "../../model";
-import { statusErrorCode } from "./utils";
+import { ICart, builderCart } from "../../model/index.js";
+import { statusErrorCode } from "./utils/index.js";
 import { isEmpty } from "lodash";
+import { LMBError } from "../../model/LMB/index.js";
+import { LMCart } from "lionmiss-core";
 
-const userInfo = builderCart();
+const userInfo: ICart = builderCart();
 
 function getCart(req: Request, res: Response): void {
   const { idUser } = req.params;
   userInfo
     .getCart(idUser)
-    .then((cart) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err));
+    .then((cart: LMCart | LMBError) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function createCart(req: Request, res: Response): void {
   const { idUser, cart } = req.body;
   userInfo
     .postCart(idUser, cart)
-    .then((ok) => res.status(ok ? 201 : 404))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err));
+    .then((ok: boolean | LMBError) => res.status(ok ? 201 : 404))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function updateCart(req: Request, res: Response): void {
   const { idUser, cart } = req.body;
   userInfo
     .updateCart(idUser, cart)
-    .then((ok) => res.status(ok ? 200 : 404))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err));
+    .then((ok: boolean | LMBError) => res.status(ok ? 200 : 404))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function deleteCart(req: Request, res: Response): void {
   const { idUser } = req.params;
   userInfo
     .deleteCart(idUser)
-    .then((ok) => res.status(ok ? 200 : 404))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err));
+    .then((ok: boolean | LMBError) => res.status(ok ? 200 : 404))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function postCartProduct(req: Request, res: Response): void {
   const { idUser, cartProduct } = req.body;
   userInfo
     .postProductCart(idUser, cartProduct)
-    .then((ok) => res.status(ok ? 201 : 404))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
+    .then((ok: boolean | LMBError) => res.status(ok ? 201 : 404))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function putCartProduct(req: Request, res: Response): void {
   const { idUser, cartProduct } = req.body;
   userInfo
     .updateProductCart(idUser, cartProduct)
-    .then((ok) => res.status(ok ? 200 : 404))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
+    .then((ok: boolean | LMBError) => res.status(ok ? 200 : 404))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function delCartProduct(req: Request, res: Response): void {
   const { idUser, idProduct } = req.params;
   userInfo
     .deleteProductCart(idUser, idProduct)
-    .then((ok) => res.status(ok ? 200 : 404))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
+    .then((ok: boolean | LMBError) => res.status(ok ? 200 : 404))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 export { 

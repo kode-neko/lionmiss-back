@@ -1,7 +1,7 @@
 import { model } from "mongoose";
-import { ILocale } from "../ILocale";
-import { LMBError, LMBLocale } from "../LMB";
-import { schemaLocale } from "./schemas";
+import { ILocale } from "../ILocale.js";
+import { LMBError, LMBLocale } from "../LMB/index.js";
+import { schemaLocale } from "./schemas/index.js";
 
 class MGSLocale implements ILocale {
   LocaleModel = model<LMBLocale>("Locale", schemaLocale);

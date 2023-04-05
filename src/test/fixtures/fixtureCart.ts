@@ -1,6 +1,6 @@
 import { LMCart, LMSize, LMColor } from "lionmiss-core";
-import { fixtureProducts } from "./fixtureProducts";
-import { fixturePromo } from "./fixturePromo";
+import { fixtureProducts } from "./fixtureProducts.js";
+import { fixturePromo } from "./fixturePromo.js";
 
 const fixtureCart: LMCart = {
   products: [

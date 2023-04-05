@@ -1,6 +1,6 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 
-const optionsSwaggerJsdoc = {
+const optionsSwaggerJsdoc: swaggerJsdoc.Options = {
   definition: {
     openapi: "3.0.0",
     info: {
@@ -18,6 +18,6 @@ const optionsSwaggerJsdoc = {
   apis: ["./src/rest/config/**/*.yaml"],
 };
 
-const swaggerSpecs = swaggerJsdoc(optionsSwaggerJsdoc);
+const swaggerSpecs: object = swaggerJsdoc(optionsSwaggerJsdoc);
 
 export default swaggerSpecs;

@@ -1,7 +1,7 @@
 import { Context } from 'apollo-server-core';
 import { LMProduct } from 'lionmiss-core';
-import { LMBError } from '../../model/LMB';
-import { builderProduct } from "../../model/utils";
+import { LMBError } from '../../model/LMB/index.js';
+import { builderProduct } from "../../model/utils/index.js";
 
 // Model Builders
 const productModel = builderProduct();

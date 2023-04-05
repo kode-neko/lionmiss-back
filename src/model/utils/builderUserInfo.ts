@@ -1,5 +1,5 @@
-import { IUserInfo } from "../IUserInfo";
-import { MGSUserInfo } from "../mongoose";
+import { IUserInfo } from "../IUserInfo.js";
+import { MGSUserInfo } from "../mongoose/index.js";
 
 function builderUserInfo(): IUserInfo {
   return new MGSUserInfo();

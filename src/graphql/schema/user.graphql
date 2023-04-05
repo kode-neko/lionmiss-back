@@ -33,16 +33,16 @@ input InputLMUserInfo {
 }
 
 input InputMessageUser {
-  user: InputLMUser
+  user: InputLMUserInfo
 }
 
 type Query {
-  user(id: String!): LMUser!
-  users: [LMUser]!
+  user(id: String!): LMUserInfo!
+  users: [LMUserInfo]
 }
 
 type Mutation {
-  createUser(input: InputMessageUser): LMUser
+  createUser(input: InputMessageUser): LMUserInfo
   updateUser(input: InputMessageUser): Boolean
   deleteuser(idUser: String): Boolean
 }

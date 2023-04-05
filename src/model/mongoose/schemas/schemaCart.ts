@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 import { LMCart } from "lionmiss-core";
-import { schemaCartProduct } from "./schemaCartProduct";
+import { schemaCartProduct } from "./schemaCartProduct.js";
 
 const schemaCart = new Schema<LMCart>(
   {

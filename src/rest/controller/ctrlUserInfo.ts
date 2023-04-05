@@ -1,47 +1,50 @@
 import { Request, Response } from "express";
-import { builderUserInfo } from "../../model/utils";
-import { statusErrorCode } from "./utils";
+import { builderUserInfo } from "../../model/utils/index.js";
+import { statusErrorCode } from "./utils/index.js";
 import { isEmpty } from "lodash";
+import { IUserInfo } from "../../model/index.js";
+import { LMUserInfo } from "lionmiss-core";
+import { LMBError } from "../../model/LMB/index.js";
 
-const userInfoModel = builderUserInfo();
+const userInfoModel: IUserInfo = builderUserInfo();
 
 function getUser(req: Request, res: Response): void {
   const { id } = req.body;
   userInfoModel
     .getUser(id)
-    .then((cart) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err));
+    .then((cart: LMUserInfo | LMBError) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function getUserAll(req: Request, res: Response): void {
   userInfoModel
     .getUserAll()
-    .then((list) => res.status(200).json(list))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
+    .then((list: LMUserInfo[] | LMBError) => res.status(200).json(list))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function postUser(req: Request, res: Response): void {
   const { userInfo } = req.body;
   userInfoModel
     .postUser(userInfo)
-    .then((newUserInfo) => res.status(201).json(newUserInfo))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
+    .then((newUserInfo: LMUserInfo | LMBError) => res.status(201).json(newUserInfo))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function updateUser(req: Request, res: Response): void {
   const { userInfo } = req.body;
   userInfoModel
     .updateUser(userInfo)
-    .then((ok) => res.status(ok ? 200 : 404))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
+    .then((ok: boolean | LMBError) => res.status(ok ? 200 : 404))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function deleteUser(req: Request, res: Response): void {
   const { id } = req.body;
   userInfoModel
     .deleteUser(id)
-    .then((ok) => res.status(ok ? 200 : 404))
-    .catch((err) => res.status(statusErrorCode(err.name)).json(err.message));
+    .then((ok: boolean | LMBError) => res.status(ok ? 200 : 404))
+    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 export { getUser, getUserAll, postUser, updateUser, deleteUser };

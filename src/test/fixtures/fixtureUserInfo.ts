@@ -1,6 +1,6 @@
-import { fixtureCart } from "./fixtureCart";
-import { fixtureUsers } from "./fixtureUsers";
-import { fixtureProducts } from "./fixtureProducts";
+import { fixtureCart } from "./fixtureCart.js";
+import { fixtureUsers } from "./fixtureUsers.js";
+import { fixtureProducts } from "./fixtureProducts.js";
 
 const fixtureUserInfo = {
   cart: fixtureCart,

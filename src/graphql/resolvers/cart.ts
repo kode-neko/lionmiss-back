@@ -1,7 +1,7 @@
 import { LMCart, LMCartProduct } from 'lionmiss-core';
 import { Context } from 'apollo-server-core';
-import { LMBError } from '../../model/LMB';
-import { builderCart } from "../../model/utils";
+import { LMBError } from '../../model/LMB/index.js';
+import { builderCart } from "../../model/utils/index.js";
 
 // Model Builders
 const cartModel = builderCart();
@@ -27,7 +27,7 @@ const cartResolvers = {
   },
   Mutation: {
     // Cart
-    createCart: async (_, {idUser, cart}: InputMessageCart): 
+    createCart: async (_: Context, {idUser, cart}: InputMessageCart): 
     Promise<boolean|LMBError> => 
       await cartModel.postCart(idUser, cart),
     updateCart: async (_: Context, {idUser, cart}: InputMessageCart): 
@@ -47,7 +47,7 @@ const cartResolvers = {
       await cartModel.updateProductCart(idUser, product),
     deleteProductCart: async (_: Context, {idUser, product}: InputMessageProductCart): 
     Promise<boolean|LMBError> => 
-      await cartModel.deleteProductCart(idUser, product._id),
+      await cartModel.deleteProductCart(idUser, product._id as string),
   }
 };
 

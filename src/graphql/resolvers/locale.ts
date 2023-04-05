@@ -1,5 +1,5 @@
-import { LMBError, LMBLocale } from '../../model/LMB';
-import { builderLocale } from "../../model/utils";
+import { LMBError, LMBLocale } from '../../model/LMB/index.js';
+import { builderLocale } from "../../model/utils/index.js";
 
 // Model Builders
 const localeModel = builderLocale();

@@ -1,13 +1,49 @@
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "eslint:recommended"
   ],
-  "rules": {
-
-  }
+  "overrides": [
+    {
+      "files": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+      ],
+      "env": {
+        "browser": true,
+        "es2021": true
+      },
+      "extends": [
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": [
+          "./tsconfig.json"
+        ]
+      },
+      "parser": "@typescript-eslint/parser",
+      "rules": {
+        "@typescript-eslint/typedef": [
+          "warn",
+          {
+            "parameter": true,
+            "arrowParameter": true,
+            "variableDeclaration": true,
+            "memberVariableDeclaration": true
+          }
+        ],
+        "@typescript-eslint/restrict-template-expressions": [
+          "error",
+          {
+            "allowNumber": true,
+            "allowNullish": true
+          }
+        ]
+      }
+    }
+  ]
 }

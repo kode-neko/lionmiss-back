@@ -1,8 +1,8 @@
 import { LMUserInfo } from "lionmiss-core";
 import { model } from "mongoose";
-import { IUserInfo } from "../IUserInfo";
-import { LMBError } from "../LMB";
-import { schemaUserInfo } from "./schemas";
+import { IUserInfo } from "../IUserInfo.js";
+import { LMBError } from "../LMB/index.js";
+import { schemaUserInfo } from "./schemas/index.js";
 
 class MGSUserInfo implements IUserInfo {
   UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");

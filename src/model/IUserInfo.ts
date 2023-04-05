@@ -1,5 +1,5 @@
 import { LMUserInfo } from "lionmiss-core";
-import { LMBError } from "./LMB";
+import { LMBError } from "./LMB/index.js";
 
 interface IUserInfo {
   getUser: (id: string) => Promise<LMUserInfo | LMBError>;

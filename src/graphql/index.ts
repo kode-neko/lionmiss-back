@@ -3,8 +3,8 @@ import path from 'path';
 import {readFile} from 'node:fs/promises';
 import { connect, set as setMongoose } from "mongoose";
 import {ApolloServer, gql} from 'apollo-server';
-import schema from './schema';
-import {productResolvers} from './resolvers';
+import schema from './schema/index.js';
+import {productResolvers} from './resolvers/index.js';
 
 dotenv.config()
 

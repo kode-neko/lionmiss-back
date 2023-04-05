@@ -1,8 +1,8 @@
 import { model } from "mongoose";
 import { LMCountry } from "lionmiss-core";
-import { ICountry } from "../ICountry";
-import { schemaCountry } from "./schemas";
-import { LMBError } from "../LMB";
+import { ICountry } from "../ICountry.js";
+import { schemaCountry } from "./schemas/index.js";
+import { LMBError } from "../LMB/index.js";
 
 class MGSCountry implements ICountry {
   CountryModel = model<LMCountry>("Country", schemaCountry, "country");

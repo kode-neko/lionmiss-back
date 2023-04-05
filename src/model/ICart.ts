@@ -1,5 +1,5 @@
 import { LMCart, LMCartProduct } from "lionmiss-core";
-import { LMBError } from "./LMB";
+import { LMBError } from "./LMB/index.js";
 
 interface ICart {
   getCart: (idUser: string) => Promise<LMCart | LMBError>;

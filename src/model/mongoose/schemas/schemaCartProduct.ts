@@ -5,7 +5,7 @@ import {
   enumStringToList,
   LMCartProduct,
 } from "lionmiss-core";
-import { schemaProduct } from "./schemaProduct";
+import { schemaProduct } from "./schemaProduct.js";
 
 const schemaCartProduct = new Schema<LMCartProduct>(
   {

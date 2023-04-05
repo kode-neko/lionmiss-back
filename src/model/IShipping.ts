@@ -1,5 +1,5 @@
 import { LMShipping } from "lionmiss-core";
-import { LMBError } from "./LMB";
+import { LMBError } from "./LMB/index.js";
 
 interface IShipping {
   getShipping: (id: string) => Promise<LMShipping | LMBError>;

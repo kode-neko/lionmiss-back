@@ -1,7 +1,9 @@
-import { commerce } from "faker";
+import { faker } from "@faker-js/faker";
 import { LMColor, LMProduct } from "lionmiss-core";
-import { fixtureImgs } from "./fixtureImgs";
-import { constants } from "./data";
+import { fixtureImgs } from "./fixtureImgs.js";
+import { constants } from "./data/index.js";
+
+const {commerce} = faker;
 
 const fixtureProducts: LMProduct[] = Array(constants.NUM_PRODUCTS)
   .fill({})

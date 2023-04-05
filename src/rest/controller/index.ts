@@ -1,6 +1,6 @@
-export * as ctrlCart from "./ctrlCart";
-export * as ctrlCountry from "./ctrlCountry";
-export * as ctrLocale from "./ctrLocale";
-export * as ctrlProduct from "./ctrlProduct";
-export * as ctrlShipping from "./ctrlShipping";
-export * as ctrlUserInfo from "./ctrlUserInfo";
+export * as ctrlCart from "./ctrlCart.js";
+export * as ctrlCountry from "./ctrlCountry.js";
+export * as ctrLocale from "./ctrLocale.js";
+export * as ctrlProduct from "./ctrlProduct.js";
+export * as ctrlShipping from "./ctrlShipping.js";
+export * as ctrlUserInfo from "./ctrlUserInfo.js";

@@ -1,2 +1,2 @@
-export { LMBError } from "./LMBError";
-export { LMBLocale } from "./LMBLocale";
+export { LMBError } from "./LMBError.js";
+export { LMBLocale } from "./LMBLocale.js";

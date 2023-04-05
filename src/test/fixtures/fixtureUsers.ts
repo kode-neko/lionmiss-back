@@ -1,10 +1,13 @@
-import { internet } from "faker";
-import { constants } from "./data";
-import { fixtureAddresses } from "./fixtureAddresses";
+import { faker } from "@faker-js/faker";
+import { constants } from "./data/index.js";
+import { fixtureAddresses } from "./fixtureAddresses.js";
+import { LMUser } from "lionmiss-core";
 
-const fixtureUsers = Array(constants.NUM_USERS)
+const {internet} = faker;
+
+const fixtureUsers: LMUser[] = Array(constants.NUM_USERS)
   .fill({})
-  .map((_, index) => ({
+  .map((_: LMUser, index: number) => ({
     username: internet.userName(),
     avatar: `avatar${index}.jpg`,
     lang: "en",

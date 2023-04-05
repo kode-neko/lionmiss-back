@@ -1,0 +1,12 @@
+export { schemaAddress } from "./schemaAddress.js";
+export { schemaCart } from "./schemaCart.js";
+export { schemaCartProduct } from "./schemaCartProduct.js";
+export { schemaCountry } from "./schemaCountry.js";
+export { schemaImg } from "./schemaImg.js";
+export { schemaLocale } from "./schemaLocale.js";
+export { schemaMeasures } from "./schemaMeasures.js";
+export { schemaProduct } from "./schemaProduct.js";
+export { schemaProductProps } from "./schemaProductProps.js";
+export { schemaShipping } from "./schemaShipping.js";
+export { schemaUser } from "./schemaUser.js";
+export { schemaUserInfo } from "./schemaUserInfo.js";

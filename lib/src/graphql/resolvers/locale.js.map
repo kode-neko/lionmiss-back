@@ -1,0 +1,1 @@
+{"version":3,"file":"locale.js","sourceRoot":"","sources":["../../../../src/graphql/resolvers/locale.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,aAAa,EAAE,MAAM,4BAA4B,CAAC;AAE3D,iBAAiB;AACjB,MAAM,WAAW,GAAG,aAAa,EAAE,CAAC;AAEpC,YAAY;AACZ,MAAM,aAAa,GAAG;IACpB,KAAK,EAAE;QACL,OAAO,EAAE,KAAK,IAAmC,EAAE,CACjD,MAAM,WAAW,CAAC,YAAY,EAAE;KACnC;CACF,CAAC;AAEF,eAAe,aAAa,CAAC"}

@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 import { LMProduct } from "lionmiss-core";
-import { schemaProductProps } from "./schemaProductProps";
-import { schemaImg } from "./schemaImg";
+import { schemaProductProps } from "./schemaProductProps.js";
+import { schemaImg } from "./schemaImg.js";
 
 const schemaProduct = new Schema<LMProduct>({
   name: { type: String, required: true },

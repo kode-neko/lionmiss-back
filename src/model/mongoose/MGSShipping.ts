@@ -1,8 +1,8 @@
 import { LMShipping } from "lionmiss-core";
 import { model } from "mongoose";
-import { IShipping } from "../IShipping";
-import { LMBError } from "../LMB";
-import { schemaShipping } from "./schemas";
+import { IShipping } from "../IShipping.js";
+import { LMBError } from "../LMB/index.js";
+import { schemaShipping } from "./schemas/index.js";
 
 class MGSShipping implements IShipping {
   ShippingModel = model<LMShipping>("Shipping", schemaShipping, "shipping");

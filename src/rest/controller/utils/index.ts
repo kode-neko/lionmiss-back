@@ -1,1 +1,1 @@
-export { statusErrorCode } from "./statusErrorCode";
+export { statusErrorCode } from "./statusErrorCode.js";
