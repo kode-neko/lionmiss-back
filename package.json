@@ -10,11 +10,12 @@
     "start": "concurrently \"npm run start:rest\" \"npm run start:gql\"",
     "start:rest": "node ./dist/rest",
     "start:gql": "node ./dist/graphql",
-    "dev:rest": "npm run nodemon ./dist/rest",
-    "dev:gql": "npm run nodemon ./dist/graphql",
-    "build": "tsc --project tsconfig.json",
+    "dev": "concurrently \"npm run dev:rest\" \"npm run dev:gql\"",
+    "dev:rest": "npx nodemon ./dist/rest",
+    "dev:gql": "npx nodemon ./dist/graphql",
+    "build": "npm run clean && tsc --project tsconfig.json",
     "build:dev": "tsc --watch --project tsconfig.json",
-    "nodemon": "nodemon ./dist/index.js",
+    "clean": "rm -rf ./dist ./lib",
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
@@ -59,8 +60,11 @@
     "mongodb-memory-server": "^8.12.2",
     "nodemon": "^2.0.22",
     "ts-jest": "^29.1.0",
+    "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.3",
+    "webpack": "^5.77.0",
+    "wepack-cli": "^0.0.1-security",
     "yargs": "^17.7.1"
   }
 }
