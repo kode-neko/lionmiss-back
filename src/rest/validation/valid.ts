@@ -20,4 +20,4 @@ const validParamSearch: Joi.ObjectSchema<LMBSearchParams> = Joi.object({
     .min(0)
 })
 
-export default validParamSearch;
+export {validParamSearch};

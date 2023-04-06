@@ -16,3 +16,6 @@ export * as validMeasures from './validMeasures.js';
 export * as validPromo from './validPromo.js';
 export * as validPropsBuy from './validPropsBuy.js';
 export * as validShipping from './validShipping.js';
+export {
+  validParamSearch
+} from './valid.js'
