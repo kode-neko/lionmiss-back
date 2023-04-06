@@ -1,7 +1,7 @@
-import { Router } from "express";
+import { IRouter, Router } from "express";
 import { ctrlProduct as product } from "../controller/index.js";
 
-const router = Router();
+const router: IRouter = Router();
 
 router.get("/:id", product.getProduct);
 router.get("/all", product.getProductAll);
