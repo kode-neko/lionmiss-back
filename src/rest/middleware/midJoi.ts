@@ -1,21 +1,25 @@
 import { NextFunction, Request, Response } from "express";
-import Joi from "joi";
+import { ValidationResult, Schema } from "joi";
 
-function midJoiQuery(schema: Joi.Schema) {
+function midJoiQuery(schema: Schema) {
   return (req: Request, res: Response, next: NextFunction) => {
     const {query} = req;
-    const isValid = schema.validate(query)
+    const { error }: ValidationResult = schema.validate(query)
+    if(!error)
+      next();
+    else
+      throw new Error()
   }
 }
 
-function midJoiBody(schema: Joi.Schema) {
+function midJoiBody(schema: Schema) {
   return (req: Request, res: Response, next: NextFunction) => {
     const {body} = req;
-    const isValid = schema.validate(body)
-    if(isValid)
+    const { error }: ValidationResult = schema.validate(body)
+    if(!error)
       next();
     else
-      throw new LMBError()
+      throw new Error()
   }
 }
 

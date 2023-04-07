@@ -17,6 +17,7 @@ import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpecs from "./config/swagger/swagger.js";
 import i18Config from "./config/i18next/index.js";
+import { errorHandler, logHandler } from "./controller/ctrlError.js";
 
 dotenv.config();
 
@@ -41,6 +42,9 @@ app.use(
   swaggerUi.setup(swaggerSpecs)
 );
 
+// Json
+app.use(express.json());
+
 // Rutas
 app.use("/cart", routesCart);
 app.use("/country", routesCountry);
@@ -49,8 +53,9 @@ app.use("/products", routesProducts);
 app.use("/shipping", routesShipping);
 app.use("/user", routesUser);
 
-// Json
-app.use(express.json());
+// Log & Error Handler
+app.use(logHandler)
+app.use(errorHandler);
 
 // Init server
 app.listen(process.env.SERVER_PORT);

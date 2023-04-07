@@ -4,3 +4,7 @@ export * as ctrLocale from "./ctrLocale.js";
 export * as ctrlProduct from "./ctrlProduct.js";
 export * as ctrlShipping from "./ctrlShipping.js";
 export * as ctrlUser from "./ctrlUser.js";
+export {
+  logHandler,
+  errorHandler
+} from './ctrlError.js'
