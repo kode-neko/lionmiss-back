@@ -2,6 +2,11 @@ import Joi from "joi";
 import { LMBSearchParams } from "../../model/LMB/LMBSearchParms.js";
 import { LIMIT_MAX_SEARCH } from "../config/constants.js";
 
+const validId: Joi.StringSchema = Joi
+  .string()
+  .empty()
+  .required();
+
 const validParamSearch: Joi.ObjectSchema<LMBSearchParams> = Joi.object({
   limit: Joi
     .number()
@@ -14,10 +19,10 @@ const validParamSearch: Joi.ObjectSchema<LMBSearchParams> = Joi.object({
     .integer()
     .min(0)
     .required(),
-  search: Joi
-    .string()
-    .empty()
-    .min(0)
+  search: Joi.object()
 })
 
-export {validParamSearch};
+export {
+  validId, 
+  validParamSearch
+};

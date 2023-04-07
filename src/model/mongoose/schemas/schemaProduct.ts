@@ -3,7 +3,7 @@ import { LMProduct } from "lionmiss-core";
 import { schemaProductProps } from "./schemaProductProps.js";
 import { schemaImg } from "./schemaImg.js";
 
-const schemaProduct = new Schema<LMProduct>({
+const schemaProduct: Schema<LMProduct> = new Schema<LMProduct>({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   description: { type: String, required: true },

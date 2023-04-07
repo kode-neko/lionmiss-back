@@ -1,63 +1,58 @@
 import { LMCart, LMCartProduct, LMUserInfo } from "lionmiss-core";
-import { model } from "mongoose";
+import { Model, model } from "mongoose";
 import { ICart } from "../ICart.js";
-import { LMBError } from "../LMB/index.js";
-import { schemaUserInfo } from "./schemas/index.js";
+import { schemaUser } from "./schemas/index.js";
+import { UpdateResult, DeleteResult } from "mongodb";
 
 class MGSCart implements ICart {
-  UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");
+  UserInfoModel: Model<LMUserInfo> = model<LMUserInfo>("UserInfo", schemaUser, "userInfo");
 
-  getCart(idUser: string): Promise<LMCart | LMBError> {
+  getCart(idUser: string): Promise<LMCart> {
     return this.UserInfoModel.findById(idUser)
-      .then(userInfo => userInfo ? userInfo.cart : {})
-      .catch(err => err);
+      .then((userInfo: LMUserInfo) => userInfo.cart);
   }
 
-  postCart(idUser: string, cart: LMCart): Promise<boolean | LMBError> {
+  postCart(idUser: string, cart: LMCart): Promise<boolean> {
     return this.UserInfoModel.updateOne(
       { _id: idUser },
       { cart },
       { runValidators: true }
     )
-      .then(({ modifiedCount }) => modifiedCount > 0)
-      .catch(err => err);
+      .then(({ modifiedCount }: UpdateResult) => modifiedCount > 0);
   }
 
-  updateCart(idUser: string, cart: LMCart): Promise<boolean | LMBError> {
+  updateCart(idUser: string, cart: LMCart): Promise<boolean> {
     return this.UserInfoModel.findByIdAndUpdate(
       idUser,
       { $set: { ...cart } },
       { runValidators: true }
     )
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 
-  deleteCart(idUser: string): Promise<boolean | LMBError> {
+  deleteCart(idUser: string): Promise<boolean> {
     return this.UserInfoModel.deleteOne({ _id: idUser })
-      .then(({ deletedCount }) => deletedCount > 0)
-      .catch(err => err);
+      .then(({ deletedCount }: DeleteResult) => deletedCount > 0);
   }
 
   postProductCart(
     idUser: string,
     cartProduct: LMCartProduct
-  ): Promise<boolean | LMBError> {
+  ): Promise<boolean> {
     return this.UserInfoModel.findByIdAndUpdate(
       idUser,
       { $push: { "cart.products": cartProduct } },
       { runValidators: true }
     )
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 
   updateProductCart(
     idUser: string,
     cartProduct: LMCartProduct
-  ): Promise<boolean | LMBError> {
+  ): Promise<boolean> {
     return this.UserInfoModel.findOneAndUpdate(
       {
         _id: idUser,
@@ -67,22 +62,20 @@ class MGSCart implements ICart {
       { runValidators: true }
     )
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 
   deleteProductCart(
     idUser: string,
     idProduct: string
-  ): Promise<boolean | LMBError> {
+  ): Promise<boolean> {
     return this.UserInfoModel.findByIdAndUpdate(
       idUser,
       { $pull: { "cart.products": { _id: idProduct } } },
       { runValidators: true }
     )
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 }
 

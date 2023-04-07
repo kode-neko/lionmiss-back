@@ -1,12 +1,12 @@
 import { LMProduct } from "lionmiss-core";
-import { LMBError } from "./LMB/index.js";
+import { LMBSearchParams } from "./LMB/index.js";
 
 interface IProduct {
-  getProduct: (id: string) => Promise<LMProduct | LMBError>;
-  getProductAll: () => Promise<LMProduct[] | LMBError>;
-  postProduct: (product: LMProduct) => Promise<LMProduct | LMBError>;
-  updateProduct: (product: LMProduct) => Promise<boolean | LMBError>;
-  deleteProduct: (id: string) => Promise<boolean | LMBError>;
+  getProduct: (id: string) => Promise<LMProduct>;
+  getProductAll: (params: LMBSearchParams) => Promise<LMProduct[]>;
+  postProduct: (product: LMProduct) => Promise<LMProduct >;
+  updateProduct: (product: LMProduct) => Promise<boolean>;
+  deleteProduct: (id: string) => Promise<boolean>;
 }
 
 export { IProduct };

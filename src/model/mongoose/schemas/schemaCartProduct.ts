@@ -7,7 +7,7 @@ import {
 } from "lionmiss-core";
 import { schemaProduct } from "./schemaProduct.js";
 
-const schemaCartProduct = new Schema<LMCartProduct>(
+const schemaCartProduct: Schema<LMCartProduct> = new Schema<LMCartProduct>(
   {
     size: { type: String, required: true, enum: enumStringToList(LMSize) },
     color: { type: String, required: true, enum: enumStringToList(LMColor) },

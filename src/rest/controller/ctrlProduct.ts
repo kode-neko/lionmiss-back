@@ -17,8 +17,9 @@ function getProduct(req: Request, res: Response): void {
 }
 
 function getProductAll(req: Request, res: Response): void {
+  const { limit, offset, search } = req.body;
   productModel
-    .getProductAll()
+    .getProductAll({ limit, offset, search })
     .then((list: LMProduct[] | LMBError) => res.status(200).json(list))
     .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }

@@ -17,5 +17,6 @@ export * as validPromo from './validPromo.js';
 export * as validPropsBuy from './validPropsBuy.js';
 export * as validShipping from './validShipping.js';
 export {
+  validId,
   validParamSearch
 } from './valid.js'

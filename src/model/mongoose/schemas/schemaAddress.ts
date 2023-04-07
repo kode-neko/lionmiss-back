@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 import { LMAddress } from "lionmiss-core";
 
-const schemaAddress = new Schema<LMAddress>(
+const schemaAddress: Schema<LMAddress> = new Schema<LMAddress>(
   {
     name: { type: String, required: true },
     adress: { type: String, required: true },

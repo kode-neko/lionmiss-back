@@ -1,7 +1,7 @@
 type LMBSearchParams = {
   limit: number;
   offset: number;
-  search?: string;
+  search?: {[ley: string]: string};
 }
 
 export {LMBSearchParams};

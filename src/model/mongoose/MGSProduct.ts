@@ -1,47 +1,45 @@
-import { model } from "mongoose";
+import { Document, Model, model } from "mongoose";
 import { LMProduct } from "lionmiss-core";
 import { IProduct } from "../IProduct.js";
 import { schemaProduct } from "./schemas/index.js";
-import { LMBError } from "../LMB/index.js";
+import { LMBSearchParams } from "../LMB/index.js";
+
+type ModelLMProduct = Document<unknown, unknown, LMProduct> & Omit<LMProduct & Required<{ _id: string; }>, never>;
 
 class MGSProduct implements IProduct {
-  ProductModel = model<LMProduct>("Product", schemaProduct, "product");
+  ProductModel: Model<LMProduct> = model<LMProduct>("Product", schemaProduct, "product");
 
-  getProduct(id: string): Promise<LMProduct | LMBError> {
+  getProduct(id: string): Promise<LMProduct> {
     return this.ProductModel.findById(id)
-      .then(product => product)
-      .catch(err => err);
+      .then((product: LMProduct) => product);
   }
 
-  getProductAll(): Promise<LMProduct[] | LMBError> {
-    return this.ProductModel.find({})
-      .then(list => list)
-      .catch(err => err);
+  getProductAll({limit, offset, search = {}}: LMBSearchParams): Promise<LMProduct[]> {
+    return this.ProductModel.find(search)
+      .skip(offset)
+      .limit(limit)
+      .then((list: LMProduct[]) => list);
   }
 
-  postProduct(product: LMProduct): Promise<LMProduct | LMBError> {
-    const productModel = new this.ProductModel(product);
-    return productModel
-      .validate()
+  postProduct(product: LMProduct): Promise<LMProduct> {
+    const productModel: ModelLMProduct = new this.ProductModel(product);
+    return productModel.validate()
       .then(() => productModel.save())
-      .then(product => product)
-      .catch(err => err);
+      .then((product: LMProduct) => product);
   }
 
-  updateProduct(product: LMProduct): Promise<boolean | LMBError> {
+  updateProduct(product: LMProduct): Promise<boolean> {
     return this.ProductModel.findByIdAndUpdate(product._id, product, {
       runValidators: true,
     })
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 
-  deleteProduct(id: string): Promise<boolean | LMBError> {
+  deleteProduct(id: string): Promise<boolean> {
     return this.ProductModel.findByIdAndDelete(id)
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 }
 

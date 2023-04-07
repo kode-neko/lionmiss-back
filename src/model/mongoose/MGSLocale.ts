@@ -1,15 +1,14 @@
-import { model } from "mongoose";
+import { Model, model } from "mongoose";
 import { ILocale } from "../ILocale.js";
-import { LMBError, LMBLocale } from "../LMB/index.js";
+import { LMBLocale } from "../LMB/index.js";
 import { schemaLocale } from "./schemas/index.js";
 
 class MGSLocale implements ILocale {
-  LocaleModel = model<LMBLocale>("Locale", schemaLocale);
+  LocaleModel: Model<LMBLocale> = model<LMBLocale>("Locale", schemaLocale);
 
-  getLocaleAll(): Promise<LMBLocale[] | LMBError> {
+  getLocaleAll(): Promise<LMBLocale[]> {
     return this.LocaleModel.find({})
-      .then(list => list)
-      .catch(err => err);
+      .then((list: LMBLocale[]) => list);
   }
 }
 

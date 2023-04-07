@@ -17,8 +17,9 @@ function getShipping(req: Request, res: Response): void {
 }
 
 function getShippingAll(req: Request, res: Response): void {
+  const { limit, offset, search } = req.body;
   shippingModel
-    .getShippingAll()
+    .getShippingAll({ limit, offset, search })
     .then((list: LMShipping[] | LMBError) => res.status(200).json(list))
     .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }

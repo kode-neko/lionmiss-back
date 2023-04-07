@@ -3,7 +3,7 @@ import { LMUser } from "lionmiss-core";
 import { schemaMeasures } from "./schemaMeasures.js";
 import { schemaAddress } from "./schemaAddress.js";
 
-const schemaUser = new Schema<LMUser>(
+const schemaUser: Schema<LMUser> = new Schema<LMUser>(
   {
     username: { type: String, required: true, unique: true },
     avatar: { type: String, required: true },
@@ -15,5 +15,4 @@ const schemaUser = new Schema<LMUser>(
   },
   { id: false }
 );
-
 export { schemaUser };

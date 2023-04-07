@@ -6,14 +6,14 @@ import {
   routesLocale,
   routesProducts,
   routesShipping,
-  routesUserInfo,
+  routesUser,
 } from "./routes/index.js";
 import cors from 'cors';
 import helmet from 'helmet';
 import xssPurge from 'xss-purge';
 import hpp from 'hpp';
 import swaggerUi from 'swagger-ui-express';
-import swaggerSpecs from "./config/swagger.js";
+import swaggerSpecs from "./config/swagger/swagger.js";
 
 dotenv.config();
 
@@ -38,7 +38,7 @@ app.use("/country", routesCountry);
 app.use("/locale", routesLocale);
 app.use("/products", routesProducts);
 app.use("/shipping", routesShipping);
-app.use("/userInfo", routesUserInfo);
+app.use("/user", routesUser);
 
 // Json
 app.use(express.json());

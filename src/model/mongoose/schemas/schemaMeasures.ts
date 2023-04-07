@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 import { LMMeasures } from "lionmiss-core";
 
-const schemaMeasures = new Schema<LMMeasures>(
+const schemaMeasures: Schema<LMMeasures> = new Schema<LMMeasures>(
   {
     chest: { type: Number, required: true },
     waist: { type: Number, required: true },
