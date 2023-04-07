@@ -1,0 +1,8 @@
+{
+  "error": {
+    "user": "The user isn't exists",
+    "pass": "The password is incorrect",
+    "autho": "You cannot access to the service or resource",
+    "generic": "There was a problem. Try it later"
+  }
+}

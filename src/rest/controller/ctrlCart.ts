@@ -13,7 +13,7 @@ function getCart(req: Request, res: Response): void {
   userInfo
     .getCart(idUser)
     .then((cart: LMCart | LMBError) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
-    .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
+    .catch((err: Error) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
 function createCart(req: Request, res: Response): void {

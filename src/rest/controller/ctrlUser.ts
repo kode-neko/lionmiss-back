@@ -2,17 +2,17 @@ import { Request, Response } from "express";
 import { builderUser } from "../../model/utils/index.js";
 import { statusErrorCode } from "./utils/index.js";
 import { isEmpty } from "lodash";
-import { IUserInfo } from "../../model/index.js";
-import { LMUserInfo } from "lionmiss-core";
+import { LMUser } from "lionmiss-core";
 import { LMBError } from "../../model/LMB/index.js";
+import { IUser } from "../../model/IUser.js";
 
-const userModel: IUserInfo = builderUser();
+const userModel: IUser = builderUser();
 
 function getUser(req: Request, res: Response): void {
   const { id } = req.body;
   userModel
     .getUser(id)
-    .then((cart: LMUserInfo | LMBError) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
+    .then((cart: LMUser) => res.status(isEmpty(cart) ? 404 : 200).json(cart))
     .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
@@ -20,7 +20,7 @@ function getUserAll(req: Request, res: Response): void {
   const { limit, offset, search } = req.body;
   userModel
     .getUserAll({ limit, offset, search })
-    .then((list: LMUserInfo[] | LMBError) => res.status(200).json(list))
+    .then((list: LMUser[]) => res.status(200).json(list))
     .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
@@ -28,7 +28,7 @@ function postUser(req: Request, res: Response): void {
   const { userInfo } = req.body;
   userModel
     .postUser(userInfo)
-    .then((newUserInfo: LMUserInfo | LMBError) => res.status(201).json(newUserInfo))
+    .then((newUserInfo: LMUser | LMBError) => res.status(201).json(newUserInfo))
     .catch((err: LMBError) => res.status(statusErrorCode(err.msg as string)).json(err));
 }
 
