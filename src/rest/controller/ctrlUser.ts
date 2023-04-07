@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { builderUser } from "../../model/utils/index.js";
-import { isEmpty } from "lodash";
+import isEmpty from "is-obj-empty";
 import { LMUser } from "lionmiss-core";
 import { LMBError } from "../../model/LMB/index.js";
 import { IUser } from "../../model/IUser.js";

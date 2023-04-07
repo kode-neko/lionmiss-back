@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { builderProduct } from "../../model/utils/index.js";
-import { isEmpty } from "lodash";
+import isEmpty from "is-obj-empty";
 import { IProduct } from "../../model/index.js";
 import { LMProduct } from "lionmiss-core";
 

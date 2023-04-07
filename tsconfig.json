@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": ".", // Directorio raiz
+    "rootDir": "./src", // Directorio raiz
     "outDir": "./lib", // Lugar donde coloca el codigo transpilado
     "declaration": true, // Crear los type defs (d.ts)
     "lib": [ // Incluir los d.ts de librerías core
@@ -14,6 +14,7 @@
     "forceConsistentCasingInFileNames": true, // Win no es case-sensitive en nombres de ficheros. Con esta opción fuerzas a que tsc lo sea
     "moduleResolution": "nodenext", // Que sistema de módulos usará el código compilado
     "target": "ESNext",
+    "module": "ESNext",
     "resolveJsonModule": true, // Poder importar .json
     "isolatedModules": false, // Evita el uso de "type" en "import" y "export"
     "noEmit": false, // Hay casos que no interesa que compile. Solo usarlo paar typechecking o que lo haga un transpialdor como babel o swc
