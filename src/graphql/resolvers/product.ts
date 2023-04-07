@@ -1,6 +1,6 @@
 import { Context } from 'apollo-server-core';
 import { LMProduct } from 'lionmiss-core';
-import { LMBError } from '../../model/LMB/index.js';
+import { LMBError, LMBSearchParams } from '../../model/LMB/index.js';
 import { builderProduct } from "../../model/utils/index.js";
 
 // Model Builders
@@ -19,8 +19,8 @@ const productResolvers = {
   Query: {
     product: async (_: Context, {id} : QueryProduct): Promise<LMProduct|LMBError> => 
       await productModel.getProduct(id),
-    products: async (): Promise<LMProduct[]|LMBError> => 
-      await productModel.getProductAll(),
+    products: async (params: LMBSearchParams): Promise<LMProduct[]|LMBError> => 
+      await productModel.getProductAll(params),
   },
   Mutation: {
     createProduct: async (_: Context, {product}: InputMessageProduct): Promise<LMProduct|LMBError> => 

@@ -5,8 +5,12 @@
   "overrides": [
     {
       "files": [
-        "./src/**/*.ts",
-        "./src/**/*.tsx"
+        "./src/rest/**/*.ts",
+        "./src/rest/**/*.tsx",
+        "./src/model/**/*.ts",
+        "./src/model/**/*.tsx",
+        "./src/test/**/*.ts",
+        "./src/test/**/*.tsx"
       ],
       "env": {
         "browser": true,

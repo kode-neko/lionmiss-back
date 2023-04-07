@@ -1,24 +1,12 @@
-import { faker } from "@faker-js/faker";
-import { constants } from "./data/index.js";
-import { fixtureAddresses } from "./fixtureAddresses.js";
+import { fixtureCart } from "./fixtureCart.js";
+import { fixtureUsersInfo } from "./fixtureUsersInfo.js";
+import { fixtureProducts } from "./fixtureProducts.js";
 import { LMUser } from "lionmiss-core";
 
-const {internet} = faker;
-
-const fixtureUsers: LMUser[] = Array(constants.NUM_USERS)
-  .fill({})
-  .map((_: LMUser, index: number) => ({
-    username: internet.userName(),
-    avatar: `avatar${index}.jpg`,
-    lang: "en",
-    currency: "EUR",
-    measures: {
-      chest: 110,
-      waist: 60,
-      hip: 90,
-    },
-    email: internet.email(),
-    addresses: fixtureAddresses,
-  }));
+const fixtureUsers: LMUser = {
+  cart: fixtureCart,
+  user: fixtureUsersInfo[0],
+  favProducts: fixtureProducts.slice(0, 3).map((p) => p._id),
+};
 
 export { fixtureUsers };
