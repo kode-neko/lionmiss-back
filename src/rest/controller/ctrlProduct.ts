@@ -21,14 +21,14 @@ function getProductAll(req: Request, res: Response): void {
 }
 
 function postProduct(req: Request, res: Response): void {
-  const product = req.body;
+  const product: Omit<LMProduct, '_id'> = req.body;
   productModel
     .postProduct(product)
     .then((newProduct: LMProduct) => res.status(201).json(newProduct));
 }
 
 function updateProduct(req: Request, res: Response): void {
-  const { product } = req.body;
+  const product: LMProduct = req.body;
   productModel
     .updateProduct(product)
     .then((ok: boolean) => res.status(ok ? 200 : 404));

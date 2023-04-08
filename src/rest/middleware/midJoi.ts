@@ -1,28 +1,29 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/typedef */
 import { NextFunction, Request, Response } from "express";
-import { ValidationResult, ObjectSchema } from "joi";
-import { validProduct } from "../validation/index.js";
+import { ValidationResult, Schema, ValidationErrorItem } from "joi";
 
-function midJoiQuery(schema) {
+function commonMidJoi(schema: Schema, contentPending: {[key: string]: unknown}, res: Response, next: NextFunction) {
+  const validate: ValidationResult = schema.validate(contentPending, {abortEarly: false})
+  if(!validate.error)
+    next();
+  else
+    res
+      .status(500)
+      .json(validate.error.details.map(
+        (err: ValidationErrorItem) => err.message)
+    );
+}
+
+function midJoiQuery(schema: Schema) {
   return function (req: Request, res: Response, next: NextFunction) {
     const { query } = req;
-    const { error }: ValidationResult = schema.validate(query)
-    if(!error)
-      next();
-    else
-      throw new Error(error.message)
+    commonMidJoi(schema, query, res, next)
   }
 }
 
-function midJoiBody(schema) {
+function midJoiBody(schema: Schema) {
   return function (req: Request, res: Response, next: NextFunction) {
     const { body } = req;
-    const { error }: ValidationResult = schema.validate(body)
-    if(!error)
-      next();
-    else
-      throw new Error(error.message)
+    commonMidJoi(schema, body, res, next)
   }
 }
 

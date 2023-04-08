@@ -1,12 +1,17 @@
-import Joi from "joi";
+import Joi, { PartialSchemaMap, Schema } from "joi";
 import { LMBSearchParams } from "../../model/LMB/LMBSearchParms.js";
 import { LIMIT_MAX_SEARCH } from "../config/constants.js";
 
-const validId: Joi.StringSchema = Joi
-  .string()
-  .empty()
-  .required()
-;
+function composeJoiScheme(...list: PartialSchemaMap[]): Schema {
+  return Joi.object(list.reduce((prev:PartialSchemaMap, act: PartialSchemaMap) => ({...act, ...prev}), {}));
+}
+
+const validId: PartialSchemaMap<{_id: string}> = {
+  _id: Joi
+    .string()
+    .empty()
+    .required()
+};
 
 const validParamSearch: Joi.ObjectSchema<LMBSearchParams> = Joi.object({
   limit: Joi
@@ -24,6 +29,7 @@ const validParamSearch: Joi.ObjectSchema<LMBSearchParams> = Joi.object({
 })
 
 export {
+  composeJoiScheme,
   validId, 
   validParamSearch
 };
