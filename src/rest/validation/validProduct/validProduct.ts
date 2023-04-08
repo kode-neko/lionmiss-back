@@ -1,13 +1,16 @@
-import Joi from 'joi';
+import Joi, { PartialSchemaMap } from 'joi';
 import { LMColor, LMProduct } from 'lionmiss-core';
 import validProductProps from './validProductProps.js';
 import validImg from '../validImg.js';
 
-const validProduct: Joi.ObjectSchema<LMProduct> = Joi.object({
-  _id: Joi
-    .string()
-    .empty()
-    .required(),
+function validateColor(colorsSelected: string[], helpers: Joi.ExternalHelpers) {
+  const colorList: string[] = Object.values(LMColor);
+  const validationColorList: boolean = 
+    colorsSelected.every((colSel: string) => colorList.includes(colSel));
+  return validationColorList || helpers.error('any.invalid');
+}
+
+const validProduct: PartialSchemaMap<LMProduct> = {
   name: Joi
     .string()
     .empty()
@@ -24,7 +27,7 @@ const validProduct: Joi.ObjectSchema<LMProduct> = Joi.object({
     .empty()
     .required(),
   details: Joi.array().items(validProductProps),
-  colors: Joi.any().valid(...Object.values(LMColor)),
+  colors: Joi.array().custom(validateColor),
   unds: Joi
     .number()
     .integer()
@@ -32,6 +35,6 @@ const validProduct: Joi.ObjectSchema<LMProduct> = Joi.object({
     .sign('positive')
     .required(),
   imgs: Joi.array().items(validImg),
-});
+};
 
 export default validProduct;

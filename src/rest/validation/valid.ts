@@ -5,7 +5,8 @@ import { LIMIT_MAX_SEARCH } from "../config/constants.js";
 const validId: Joi.StringSchema = Joi
   .string()
   .empty()
-  .required();
+  .required()
+;
 
 const validParamSearch: Joi.ObjectSchema<LMBSearchParams> = Joi.object({
   limit: Joi

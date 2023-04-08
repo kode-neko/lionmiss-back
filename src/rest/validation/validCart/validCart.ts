@@ -8,7 +8,7 @@ const validCart: Joi.ObjectSchema<LMCart> = Joi.object({
     .string()
     .empty()
     .required(),
-  products: Joi.array().items(validProduct),
+  products: Joi.array().items(Joi.object(validProduct)),
   promo: validPromo,
   taxes: Joi
     .number()

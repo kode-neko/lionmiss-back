@@ -1,2 +1,2 @@
-export * as validProduct from './validProduct.js';
-export * as validProductProps from './validProductProps.js';
+export { default as validProduct } from './validProduct.js';
+export { default as validProductProps } from './validProductProps.js';

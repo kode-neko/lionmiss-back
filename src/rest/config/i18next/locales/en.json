@@ -1,4 +1,7 @@
 {
+  "msg": {
+    "notfound": "Resource or service isn't found"
+  },
   "error": {
     "user": "The user isn't exists",
     "pass": "The password is incorrect",

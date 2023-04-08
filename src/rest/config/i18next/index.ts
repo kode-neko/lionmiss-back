@@ -3,7 +3,7 @@ import { en, es } from './locales/index.js';
 
 const i18Config: InitOptions = {
   lng: 'en',
-  debug: true,
+  debug: false,
   resources: {
     en: {
       translation: en,

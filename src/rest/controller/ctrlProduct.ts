@@ -21,7 +21,7 @@ function getProductAll(req: Request, res: Response): void {
 }
 
 function postProduct(req: Request, res: Response): void {
-  const { product } = req.body;
+  const product = req.body;
   productModel
     .postProduct(product)
     .then((newProduct: LMProduct) => res.status(201).json(newProduct));

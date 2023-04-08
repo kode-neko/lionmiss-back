@@ -8,6 +8,7 @@ import {
   routesShipping,
   routesUser,
 } from "./routes/index.js";
+import { Mongoose, connect, set as setMongoose } from "mongoose";
 import cors from 'cors';
 import helmet from 'helmet';
 import xssPurge from 'xss-purge';
@@ -17,14 +18,15 @@ import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpecs from "./config/swagger/swagger.js";
 import i18Config from "./config/i18next/index.js";
-import { errorHandler, logHandler } from "./controller/ctrlError.js";
+import { errorHandler, logHandler } from "./middleware/midError.js";
+import midNotFound from "./middleware/midNotFound.js";
 
 dotenv.config();
 
 const app: Express = express();
 
 // Seguridad
-app.use(cors());7
+app.use(cors());
 app.use(helmet());
 app.use(xssPurge());
 app.use(hpp());
@@ -49,13 +51,29 @@ app.use(express.json());
 app.use("/cart", routesCart);
 app.use("/country", routesCountry);
 app.use("/locale", routesLocale);
-app.use("/products", routesProducts);
+app.use("/product", routesProducts);
 app.use("/shipping", routesShipping);
 app.use("/user", routesUser);
+
+// Not Found
+app.use(midNotFound);
 
 // Log & Error Handler
 app.use(logHandler)
 app.use(errorHandler);
 
-// Init server
-app.listen(process.env.SERVER_PORT);
+// Init DB
+setMongoose('strictQuery', true);
+const promiseDB: Promise<Mongoose> = connect('mongodb://localhost:27017/lionmiss?authSource=' + process.env.DB_NAME, {
+  user: process.env.DB_USER,
+  pass: process.env.DB_USER_PASS,
+});
+
+// Connect DB 
+promiseDB
+  .then(() => {
+    console.log('Connected to DB');
+    // Init server
+    app.listen(process.env.SERVER_PORT, () => console.log('API REST available on port ' + process.env.SERVER_PORT));
+  })
+  .catch((err: Error) => console.error(err));
