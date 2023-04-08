@@ -1,14 +1,12 @@
-import Joi, { PartialSchemaMap } from 'joi';
+import Joi, { PartialSchemaMap, Schema } from 'joi';
 import { LMColor, LMProduct } from 'lionmiss-core';
-import validProductProps from './validProductProps.js';
-import validImg from '../validImg.js';
+import { validImgId } from '../validImg.js';
+import { composeJoiPartialSchemaMap, validateEnum } from '../../utils/validUtils.js';
+import { validId } from '../validCommon.js';
+import { validProductProps } from './validProductProps.js';
 
-function validateColor(colorsSelected: string[], helpers: Joi.ExternalHelpers) {
-  const colorList: string[] = Object.values(LMColor);
-  const validationColorList: boolean = 
-    colorsSelected.every((colSel: string) => colorList.includes(colSel));
-  return validationColorList || helpers.error('any.invalid');
-}
+const schemaValidProductProps: Schema = Joi.object(validProductProps);
+const schemaValidImgId: Schema = Joi.object(validImgId);
 
 const validProduct: PartialSchemaMap<LMProduct> = {
   name: Joi
@@ -24,17 +22,30 @@ const validProduct: PartialSchemaMap<LMProduct> = {
   description: Joi
     .string()
     .max(100)
-    .empty()
     .required(),
-  details: Joi.array().items(validProductProps),
-  colors: Joi.array().custom(validateColor),
+  details: Joi
+    .array()
+    .items(schemaValidProductProps)
+    .required(),
+  colors: Joi
+    .array()
+    .items(Joi.string().custom(validateEnum(LMColor)))
+    .required(),
   unds: Joi
     .number()
     .integer()
     .min(0)
     .sign('positive')
     .required(),
-  imgs: Joi.array().items(validImg),
+  imgs: Joi
+    .array()
+    .items(schemaValidImgId)
+    .required(),
 };
 
-export default validProduct;
+const validProductId: PartialSchemaMap<LMProduct> = composeJoiPartialSchemaMap(validId, validProduct);
+
+export {
+  validProduct,
+  validProductId
+};

@@ -1,13 +1,18 @@
 import Joi from 'joi';
 import { LMColor, LMPropsBuy, LMSize } from 'lionmiss-core';
+import { validateEnum } from '../utils/validUtils.js';
 
 const validPropsBuy: Joi.ObjectSchema<LMPropsBuy> = Joi.object({
   productId: Joi
     .string()
     .empty()
     .required(),
-  color: Joi.any().valid(...Object.values(LMColor)),
-  size: Joi.any().valid(...Object.values(LMSize)),
+  color: Joi
+    .string()
+    .custom(validateEnum(LMColor)),
+  size: Joi
+    .string()
+    .custom(validateEnum(LMSize)),
   qty: Joi
     .number()
     .integer()
@@ -16,4 +21,6 @@ const validPropsBuy: Joi.ObjectSchema<LMPropsBuy> = Joi.object({
     .required()
 })
 
-export default validPropsBuy;
+export { 
+  validPropsBuy 
+};

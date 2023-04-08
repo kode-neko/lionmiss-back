@@ -1,27 +1,27 @@
-import Joi from 'joi';
+import Joi, { PartialSchemaMap } from 'joi';
 import { LMImg } from 'lionmiss-core';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
+import { validId } from './validCommon.js';
 
-const validImg: Joi.ObjectSchema<LMImg> = Joi.object({
-  _id: Joi
-    .string()
-    .empty()
-    .required(),
+const validImg: PartialSchemaMap<LMImg> = {
   src: Joi
     .string()
     .empty()
+    .max(250)
     .required(),
   title: Joi
     .string()
-    .empty()
-    .required(),
+    .max(100),
   alt: Joi
     .string()
-    .empty()
-    .required(),
+    .max(100),
   main: Joi
-    .string()
-    .empty()
-    .required(),
-});
+    .boolean(),
+};
 
-export default validImg;
+const validImgId: PartialSchemaMap<LMImg> = composeJoiPartialSchemaMap(validId, validImg);
+
+export {
+  validImg,
+  validImgId
+};

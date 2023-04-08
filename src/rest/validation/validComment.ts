@@ -1,14 +1,10 @@
-import Joi from 'joi';
-import { LMAddress } from 'lionmiss-core';
-import validUser from './validUser/validUser.js';
-import validImg from './validImg.js';
-import validMeasures from './validMeasures.js';
+import Joi, { PartialSchemaMap } from 'joi';
+import { LMComment } from 'lionmiss-core';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
+import { validId } from './validCommon.js';
+import { validImg, validMeasures, validUser } from './index.js';
 
-const validComments: Joi.ObjectSchema<LMAddress> = Joi.object({
-  _id: Joi
-    .string()
-    .empty()
-    .required(),
+const validComments: PartialSchemaMap<LMComment> = {
   comment: Joi
     .string()
     .empty()
@@ -23,11 +19,20 @@ const validComments: Joi.ObjectSchema<LMAddress> = Joi.object({
     .number()
     .integer()
     .min(0)
-    .sign('positive')
     .required(),
-  measures: validMeasures,
-  user: validUser,
-  imgs: Joi.array().items(validImg),
-});
+  measures: Joi
+    .object(validMeasures),
+  user: Joi
+    .object(validUser),
+  imgs: Joi
+    .array()
+    .items(Joi.object(validImg))
+    .required(),
+};
 
-export default validComments;
+const validCommentsId: PartialSchemaMap<LMComment> = composeJoiPartialSchemaMap(validId, validComments);
+
+export {
+  validCommentsId, 
+  validComments
+};

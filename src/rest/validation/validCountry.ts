@@ -1,33 +1,29 @@
-import Joi from 'joi';
-import { LMAddress } from 'lionmiss-core';
-import validUser from './validUser/validUser.js';
-import validImg from './validImg.js';
-import validMeasures from './validMeasures.js';
+import Joi, { PartialSchemaMap } from 'joi';
+import { LMCountry } from 'lionmiss-core';
 
-const validCountry: Joi.ObjectSchema<LMAddress> = Joi.object({
-  _id: Joi
+const validCountry: PartialSchemaMap<LMCountry> = {
+  name: Joi
     .string()
     .empty()
+    .max(50)
     .required(),
-  comment: Joi
+  nameCode: Joi
     .string()
     .empty()
-    .max(300)
+    .max(3)
     .required(),
-  date: Joi
+  currency: Joi
     .string()
     .empty()
-    .isoDate()
+    .max(5)
     .required(),
-  ratting: Joi
-    .number()
-    .integer()
-    .min(0)
-    .sign('positive')
+  currencyName: Joi
+    .string()
+    .empty()
+    .max(50)
     .required(),
-  measures: validMeasures,
-  user: validUser,
-  imgs: Joi.array().items(validImg),
-});
+};
 
-export default validCountry;
+export {
+  validCountry
+};

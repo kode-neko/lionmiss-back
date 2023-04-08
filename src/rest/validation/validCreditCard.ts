@@ -1,11 +1,9 @@
-import Joi from 'joi';
+import Joi, { PartialSchemaMap } from 'joi';
 import { LMCreditCard } from 'lionmiss-core';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
+import { validId } from './validCommon.js';
 
-const validCreditCard: Joi.ObjectSchema<LMCreditCard> = Joi.object({
-  _id: Joi
-    .string()
-    .empty()
-    .required(),
+const validCreditCard: PartialSchemaMap<LMCreditCard> = {
   creditNumber: Joi
     .string()
     .creditCard()
@@ -18,25 +16,27 @@ const validCreditCard: Joi.ObjectSchema<LMCreditCard> = Joi.object({
     .required(),
   month: Joi
     .number()
+    .integer()
     .min(2)
     .max(2)
-    .integer()
-    .sign('positive')
     .required(),
   year: Joi
     .number()
+    .integer()
     .min(2)
     .max(2)
-    .integer()
-    .sign('positive')
     .required(),
   cvv: Joi
     .number()
+    .integer()
     .min(3)
     .max(3)
-    .integer()
-    .sign('positive')
     .required()
-});
+};
 
-export default validCreditCard;
+const validCreditCardId: PartialSchemaMap<LMCreditCard> = composeJoiPartialSchemaMap(validId, validCreditCard);
+
+export {
+  validCreditCard,
+  validCreditCardId
+};

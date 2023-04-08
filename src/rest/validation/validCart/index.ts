@@ -1,2 +1,8 @@
-export * as validCart from './validCart.js';
-export * as validCartProduct from './validCartProduct.js';
+export {
+  validCart,
+  validCartId
+} from './validCart.js';
+export {
+  validCartProduct,
+  validCartProductId
+} from './validCartProduct.js';

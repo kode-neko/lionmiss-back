@@ -1,8 +1,10 @@
-import Joi from 'joi';
-import { LMProduct } from 'lionmiss-core';
-import validCart from './validCart/validCart.js';
+import Joi, { PartialSchemaMap } from 'joi';
+import { LMShipping } from 'lionmiss-core';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
+import { validId } from './validCommon.js';
+import { validCart } from './index.js';
 
-const validShipping: Joi.ObjectSchema<LMProduct> = Joi.object({
+const validShipping: PartialSchemaMap<LMShipping> = {
   _id: Joi
     .string()
     .empty()
@@ -19,9 +21,9 @@ const validShipping: Joi.ObjectSchema<LMProduct> = Joi.object({
     .required(),
   priceShipping: Joi
     .number()
+    .integer()
     .min(0)
     .precision(2)
-    .sign('positive')
     .required(),
   shippingMethod: Joi
     .string()
@@ -31,7 +33,13 @@ const validShipping: Joi.ObjectSchema<LMProduct> = Joi.object({
     .string()
     .empty()
     .required(),
-  cart: validCart
-});
+  cart: Joi
+    .object(validCart)
+};
 
-export default validShipping;
+const validShippingId: PartialSchemaMap<LMShipping> = composeJoiPartialSchemaMap(validId, validShipping);
+
+export {
+  validShipping,
+  validShippingId
+};

@@ -1,33 +1,24 @@
-import Joi from 'joi';
-import { LMProduct } from 'lionmiss-core';
-import validMeasures from '../validMeasures.js';
-import validAddress from '../validAddress.js';
+import Joi, { PartialSchemaMap } from 'joi';
+import { LMUser } from 'lionmiss-core';
+import { validCart, validId } from '../index.js';
+import { validUserInfo } from './validUserInfo.js';
+import { composeJoiPartialSchemaMap } from '../../utils/validUtils.js';
 
-const validUser: Joi.ObjectSchema<LMProduct> = Joi.object({
-  username: Joi
-    .string()
-    .empty()
+const validUser: PartialSchemaMap<LMUser> = {
+  cart: Joi
+    .object(validCart),
+  user: Joi
+    .object(validUserInfo)
     .required(),
-  avatar: Joi
-    .string()
-    .empty()
-    .required(),
-  lang: Joi
-    .string()
-    .max(2)
-    .empty()
-    .required(),
-  currency: Joi
-    .string()
-    .max(2)
-    .empty()
-    .required(),
-  measures: validMeasures,
-  email: Joi
-    .string()
-    .empty()
-    .required(),
-  addresses: Joi.array().items(validAddress)
-});
+  favProducts: Joi
+    .array()
+    .items(Joi.string())
+    .required()
+};
 
-export default validUser;
+const validUserId: PartialSchemaMap<LMUser> = composeJoiPartialSchemaMap(validId, validUser);
+
+export {
+  validUser,
+  validUserId
+};

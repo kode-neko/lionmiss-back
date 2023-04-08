@@ -1,11 +1,9 @@
-import Joi from 'joi';
+import Joi, { PartialSchemaMap } from 'joi';
 import { LMAddress } from 'lionmiss-core';
+import { validId } from './validCommon.js';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
 
-const validAddress: Joi.ObjectSchema<LMAddress> = Joi.object({
-  _id: Joi
-    .string()
-    .empty()
-    .required(),
+const validAddress: PartialSchemaMap<LMAddress> = {
   name: Joi
     .string()
     .empty()
@@ -56,6 +54,11 @@ const validAddress: Joi.ObjectSchema<LMAddress> = Joi.object({
     .boolean()
     .empty()
     .required()
-});
+};
 
-export default validAddress;
+const validAddressId: PartialSchemaMap<LMAddress> = composeJoiPartialSchemaMap(validId, validAddress);
+
+export {
+  validAddress,
+  validAddressId
+};

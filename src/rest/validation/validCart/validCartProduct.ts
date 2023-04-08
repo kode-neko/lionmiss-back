@@ -1,21 +1,30 @@
-import Joi from 'joi';
+import Joi, { PartialSchemaMap } from 'joi';
 import { LMCartProduct, LMColor, LMSize } from 'lionmiss-core';
-import validProduct from '../validProduct/validProduct.js';
+import { composeJoiPartialSchemaMap, validateEnum } from '../../utils/validUtils.js';
+import { validId } from '../validCommon.js';
+import { validProduct } from '../index.js';
 
-const validCartProduct: Joi.ObjectSchema<LMCartProduct> = Joi.object({
-  _id: Joi
+const validCartProduct: PartialSchemaMap<LMCartProduct> = {
+  size: Joi
     .string()
-    .empty()
+    .custom(validateEnum(LMSize))
     .required(),
-  size: Joi.any().valid(...Object.values(LMSize)),
-  color: Joi.any().valid(...Object.values(LMColor)),
+  color: Joi
+    .string()
+    .custom(validateEnum(LMColor)),
   unds: Joi
     .number()
     .integer()
     .min(0)
-    .sign('positive')
     .required(),
-  product: validProduct,
-});
+  product: Joi
+    .object(validProduct)
+    .required(),
+};
 
-export default validCartProduct;
+const validCartProductId: PartialSchemaMap<LMCartProduct> = composeJoiPartialSchemaMap(validId, validCartProduct);
+
+export {
+  validCartProduct,
+  validCartProductId
+};

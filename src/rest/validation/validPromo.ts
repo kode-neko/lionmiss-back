@@ -1,16 +1,19 @@
-import Joi from 'joi';
+import Joi, { PartialSchemaMap } from 'joi';
 import { LMPromo, LMPromoType } from 'lionmiss-core';
+import { validateEnum } from '../utils/validUtils.js';
 
-const validPromo: Joi.ObjectSchema<LMPromo> = Joi.object({
+const validPromo: PartialSchemaMap<LMPromo> = {
   type: Joi
-    .any()
-    .valid(...Object.values(LMPromoType)),
+    .string()
+    .custom(validateEnum(LMPromoType))
+    .required(),
   qty: Joi
     .number()
     .integer()
     .min(0)
-    .sign('positive')
     .required()
-});
+};
 
-export default validPromo;
+export {
+  validPromo
+};
