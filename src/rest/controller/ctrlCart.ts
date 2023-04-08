@@ -3,6 +3,10 @@ import { ICart } from "../../model/index.js";
 import isEmpty from "is-obj-empty";
 import { LMCart } from "lionmiss-core";
 import { builderCart } from "../../model/utils/builderCart.js";
+import {   
+  LMBUserCartParams, 
+  LMBUserCartProdParams   
+} from "../../model/LMB/LMBCartProdParams.js";
 
 const userInfo: ICart = builderCart();
 
@@ -14,14 +18,14 @@ function getCart(req: Request, res: Response): void {
 }
 
 function createCart(req: Request, res: Response): void {
-  const { idUser, cart } = req.body;
+  const { idUser, cart }: LMBUserCartParams = req.body;
   userInfo
     .postCart(idUser, cart)
     .then((ok: boolean) => res.status(ok ? 201 : 404));
 }
 
 function updateCart(req: Request, res: Response): void {
-  const { idUser, cart } = req.body;
+  const { idUser, cart }: LMBUserCartParams = req.body;
   userInfo
     .updateCart(idUser, cart)
     .then((ok: boolean) => res.status(ok ? 200 : 404));
@@ -35,14 +39,14 @@ function deleteCart(req: Request, res: Response): void {
 }
 
 function postCartProduct(req: Request, res: Response): void {
-  const { idUser, cartProduct } = req.body;
+  const { idUser, cartProduct }: LMBUserCartProdParams = req.body;
   userInfo
     .postProductCart(idUser, cartProduct)
     .then((ok: boolean) => res.status(ok ? 201 : 404));
 }
 
 function putCartProduct(req: Request, res: Response): void {
-  const { idUser, cartProduct } = req.body;
+  const { idUser, cartProduct }: LMBUserCartProdParams = req.body;
   userInfo
     .updateProductCart(idUser, cartProduct)
     .then((ok: boolean) => res.status(ok ? 200 : 404));
