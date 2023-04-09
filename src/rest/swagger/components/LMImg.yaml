@@ -1,0 +1,20 @@
+components:
+  schemas:
+    LMImg:
+      type: object
+      required:
+        - src
+        - title
+        - alt
+        - main
+      properties:
+        _id:
+          type: string
+        src:
+          type: string
+        title:
+          type: number
+        alt:
+          type: string
+        main:
+          type: boolean

@@ -1,0 +1,43 @@
+components:
+  schemas:
+    LMProduct:
+      type: object
+      required:
+        - name
+        - price
+        - description
+        - details
+        - colors
+        - unds
+        - imgs
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        description:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/LMProductProps"
+        colors:
+          type: array
+          items:
+            $ref: "#/components/schemas/LMColor"
+        imgs:
+          type: array
+          items:
+            $ref: "#/components/schemas/LMImg"
+    LMProductProps:
+      type: object
+      required:
+        - key
+        - value
+      properties:
+        key:
+          type: string
+        value:
+          type: string

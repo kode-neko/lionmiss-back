@@ -16,7 +16,7 @@ import hpp from 'hpp';
 import i18next from 'i18next';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerUi from 'swagger-ui-express';
-import swaggerSpecs from "./config/swagger/swagger.js";
+import swaggerSpecs from "./swagger/swagger.js";
 import i18Config from "./config/i18next/index.js";
 import { errorHandler, logHandler } from "./middleware/midError.js";
 import midNotFound from "./middleware/midNotFound.js";

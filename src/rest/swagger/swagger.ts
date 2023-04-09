@@ -15,7 +15,11 @@ const optionsSwaggerJsdoc: swaggerJsdoc.Options = {
       },
     },
   },
-  apis: ["./src/rest/config/**/*.yaml"],
+  apis: [
+    "./src/rest/swagger/tags.yaml",
+    "./src/rest/swagger/components/*.yaml",
+    "./src/rest/swagger/paths/routesProducts.yaml"
+  ],
 };
 
 const swaggerSpecs: object = swaggerJsdoc(optionsSwaggerJsdoc);

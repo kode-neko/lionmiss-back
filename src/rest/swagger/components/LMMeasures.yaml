@@ -1,0 +1,17 @@
+components:
+  schemas:
+    LMMeasures:
+      type: object
+      required:
+        - chest
+        - waist
+        - hip
+      properties:
+        chest:
+          type: number
+        waist:
+          type: number
+        hip:
+          type: number
+        size:
+          $ref: "#/components/schemas/LMSize"
