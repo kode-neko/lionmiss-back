@@ -1,19 +1,21 @@
-const { createCollections } = require("./createDb");
-const { createUser } = require("./createDbUsers");
-const { dropCollections, dropUsers } = require("./drop");
-const { insertData } = require("./insertMockDataDb");
+import { Db } from "mongodb";
+// import createCollections from "./createDb.js";
+// import createUser from "./createDbUsers.js";
+import { dropCollections } from "./drop.js";
+import { insertData } from "./insertMockDataDb.js";
 
-const funcs = {
-  createAll: async (db) => {
+const funcs: {[key: string]: (db: Db) => Promise<void> } = {
+  createAll: async (db: Db) => {
     await insertData(db);
     // await createUser(db);
   },
-  dropAll: async (db) => {
+  dropAll: async (db: Db) => {
     await dropCollections(db);
     // await dropUsers(db);
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/typedef
 const options = {
   createAll: {
     opt: {
@@ -33,4 +35,4 @@ const options = {
   },
 };
 
-module.exports = { options };
+export default options;

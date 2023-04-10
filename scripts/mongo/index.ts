@@ -1,11 +1,16 @@
-require("dotenv").config();
-const { getDb } = require("./dbConnection");
-const chalk = require("chalk");
-const figlet = require("figlet");
-const inquirer = require("inquirer");
-const { options } = require("./logicMenu");
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/typedef */
+import * as dotenv from "dotenv";
+import getDb from "./dbConnection.js";
+import chalk from "chalk";
+import figlet from "figlet";
+import inquirer from "inquirer";
+import options from "./logicMenu.js";
+import { Db, MongoClient } from "mongodb";
 
-let dbData = null;
+dotenv.config();
+
+let dbData: [MongoClient, Db] = null;
 
 async function getDbHere() {
   if (dbData) {
@@ -37,7 +42,7 @@ inquirer
   ])
   .then(async (answer) => {
     const [client, db] = await getDbHere();
-    await options[answer.option]
+    await options[answer.option as string]
       .func(db)
       .then(() => console.log("Operation completed"))
       .catch(err => console.log("There was an error", err))

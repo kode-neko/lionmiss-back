@@ -1,8 +1,9 @@
+import { LMImg } from "lionmiss-core";
 import { constants } from "./data/index.js";
 
-const fixtureImgs = Array(constants.NUM_IMGS)
+const fixtureImgs: LMImg[] = Array(constants.NUM_IMGS)
   .fill({})
-  .map((_, index) => ({
+  .map((_: unknown, index: number) => ({
     src: `img${index}.jpg`,
     title: "A piece of clothes",
     alt: "An example of piece of clothes",

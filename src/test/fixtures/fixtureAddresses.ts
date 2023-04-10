@@ -12,7 +12,7 @@ const fixtureAddresses: LMAddress[] = Array(50)
     state: address.state(),
     town: address.cityName(),
     zip: address.zipCode(),
-    phone: phone.phoneNumber(),
+    phone: phone.number(),
     mail: internet.email(),
     comments: lorem.words(),
     main: index === 0,

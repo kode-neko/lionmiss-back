@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./src", // Directorio raiz
+    "rootDir": "./", // Directorio raiz
     "outDir": "./lib", // Lugar donde coloca el codigo transpilado
     "declaration": true, // Crear los type defs (d.ts)
     "lib": [ // Incluir los d.ts de librerías core
@@ -23,9 +23,10 @@
     "sourceMap": true,
   },
   "include": [ // A que ficheros se aplica la config. Muy útil para ESLint y transpialdores
-    "src/**/*.ts",
-    "src/graphql/schema.graphql",
-    "src/graphql/typeDefs/*.graphql"
+    "./scripts/**/*.ts",
+    "./src/**/*.ts",
+    "./src/graphql/schema.graphql",
+    "./src/graphql/typeDefs/*.graphql"
   ],
   "exclude": [ // Dentro de los ficheros que se aplican, cuales no hacerlo
     "src/**/*.test.ts",

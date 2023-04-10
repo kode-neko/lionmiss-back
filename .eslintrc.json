@@ -5,6 +5,7 @@
   "overrides": [
     {
       "files": [
+        "./scripts/**/*.ts",
         "./src/rest/**/*.ts",
         "./src/rest/**/*.tsx",
         "./src/model/**/*.ts",
@@ -31,6 +32,7 @@
       },
       "parser": "@typescript-eslint/parser",
       "rules": {
+        "@typescript-eslint/no-inferrable-types": "off",
         "@typescript-eslint/typedef": [
           "warn",
           {

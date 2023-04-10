@@ -6,4 +6,4 @@ export { fixtureLocales } from "./fixtureLocales.js";
 export { fixtureProducts } from "./fixtureProducts.js";
 export { fixturePromo } from "./fixturePromo.js";
 export { fixtureUsersInfo } from "./fixtureUsersInfo.js";
-export { fixtureUsers } from "./fixtureUsers.js";
+export { fixtureUser } from "./fixtureUser.js";

@@ -6,5 +6,5 @@ const constants = {
 };
 
 export { constants };
-export { default as rawCountries } from "./rawCountries.json";
-export { default as rawLocales } from "./rawLocales.json";
+export { default as rawCountries } from "./rawCountries.json" assert {type: 'json'};
+export { default as rawLocales } from "./rawLocales.json" assert {type: 'json'};
