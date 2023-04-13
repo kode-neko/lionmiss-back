@@ -1,0 +1,13 @@
+{
+  "msg": {
+    "notfound": "Recurso o servicio no encontrado"
+  },
+  "error": {
+    "user": "El usuario no existe",
+    "pass": "Contraseña incorrecta",
+    "authentication": "No puedes acceder a la API",
+    "authorization": "No puedes acceder al servicio o recurso",
+    "generic": "Hubo un problema. Intñentelo más tarde",
+    "request": "Petición incorrecta"
+  }
+}

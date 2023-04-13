@@ -1,88 +1,81 @@
-import { LMCart, LMCartProduct, LMUserInfo } from "lionmiss-core";
-import { model } from "mongoose";
+import { LMCart, LMCartProduct, LMUser } from "lionmiss-core";
+import { Model, model } from "mongoose";
 import { ICart } from "../ICart.js";
-import { LMBError } from "../LMB/index.js";
-import { schemaUserInfo } from "./schemas/index.js";
+import { schemaUser } from "./schemas/index.js";
+import { UpdateResult, DeleteResult } from "mongodb";
 
 class MGSCart implements ICart {
-  UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");
+  UserModel: Model<LMUser> = model<LMUser>("User", schemaUser, "user");
 
-  getCart(idUser: string): Promise<LMCart | LMBError> {
-    return this.UserInfoModel.findById(idUser)
-      .then(userInfo => userInfo ? userInfo.cart : {})
-      .catch(err => err);
+  getCart(username: string): Promise<LMCart> {
+    return this.UserModel.findOne({username})
+      .then((user: LMUser) => user.userInfo.cart);
   }
 
-  postCart(idUser: string, cart: LMCart): Promise<boolean | LMBError> {
-    return this.UserInfoModel.updateOne(
-      { _id: idUser },
-      { cart },
+  postCart(username: string, cart: LMCart): Promise<boolean> {
+    return this.UserModel.updateOne(
+      { username },
+      { "userInfo.cart": cart },
       { runValidators: true }
     )
-      .then(({ modifiedCount }) => modifiedCount > 0)
-      .catch(err => err);
+      .then(({ modifiedCount }: UpdateResult) => modifiedCount > 0);
   }
 
-  updateCart(idUser: string, cart: LMCart): Promise<boolean | LMBError> {
-    return this.UserInfoModel.findByIdAndUpdate(
-      idUser,
-      { $set: { ...cart } },
+  updateCart(username: string, cart: LMCart): Promise<boolean> {
+    return this.UserModel.findOneAndUpdate(
+      {username},
+      { $set: { "userInfo.cart": {...cart} } },
       { runValidators: true }
     )
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 
-  deleteCart(idUser: string): Promise<boolean | LMBError> {
-    return this.UserInfoModel.deleteOne({ _id: idUser })
-      .then(({ deletedCount }) => deletedCount > 0)
-      .catch(err => err);
+  deleteCart(idUser: string): Promise<boolean> {
+    return this.UserModel.deleteOne({ _id: idUser })
+      .then(({ deletedCount }: DeleteResult) => deletedCount > 0);
   }
 
   postProductCart(
-    idUser: string,
+    username: string,
     cartProduct: LMCartProduct
-  ): Promise<boolean | LMBError> {
-    return this.UserInfoModel.findByIdAndUpdate(
-      idUser,
-      { $push: { "cart.products": cartProduct } },
+  ): Promise<boolean> {
+    return this.UserModel.findOneAndUpdate(
+      {username},
+      { $push: { "userInfo.cart.products": cartProduct } },
       { runValidators: true }
     )
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 
   updateProductCart(
-    idUser: string,
+    username: string,
     cartProduct: LMCartProduct
-  ): Promise<boolean | LMBError> {
-    return this.UserInfoModel.findOneAndUpdate(
+  ): Promise<boolean> {
+    return this.UserModel.findOneAndUpdate(
       {
-        _id: idUser,
-        "cart.products._id": cartProduct._id,
+        username,
+        "userInfo.cart.products._id": cartProduct._id,
       },
-      { $set: { "cart.products.$": { ...cartProduct } } },
+      { $set: { "userInfo.cart.products.$": { ...cartProduct } } },
       { runValidators: true }
     )
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 
   deleteProductCart(
-    idUser: string,
+    username: string,
     idProduct: string
-  ): Promise<boolean | LMBError> {
-    return this.UserInfoModel.findByIdAndUpdate(
-      idUser,
-      { $pull: { "cart.products": { _id: idProduct } } },
+  ): Promise<boolean> {
+    return this.UserModel.findByIdAndUpdate(
+      {username},
+      { $pull: { "userInfo.cart.products": { _id: idProduct } } },
       { runValidators: true }
     )
       .count()
-      .then(count => count > 0)
-      .catch(err => err);
+      .then((count: number) => count > 0);
   }
 }
 

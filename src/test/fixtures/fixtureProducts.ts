@@ -3,11 +3,12 @@ import { LMColor, LMProduct } from "lionmiss-core";
 import { fixtureImgs } from "./fixtureImgs.js";
 import { constants } from "./data/index.js";
 
-const {commerce} = faker;
+const {commerce, database} = faker;
 
 const fixtureProducts: LMProduct[] = Array(constants.NUM_PRODUCTS)
   .fill({})
   .map(() => ({
+    _id: database.mongodbObjectId(),
     name: commerce.productName(),
     price: Number(commerce.price()),
     description: commerce.productDescription(),

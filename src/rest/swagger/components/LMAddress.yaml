@@ -1,0 +1,38 @@
+components:
+  schemas:
+    LMAddress:
+      type: object
+      required:
+        - name
+        - adderss
+        - country
+        - state
+        - town
+        - zip
+        - phone
+        - mail
+        - comments
+        - main
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        adderss:
+          type: string
+        country:
+          type: string
+        state:
+          type: string
+        town:
+          type: string
+        zip:
+          type: string
+        phone:
+          type: string
+        mail:
+          type: string
+        comments:
+          type: string
+        main:
+          type: boolean

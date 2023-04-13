@@ -2,7 +2,7 @@ import { Schema } from "mongoose";
 import { LMShipping } from "lionmiss-core";
 import { schemaCart } from './schemaCart.js';
 
-const schemaShipping = new Schema<LMShipping>({
+const schemaShipping: Schema<LMShipping> = new Schema<LMShipping>({
   initDate: { type: Date, required: true },
   finishDate: { type: Date, required: true },
   priceShipping: { type: Number, required: true },

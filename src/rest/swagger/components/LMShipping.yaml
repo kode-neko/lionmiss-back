@@ -1,0 +1,26 @@
+components:
+  schemas:
+    LMShipping:
+      type: object
+      required:
+        - initDate
+        - finishDate
+        - priceShipping
+        - shippingMethod
+        - paymentMethod
+        - cart
+      properties:
+        _id:
+          type: string
+        initDate:
+          type: string
+        finishDate:
+          type: string
+        priceShipping:
+          type: number
+        shippingMethod:
+          type: string
+        paymentMethod:
+          type: string
+        cart:
+          $ref: "#/components/schemas/LMCart"

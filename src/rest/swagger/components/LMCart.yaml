@@ -1,0 +1,35 @@
+components:
+  schemas:
+    LMCart:
+      type: object
+      required:
+        - products
+        - taxes
+      properties:
+        _id:
+          type: string
+        products:
+          type: array
+          items:
+            type: object
+        promo:
+          type: object
+        taxes:
+          type: number
+    LMCartProduct:
+      type: object
+      required:
+        - size
+        - unds
+        - product
+      properties:
+        _id:
+          type: string
+        size:
+          $ref: "#/components/schemas/LMSize"
+        color:
+          $ref: "#/components/schemas/LMColor"
+        unds:
+          type: number
+        product:
+          $ref: "#/components/schemas/LMProduct"

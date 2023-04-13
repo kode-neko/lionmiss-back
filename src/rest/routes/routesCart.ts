@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { ctrlCart as cart } from "../controller/index.js";
 
-const router = Router();
+const router: Router = Router();
 
 router.get("/:idUser", cart.getCart);
-router.post("/", cart.postCartProduct);
-router.put("/", cart.putCartProduct);
-router.delete("/:idUser", cart.delCartProduct);
+router.post("/", cart.createCart);
+router.put("/", cart.updateCart);
+router.delete("/:idUser", cart.deleteCart);
 
 router.post("/product", cart.postCartProduct);
 router.put("/product", cart.putCartProduct);

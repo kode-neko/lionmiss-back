@@ -1,0 +1,18 @@
+components:
+  schemas:
+    LMCountry:
+      type: object
+      required:
+        - name
+        - nameCode
+        - currency
+        - currencyName
+      properties:
+        name:
+          type: string
+        nameCode:
+          type: string
+        currency:
+          type: string
+        currencyName:
+          type: string

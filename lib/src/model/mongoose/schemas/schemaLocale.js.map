@@ -1,1 +1,0 @@
-{"version":3,"file":"schemaLocale.js","sourceRoot":"","sources":["../../../../../src/model/mongoose/schemas/schemaLocale.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAGlC,MAAM,YAAY,GAAG,IAAI,MAAM,CAC7B;IACE,IAAI,EAAE,EAAE,IAAI,EAAE,MAAM,EAAE,OAAO,EAAE,IAAI,EAAE;CACtC,EACD,EAAE,EAAE,EAAE,KAAK,EAAE,CACd,CAAC;AAEF,OAAO,EAAE,YAAY,EAAE,CAAC"}

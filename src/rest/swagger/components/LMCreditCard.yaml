@@ -1,0 +1,23 @@
+components:
+  schemas:
+    LMCreditCard:
+      type: object
+      required:
+        - creditNumber
+        - fullName
+        - month
+        - year
+        - cvv
+      properties:
+        _id:
+          type: string
+        creditNumber:
+          type: number
+        fullName:
+          type: string
+        month:
+          type: number
+        year:
+          type: number
+        cvv:
+          type: number
