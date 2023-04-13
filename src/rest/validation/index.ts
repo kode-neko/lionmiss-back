@@ -42,10 +42,8 @@ export {
   validCartProductId
 } from './validCart/index.js';
 export {
-  validUserInfo,
-  validUser,
-  validUserId,
-} from './validUser/index.js';
+  validUser
+} from './validUser.js';
 export {
   validCommentsId, 
   validComments

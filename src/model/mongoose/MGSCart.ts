@@ -7,24 +7,24 @@ import { UpdateResult, DeleteResult } from "mongodb";
 class MGSCart implements ICart {
   UserModel: Model<LMUser> = model<LMUser>("User", schemaUser, "user");
 
-  getCart(idUser: string): Promise<LMCart> {
-    return this.UserModel.findById(idUser)
-      .then((user: LMUser) => user.cart);
+  getCart(username: string): Promise<LMCart> {
+    return this.UserModel.findOne({username})
+      .then((user: LMUser) => user.userInfo.cart);
   }
 
-  postCart(idUser: string, cart: LMCart): Promise<boolean> {
+  postCart(username: string, cart: LMCart): Promise<boolean> {
     return this.UserModel.updateOne(
-      { _id: idUser },
-      { cart },
+      { username },
+      { "userInfo.cart": cart },
       { runValidators: true }
     )
       .then(({ modifiedCount }: UpdateResult) => modifiedCount > 0);
   }
 
-  updateCart(idUser: string, cart: LMCart): Promise<boolean> {
-    return this.UserModel.findByIdAndUpdate(
-      idUser,
-      { $set: { ...cart } },
+  updateCart(username: string, cart: LMCart): Promise<boolean> {
+    return this.UserModel.findOneAndUpdate(
+      {username},
+      { $set: { "userInfo.cart": {...cart} } },
       { runValidators: true }
     )
       .count()
@@ -37,12 +37,12 @@ class MGSCart implements ICart {
   }
 
   postProductCart(
-    idUser: string,
+    username: string,
     cartProduct: LMCartProduct
   ): Promise<boolean> {
-    return this.UserModel.findByIdAndUpdate(
-      idUser,
-      { $push: { "cart.products": cartProduct } },
+    return this.UserModel.findOneAndUpdate(
+      {username},
+      { $push: { "userInfo.cart.products": cartProduct } },
       { runValidators: true }
     )
       .count()
@@ -50,15 +50,15 @@ class MGSCart implements ICart {
   }
 
   updateProductCart(
-    idUser: string,
+    username: string,
     cartProduct: LMCartProduct
   ): Promise<boolean> {
     return this.UserModel.findOneAndUpdate(
       {
-        _id: idUser,
-        "cart.products._id": cartProduct._id,
+        username,
+        "userInfo.cart.products._id": cartProduct._id,
       },
-      { $set: { "cart.products.$": { ...cartProduct } } },
+      { $set: { "userInfo.cart.products.$": { ...cartProduct } } },
       { runValidators: true }
     )
       .count()
@@ -66,12 +66,12 @@ class MGSCart implements ICart {
   }
 
   deleteProductCart(
-    idUser: string,
+    username: string,
     idProduct: string
   ): Promise<boolean> {
     return this.UserModel.findByIdAndUpdate(
-      idUser,
-      { $pull: { "cart.products": { _id: idProduct } } },
+      {username},
+      { $pull: { "userInfo.cart.products": { _id: idProduct } } },
       { runValidators: true }
     )
       .count()

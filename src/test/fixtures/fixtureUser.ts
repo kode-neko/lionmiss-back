@@ -1,16 +1,16 @@
-import { fixtureCart } from "./fixtureCart.js";
 import { fixtureUsersInfo } from "./fixtureUsersInfo.js";
-import { fixtureProducts } from "./fixtureProducts.js";
-import { LMProduct, LMUser } from "lionmiss-core";
+import { LMUser } from "lionmiss-core";
 import { faker } from "@faker-js/faker";
 
-const {database} = faker;
+const {database, internet} = faker;
 
+// pass - w4aKcN
 const fixtureUser: LMUser = {
   _id: database.mongodbObjectId(),
-  cart: fixtureCart,
-  user: fixtureUsersInfo[0],
-  favProducts: fixtureProducts.slice(0, 3).map((p: LMProduct) => p._id),
+  username: internet.userName(),
+  pass: '$2b$12$OpBFL509uHcSg8gPaCuNqOBxacVTA51.MOGmS3x3KowFZNZNtrSvW',
+  salt: '$2b$12$OpBFL509uHcSg8gPaCuNqO',
+  userInfo: fixtureUsersInfo[0],
 };
 
 export { fixtureUser };

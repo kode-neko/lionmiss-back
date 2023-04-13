@@ -29,6 +29,6 @@
     "./src/graphql/typeDefs/*.graphql"
   ],
   "exclude": [ // Dentro de los ficheros que se aplican, cuales no hacerlo
-    "src/**/*.test.ts",
+    // "src/**/*.test.ts",
   ]
 }

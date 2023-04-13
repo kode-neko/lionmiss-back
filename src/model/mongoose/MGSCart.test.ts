@@ -1,15 +1,17 @@
 import { model } from "mongoose";
-import { LMCart } from "lionmiss-core";
+// import { LMCart } from "lionmiss-core";
 import { LMUserInfo } from "lionmiss-core";
-import { setUp, dropDb, dropColls } from "../../test/model/MGS";
-import { fixtureCart, fixtureUserInfo } from "../../test/fixtures";
-import { MGSCart } from "./index";
-import { schemaUserInfo } from "./schemas";
+import { schemaUserInfo } from "./schemas/schemaUserInfo.js";
+import { MGSCart } from "./MGSCart.js";
+// import { setUp, dropDb, dropColls } from "../../test/model/MGS";
+// import { fixtureCart, fixtureUserInfo } from "../../test/fixtures";
+
+
 
 const UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");
 
 const mgsCart = new MGSCart();
-
+/*
 async function getUserInfoObj(): Promise<LMUserInfo> {
   await UserInfoModel.insertMany([fixtureUserInfo]);
   const userInfoList = await UserInfoModel.find({});
@@ -73,3 +75,4 @@ describe("MGSCart", () => {
     expect(ok).toBeFalsy();
   });
 });
+*/

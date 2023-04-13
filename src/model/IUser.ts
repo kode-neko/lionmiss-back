@@ -1,12 +1,13 @@
 import { LMUser } from "lionmiss-core";
-import { LMBSearchParams } from "./LMB/index.js";
+import { LMBSearchParams, LMBUser } from "./LMB/index.js";
 
 interface IUser {
-  getUser: (id: string) => Promise<LMUser>;
-  getUserAll: (params: LMBSearchParams) => Promise<LMUser[]>;
-  postUser: (user: LMUser) => Promise<LMUser>;
-  updateUser: (user: LMUser) => Promise<boolean>;
+  getUser: (id: string) => Promise<LMBUser>;
+  getUserAll: (params: LMBSearchParams) => Promise<LMBUser[]>;
+  postUser: (user: LMBUser) => Promise<LMBUser>;
+  updateUser: (user: LMBUser) => Promise<boolean>;
   deleteUser: (id: string) => Promise<boolean>;
+  getUserByName: (username: string) => Promise<LMUser>;
 }
 
 export { IUser };

@@ -17,6 +17,7 @@ type InputMessageUser = {
 
 // Resolvers
 const userResolvers = {
+  /*
   Query: {
     user: async (_: Context, {id} : QueryUser): Promise<LMUser|LMBError> => 
       await userModel.getUser(id),
@@ -31,6 +32,7 @@ const userResolvers = {
     deleteUser: async (_: Context, id: string): Promise<boolean|LMBError> => 
       await userModel.deleteUser(id),
   }
+  */
 };
 
 export default userResolvers;

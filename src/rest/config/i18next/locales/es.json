@@ -5,7 +5,9 @@
   "error": {
     "user": "El usuario no existe",
     "pass": "Contraseña incorrecta",
-    "autho": "No puedes acceder al servicio o al recurso",
-    "generic": "Hubo un problema. Intñentelo más tarde"
+    "authentication": "No puedes acceder a la API",
+    "authorization": "No puedes acceder al servicio o recurso",
+    "generic": "Hubo un problema. Intñentelo más tarde",
+    "request": "Petición incorrecta"
   }
 }

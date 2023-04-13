@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/typedef */
 import { Router } from "express";
 import { ctrlCart as cart } from "../controller/index.js";
 
