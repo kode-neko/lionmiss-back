@@ -6,12 +6,11 @@
     {
       "files": [
         "./scripts/**/*.ts",
-        "./src/rest/**/*.ts",
-        "./src/rest/**/*.tsx",
-        "./src/model/**/*.ts",
-        "./src/model/**/*.tsx",
-        "./src/test/**/*.ts",
-        "./src/test/**/*.tsx"
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+      ],
+      "excludedFiles": [
+        "./src/graphql/**/*.ts"
       ],
       "env": {
         "browser": true,

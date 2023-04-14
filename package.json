@@ -9,7 +9,7 @@
   "scripts": {
     "start": "concurrently \"npm run start:rest\" \"npm run start:gql\"",
     "start:rest": "node ./lib/src/rest/index.js",
-    "start:gql": "node ./lib/graphql",
+    "start:gql": "node ./lib/src/graphql/index.js",
     "dev": "concurrently \"npm run dev:rest\" \"npm run dev:gql\"",
     "dev:rest": "npx nodemon ./lib/rest/index.js",
     "dev:gql": "npx nodemon ./lib/graphql/index.js",
@@ -40,6 +40,7 @@
     "lodash": "^4.17.21",
     "mongodb": "^5.2.0",
     "mongoose": "^7.0.3",
+    "nexus": "^1.3.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",
     "valid-request-joi": "^2.0.0",
