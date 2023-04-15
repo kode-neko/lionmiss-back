@@ -7,6 +7,10 @@ import { builderUser } from "../../model/utils/builderUser.js";
 import { LMListParamsInput } from "./params.js";
 import { listToObjKeyVal } from "../utils.js";
 import pkg from "nexus/dist/core.js";
+import { LMUser } from "lionmiss-core";
+import { hashSync } from "bcrypt-ts";
+import jwt from 'jsonwebtoken';
+import { LMBUser } from "../../model/LMB/LMBUser.js";
 const { inputObjectType, objectType, extendType, idArg, intArg, stringArg } = pkg;
 
 const LMUserInfo: NexusObjectTypeDef<string> = objectType({
@@ -212,6 +216,52 @@ const LMUserMutationDelete: NexusExtendTypeDef<'Mutation'> = extendType({
   }
 });
 
+const SignUpMutation: NexusExtendTypeDef<'Mutation'> = extendType({
+  type: 'Mutation',
+  definition(t: ObjectDefinitionBlock<string>) {
+    t.field('SignUpMutation', {
+      type: 'LMUserReturn',
+      args: {
+        user: LMUserReturnInput,
+      },
+      resolve: async (root: SourceValue<string>, args: ArgsValue<string, string>) => {
+        const {user} = args;
+        const newUser: LMBUser = await userModel.postUser(user);
+        return ({...newUser, pass: null})
+      }
+    })
+  }
+})
+
+const LoginMutation: NexusExtendTypeDef<'Mutation'> = extendType({
+  type: 'Mutation',
+  definition(t: ObjectDefinitionBlock<string>) {
+    t.field('LoginMutation', {
+      type: 'String',
+      args: {
+        username: stringArg(),
+        pass: stringArg()
+      },
+      resolve: async (root: SourceValue<string>, args: ArgsValue<string, string>) => {
+        const {username, pass} = args;
+        const user: LMUser = await userModel.getUserByName(username);
+
+        // Check user
+        if(!user)
+          throw Error('error.user')
+
+        // Check pass
+        if(hashSync(pass) !== user.pass)
+          throw Error('error.authorization')
+
+        //Return token
+        const token: string = jwt.sign({username: name}, process.env.KEY_TOKEN, {algorithm: 'RS256'})
+        return token;
+      }
+    })
+  }
+})
+
 export {
   LMUserInfo,
   LMUserInfoInput,
@@ -224,5 +274,6 @@ export {
   LMUserByNameQuery,
   LMUserMutationPost,
   LMUserMutationPut,
-  LMUserMutationDelete
+  LMUserMutationDelete,
+  LoginMutation
 }

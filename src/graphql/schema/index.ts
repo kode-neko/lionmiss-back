@@ -86,5 +86,6 @@ export {
   LMUserByNameQuery,
   LMUserMutationPost,
   LMUserMutationPut,
-  LMUserMutationDelete
+  LMUserMutationDelete,
+  LoginMutation
 } from './user.js';
