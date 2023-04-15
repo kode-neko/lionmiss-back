@@ -3,7 +3,7 @@ import path, { join } from 'path';
 import { Mongoose, connect, set as setMongoose } from "mongoose";
 import {ApolloServer, ServerInfo } from 'apollo-server';
 import { makeSchema } from 'nexus';
-import * as allTypes from './types/index.js';
+import * as allTypes from './schema/index.js';
 import { fileURLToPath } from 'url';
 import { NexusGraphQLSchema } from 'nexus/dist/core.js';
 
