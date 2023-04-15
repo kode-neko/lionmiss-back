@@ -20,9 +20,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@apollo/server": "^4.6.0",
     "@types/basic-auth": "^1.1.3",
     "@types/joi": "^17.2.3",
-    "apollo-server": "^3.12.0",
     "basic-auth": "^2.0.1",
     "bcrypt-ts": "^3.0.0",
     "cors": "^2.8.5",
