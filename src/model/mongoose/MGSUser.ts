@@ -1,19 +1,18 @@
 import { UpdateResult } from 'mongodb';
-import { LMUser, LMUserInfo } from "lionmiss-core";
+import { LMUser } from "lionmiss-core";
 import { Document, Model, model } from "mongoose";
 import { IUser } from "../IUser.js";
 import { LMBSearchParams, LMBUser } from "../LMB/index.js";
 import { schemaUser } from "./schemas/index.js";
 import { genSaltSync, hashSync } from "bcrypt-ts/browser";
-import { userInfo } from "os";
 
 type ModelLMUser = Document<unknown, unknown, LMUser> & Omit<LMUser, never>;
 
 class MGSUser implements IUser {
   UserModel: Model<LMUser> = model<LMUser>("User", schemaUser, "user");
 
-  getUser(id: string): Promise<LMBUser> {
-    return this.UserModel.findById(id)
+  getUser(username: string): Promise<LMBUser> {
+    return this.UserModel.findOne({username})
       .then((user: LMUser) => ({ username: user.username, ...user.userInfo}));
   }
 
@@ -69,14 +68,14 @@ class MGSUser implements IUser {
       .then(({modifiedCount}: UpdateResult) => modifiedCount > 0)
   }
 
-  deleteUser(id: string): Promise<boolean> {
-    return this.UserModel.findByIdAndDelete(id)
+  deleteUser(username: string): Promise<boolean> {
+    return this.UserModel.deleteOne({username})
       .count()
       .then((count: number) => count > 0);
   }
 
   getUserByName(username: string): Promise<LMUser> {
-    return this.UserModel.findOne({user: {username}})
+    return this.UserModel.findOne({username})
       .then((user: LMUser) => user);
   }
 }

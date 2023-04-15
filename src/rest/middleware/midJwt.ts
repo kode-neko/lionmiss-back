@@ -14,7 +14,7 @@ async function midJwt(req: Request, res: Response, next: NextFunction) {
     res.status(403).json({msj: 'error.auth'});
 
   try {
-    const {payload}: JwtPayload = jwt.verify(token, process.env.KEY_TOKEN) as JwtPayload;
+    const payload: JwtPayload = jwt.verify(token, process.env.KEY_TOKEN) as JwtPayload;
     const user: LMUser = await userModel.getUserByName(payload.username);
     if(!user)
       res.status(401).json({msj: 'error.user'});
