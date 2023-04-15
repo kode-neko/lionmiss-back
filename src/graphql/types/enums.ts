@@ -1,6 +1,7 @@
 import { enumType } from "nexus";
+import { NexusEnumTypeDef } from "nexus/dist/core.js";
 
-const LMColor = enumType({
+const LMColor: NexusEnumTypeDef<"LMColor"> = enumType({
   name: 'LMColor',
   members: [
     'Red',
@@ -16,7 +17,7 @@ const LMColor = enumType({
   ]
 });
 
-const LMSize = enumType({
+const LMSize: NexusEnumTypeDef<"LMSize"> = enumType({
   name: 'LMSize',
   members: [
     'XS',

@@ -31,8 +31,8 @@ class MGSCart implements ICart {
       .then((count: number) => count > 0);
   }
 
-  deleteCart(idUser: string): Promise<boolean> {
-    return this.UserModel.deleteOne({ _id: idUser })
+  deleteCart(username: string): Promise<boolean> {
+    return this.UserModel.deleteOne({ _id: username })
       .then(({ deletedCount }: DeleteResult) => deletedCount > 0);
   }
 

@@ -1,8 +1,10 @@
-import { objectType, inputObjectType } from "nexus";
+import pkg from "nexus";
+import { InputDefinitionBlock, NexusInputObjectTypeDef, NexusObjectTypeDef, ObjectDefinitionBlock } from "nexus/dist/core.js";
+const { inputObjectType, objectType } = pkg;
 
-const LMAdress = objectType({
+const LMAdress: NexusObjectTypeDef<string> = objectType({
   name: 'LMAdress',
-  definition(t) {
+  definition(t: ObjectDefinitionBlock<string>) {
     t.id('_id', {})
     t.nonNull.string('name', {})
     t.nonNull.string('adress', {})
@@ -17,9 +19,9 @@ const LMAdress = objectType({
   }
 });
 
-const LMAdressInput = inputObjectType({
-  name: 'InputLMAdress',
-  definition(t) {
+const LMAdressInput: NexusInputObjectTypeDef<string> = inputObjectType({
+  name: 'LMAdressInput',
+  definition(t: InputDefinitionBlock<string>) {
     t.nullable.id('_id', {})
     t.nonNull.string('name', {})
     t.nonNull.string('adress', {})

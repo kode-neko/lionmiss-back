@@ -10,7 +10,7 @@
         "./src/**/*.tsx"
       ],
       "excludedFiles": [
-        "./src/graphql/**/*.ts"
+        // "./src/graphql/**/*.ts"
       ],
       "env": {
         "browser": true,

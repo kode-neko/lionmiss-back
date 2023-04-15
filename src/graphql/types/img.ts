@@ -1,6 +1,8 @@
-import { inputObjectType, objectType } from "nexus";
+import { NexusInputObjectTypeDef, NexusObjectTypeDef } from "nexus/dist/core.js";
+import pkg from "nexus/dist/core.js";
+const { inputObjectType, objectType } = pkg;
 
-const LMImg = objectType({
+const LMImg: NexusObjectTypeDef<string> = objectType({
   name: 'LMImg',
   definition(t){
     t.id('_id')
@@ -11,7 +13,7 @@ const LMImg = objectType({
   }
 })
 
-const LMImgInput = inputObjectType({
+const LMImgInput: NexusInputObjectTypeDef<string> = inputObjectType({
   name: 'LMImgInput',
   definition(t){
     t.nullable.id('_id')
