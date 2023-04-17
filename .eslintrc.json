@@ -5,6 +5,7 @@
   "overrides": [
     {
       "files": [
+        "./jest.config.ts",
         "./scripts/**/*.ts",
         "./src/**/*.ts",
         "./src/**/*.tsx"

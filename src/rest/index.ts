@@ -72,8 +72,8 @@ const promiseDB: Promise<Mongoose> = connect('mongodb://localhost:27017/lionmiss
 // Connect DB 
 promiseDB
   .then(() => {
-    console.log('Connected to DB');
+    console.log('🗂️  Connected to DB');
     // Init server
-    app.listen(process.env.SERVER_PORT, () => console.log('API REST available on port ' + process.env.SERVER_PORT));
+    app.listen(process.env.SERVER_PORT, () => console.log('🚀 API REST available on port ' + process.env.SERVER_PORT));
   })
   .catch((err: Error) => console.error(err));

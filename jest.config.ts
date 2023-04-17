@@ -9,6 +9,13 @@ const config: Config.InitialOptions = {
     "<rootDir>/fixtures",
   ],
   testEnvironment: "node",
+  /*
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+
+    }]
+  }
+  */
 };
 
 export default config;
