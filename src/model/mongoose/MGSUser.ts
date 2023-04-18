@@ -1,10 +1,10 @@
-import { UpdateResult } from 'mongodb';
-import { LMUser } from "lionmiss-core";
-import { Document, Model, model } from "mongoose";
-import { IUser } from "../IUser.js";
-import { LMBSearchParams, LMBUser } from "../LMB/index.js";
-import { schemaUser } from "./schemas/index.js";
-import { genSaltSync, hashSync } from "bcrypt-ts/browser";
+import {UpdateResult} from "mongodb";
+import {LMUser} from "lionmiss-core";
+import {Document, Model, model} from "mongoose";
+import {IUser} from "../IUser";
+import {LMBSearchParams, LMBUser} from "../LMB/index";
+import {schemaUser} from "./schemas/index";
+import {genSaltSync, hashSync} from "bcrypt";
 
 type ModelLMUser = Document<unknown, unknown, LMUser> & Omit<LMUser, never>;
 
@@ -12,15 +12,26 @@ class MGSUser implements IUser {
   UserModel: Model<LMUser> = model<LMUser>("User", schemaUser, "user");
 
   getUser(username: string): Promise<LMBUser> {
-    return this.UserModel.findOne({username})
-      .then((user: LMUser) => ({ username: user.username, ...user.userInfo}));
+    return this.UserModel.findOne({username}).then((user: LMUser) => ({
+      username: user.username,
+      ...user.userInfo,
+    }));
   }
 
-  getUserAll({limit, offset, search = {}}: LMBSearchParams): Promise<LMBUser[]> {
+  getUserAll({
+    limit,
+    offset,
+    search = {},
+  }: LMBSearchParams): Promise<LMBUser[]> {
     return this.UserModel.find(search)
       .skip(offset)
       .limit(limit)
-      .then((list: LMUser[]) => list.map((user: LMUser) => ({ username: user.username, ...user.userInfo})));
+      .then((list: LMUser[]) =>
+        list.map((user: LMUser) => ({
+          username: user.username,
+          ...user.userInfo,
+        }))
+      );
   }
 
   postUser(user: LMBUser): Promise<LMBUser> {
@@ -31,14 +42,15 @@ class MGSUser implements IUser {
       username,
       pass: hash,
       salt,
-      userInfo
-    }
+      userInfo,
+    };
     const userModel: ModelLMUser = new this.UserModel(userPersist);
     const userRes: LMBUser = {
       username,
-      ...userPersist.userInfo
-    }
-    return userModel.validate()
+      ...userPersist.userInfo,
+    };
+    return userModel
+      .validate()
       .then(() => userModel.save())
       .then(() => userRes);
   }
@@ -49,23 +61,23 @@ class MGSUser implements IUser {
       .then((found: LMUser) => {
         let salt: string;
         let hash: string;
-        if(pass) {
+        if (pass) {
           salt = genSaltSync();
-          hash = hashSync(pass, salt)
+          hash = hashSync(pass, salt);
         } else {
           salt = found.salt;
           hash = found.pass;
         }
-        const userUpdate: LMUser = ({
+        const userUpdate: LMUser = {
           _id: found._id,
           username,
           pass: hash,
           salt,
-          userInfo: {...rest}
-        });
-        return this.UserModel.updateOne({username}, userUpdate)
+          userInfo: {...rest},
+        };
+        return this.UserModel.updateOne({username}, userUpdate);
       })
-      .then(({modifiedCount}: UpdateResult) => modifiedCount > 0)
+      .then(({modifiedCount}: UpdateResult) => modifiedCount > 0);
   }
 
   deleteUser(username: string): Promise<boolean> {
@@ -75,9 +87,8 @@ class MGSUser implements IUser {
   }
 
   getUserByName(username: string): Promise<LMUser> {
-    return this.UserModel.findOne({username})
-      .then((user: LMUser) => user);
+    return this.UserModel.findOne({username}).then((user: LMUser) => user);
   }
 }
 
-export { MGSUser };
+export {MGSUser};

@@ -1,5 +1,5 @@
-import { LMImg } from "lionmiss-core";
-import { constants } from "./data/index.js";
+import {LMImg} from "lionmiss-core";
+import {constants} from "./data/index";
 
 const fixtureImgs: LMImg[] = Array(constants.NUM_IMGS)
   .fill({})
@@ -10,4 +10,4 @@ const fixtureImgs: LMImg[] = Array(constants.NUM_IMGS)
     main: index === 0,
   }));
 
-export { fixtureImgs };
+export {fixtureImgs};

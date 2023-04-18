@@ -1,8 +1,8 @@
-import { ICart } from "../ICart.js";
-import { MGSCart } from "../mongoose/index.js";
+import {ICart} from "../ICart";
+import {MGSCart} from "../mongoose/index";
 
 function builderCart(): ICart {
   return new MGSCart();
 }
 
-export { builderCart };
+export {builderCart};

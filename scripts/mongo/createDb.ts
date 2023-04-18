@@ -1,5 +1,5 @@
-import { Db } from "mongodb";
-import { collections } from "./constants.js";
+import {Db} from "mongodb";
+import {collections} from "./constants";
 
 async function createCollections(db: Db) {
   await db.createCollection(collections.COUNTRY);
@@ -11,4 +11,4 @@ async function createCollections(db: Db) {
   await db.createCollection(collections.LOCALE);
 }
 
-module.exports = { createCollections };
+module.exports = {createCollections};

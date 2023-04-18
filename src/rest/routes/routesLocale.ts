@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { ctrLocale as locale } from "../controller/index.js";
+import {Router} from "express";
+import {ctrLocale as locale} from "../controller/index";
 
 const route = Router();
 

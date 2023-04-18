@@ -1,9 +1,9 @@
-export {   
-  LMBUserCartParams, 
+export {
+  LMBUserCartParams,
   LMBUserCartProdParams,
-  LMBUserCartProdIdsParams 
-} from "./LMBCartProdParams.js";
-export { LMBError } from "./LMBError.js";
-export { LMBLocale } from "./LMBLocale.js";
-export { LMBSearchParams } from "./LMBSearchParms.js";
-export { LMBUser } from "./LMBUser.js";
+  LMBUserCartProdIdsParams,
+} from "./LMBCartProdParams";
+export {LMBError} from "./LMBError";
+export {LMBLocale} from "./LMBLocale";
+export {LMBSearchParams} from "./LMBSearchParms";
+export {LMBUser} from "./LMBUser";

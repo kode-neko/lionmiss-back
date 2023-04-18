@@ -1,9 +1,9 @@
-import { IRouter, Router } from "express";
-import { ctrlProduct as product } from "../controller/index.js";
-import { validProduct, validProductId } from '../validation/index.js'
-import { midJoiBody } from "../middleware/midJoi.js";
-import Joi, { Schema } from "joi";
-import midJwt from "../middleware/midJwt.js";
+import {IRouter, Router} from "express";
+import {ctrlProduct as product} from "../controller/index";
+import {validProduct, validProductId} from "../validation/index.js";
+import {midJoiBody} from "../middleware/midJoi";
+import Joi, {Schema} from "joi";
+import midJwt from "../middleware/midJwt";
 
 const router: IRouter = Router();
 

@@ -1,14 +1,14 @@
-import { LMProduct } from "lionmiss-core";
-import { 
+import {LMProduct} from "lionmiss-core";
+import {
   fixtureCart,
   fixtureCountries,
   fixtureLocales,
   fixtureProducts,
   fixtureUser,
-  fixtureUsersInfo 
-} from "../../src/test/fixtures/index.js";
-import { collections } from "./constants.js";
-import { Collection, Db, ObjectId } from "mongodb";
+  fixtureUsersInfo,
+} from "../../src/test/fixtures/index";
+import {collections} from "./constants";
+import {Collection, Db, ObjectId} from "mongodb";
 
 async function insertData(db: Db) {
   const countryColl: Collection = db.collection(collections.COUNTRY);
@@ -21,13 +21,17 @@ async function insertData(db: Db) {
 
   await countryColl.insertMany(fixtureCountries);
   await localeColl.insertMany(fixtureLocales);
-  await productColl.insertMany(fixtureProducts.map((p: LMProduct) => ({...p, _id:  new ObjectId(p._id)})));
+  await productColl.insertMany(
+    fixtureProducts.map((p: LMProduct) => ({...p, _id: new ObjectId(p._id)}))
+  );
   await userInfoColl.insertMany(fixtureUsersInfo);
-  await userColl.insertMany([{...fixtureUser, _id: new ObjectId(fixtureUser._id)}]);
-  await cartColl.insertMany([{...fixtureCart, _id: new ObjectId(fixtureCart._id)}]);
+  await userColl.insertMany([
+    {...fixtureUser, _id: new ObjectId(fixtureUser._id)},
+  ]);
+  await cartColl.insertMany([
+    {...fixtureCart, _id: new ObjectId(fixtureCart._id)},
+  ]);
   // await shippingColl.insertMany([]);
 }
 
-export {
-  insertData,
-};
+export {insertData};

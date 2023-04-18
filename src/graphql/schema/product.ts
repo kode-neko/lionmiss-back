@@ -1,146 +1,169 @@
-import { idArg, intArg } from "nexus";
-import { builderProduct } from "../../model/utils/builderProduct.js";
-import { LMImg, LMImgInput } from "./img.js";
-import { ArgsValue, InputDefinitionBlock, NexusExtendTypeDef, NexusInputObjectTypeDef, NexusObjectTypeDef, ObjectDefinitionBlock, SourceValue } from "nexus/dist/core.js";
-import { IProduct } from "../../model/IProduct.js";
-import { LMListParamsInput } from "./params.js";
-import { listToObjKeyVal } from "../utils.js";
-import pkg from "nexus/dist/core.js";
-const { inputObjectType, objectType, extendType } = pkg;
+import {idArg, intArg} from "nexus";
+import {builderProduct} from "../../model/utils/builderProduct";
+import {LMImg, LMImgInput} from "./img";
+import {
+  ArgsValue,
+  InputDefinitionBlock,
+  NexusExtendTypeDef,
+  NexusInputObjectTypeDef,
+  NexusObjectTypeDef,
+  ObjectDefinitionBlock,
+  SourceValue,
+} from "nexus/dist/core";
+import {IProduct} from "../../model/IProduct";
+import {LMListParamsInput} from "./params";
+import {listToObjKeyVal} from "../utils";
+import pkg from "nexus/dist/core";
+const {inputObjectType, objectType, extendType} = pkg;
 
 const LMProductProps: NexusObjectTypeDef<string> = objectType({
-  name: 'LMProductProps',
+  name: "LMProductProps",
   definition(t: ObjectDefinitionBlock<string>) {
-    t.nonNull.string('key')
-    t.nonNull.string('value')
-  }
+    t.nonNull.string("key");
+    t.nonNull.string("value");
+  },
 });
 
 const LMProductPropsInput: NexusInputObjectTypeDef<string> = inputObjectType({
-  name: 'LMProductPropsInput',
+  name: "LMProductPropsInput",
   definition(t: InputDefinitionBlock<string>) {
-    t.nonNull.string('key')
-    t.nonNull.string('value')
-  }
+    t.nonNull.string("key");
+    t.nonNull.string("value");
+  },
 });
 
 const LMProduct: NexusObjectTypeDef<string> = objectType({
-  name: 'LMProduct',
+  name: "LMProduct",
   definition(t: ObjectDefinitionBlock<string>) {
-    t.id('_id')
-    t.nonNull.string('name'),
-    t.nonNull.float('price'),
-    t.nonNull.string('description'),
-    t.nonNull.list.field('details', {
-      type: LMProductProps
-    }),
-    t.nonNull.string('colors'),
-    t.nonNull.int('unds'),
-    t.nonNull.list.field('imgs', {
-      type: LMImg
-    })
-  }
+    t.id("_id");
+    t.nonNull.string("name"),
+      t.nonNull.float("price"),
+      t.nonNull.string("description"),
+      t.nonNull.list.field("details", {
+        type: LMProductProps,
+      }),
+      t.nonNull.string("colors"),
+      t.nonNull.int("unds"),
+      t.nonNull.list.field("imgs", {
+        type: LMImg,
+      });
+  },
 });
 
 const LMProductInput: NexusInputObjectTypeDef<string> = inputObjectType({
-  name: 'LMProductInput',
+  name: "LMProductInput",
   definition(t: InputDefinitionBlock<string>) {
-    t.nonNull.string('name'),
-    t.nonNull.float('price'),
-    t.nonNull.string('description'),
-    t.nonNull.list.field('details', {
-      type: LMProductPropsInput
-    }),
-    t.nonNull.string('colors'),
-    t.nonNull.int('unds'),
-    t.nonNull.list.field('imgs', {
-      type: LMImgInput
-    })
-  }
+    t.nonNull.string("name"),
+      t.nonNull.float("price"),
+      t.nonNull.string("description"),
+      t.nonNull.list.field("details", {
+        type: LMProductPropsInput,
+      }),
+      t.nonNull.string("colors"),
+      t.nonNull.int("unds"),
+      t.nonNull.list.field("imgs", {
+        type: LMImgInput,
+      });
+  },
 });
 
 const productModel: IProduct = builderProduct();
 
-const LMProductQuery: NexusExtendTypeDef<'Query'> = extendType({
-  type: 'Query',
+const LMProductQuery: NexusExtendTypeDef<"Query"> = extendType({
+  type: "Query",
   definition(t: ObjectDefinitionBlock<string>) {
-    t.field('LMProductQuery', {
+    t.field("LMProductQuery", {
       type: LMProduct,
       args: {
-        id: idArg()
+        id: idArg(),
       },
-      resolve: async (root: SourceValue<string>, args: ArgsValue<string, string>) => {
+      resolve: async (
+        root: SourceValue<string>,
+        args: ArgsValue<string, string>
+      ) => {
         return await productModel.getProduct(args.id);
-      }
-    })
-  }
-})
+      },
+    });
+  },
+});
 
-const LMProductQueryList: NexusExtendTypeDef<'Query'> = extendType({
-  type: 'Query',
+const LMProductQueryList: NexusExtendTypeDef<"Query"> = extendType({
+  type: "Query",
   definition(t: ObjectDefinitionBlock<string>) {
-    t.list.field('LMProductQueryList', {
+    t.list.field("LMProductQueryList", {
       type: LMProduct,
       args: {
         offset: intArg(),
         limit: intArg(),
-        searchList: LMListParamsInput 
+        searchList: LMListParamsInput,
       },
-      resolve: async (root: SourceValue<string>, args: ArgsValue<string, string>) => {
-        const { offset, limit, searchList } = args;
+      resolve: async (
+        root: SourceValue<string>,
+        args: ArgsValue<string, string>
+      ) => {
+        const {offset, limit, searchList} = args;
         const search: {[key: string]: string} = listToObjKeyVal(searchList);
-        return await productModel.getProductAll({limit, offset, search})
-      }
-    })
-  }
-})
+        return await productModel.getProductAll({limit, offset, search});
+      },
+    });
+  },
+});
 
-const LMProductMutationPost: NexusExtendTypeDef<'Mutation'> = extendType({
+const LMProductMutationPost: NexusExtendTypeDef<"Mutation"> = extendType({
   type: "Mutation",
   definition(t: ObjectDefinitionBlock<string>) {
-    t.field('LMProductMutationPost', {
+    t.field("LMProductMutationPost", {
       type: LMProduct,
       args: {
-        product: LMProductInput
+        product: LMProductInput,
       },
-      resolve: async (root: SourceValue<string>, args: ArgsValue<string, string>) => {
+      resolve: async (
+        root: SourceValue<string>,
+        args: ArgsValue<string, string>
+      ) => {
         return productModel.postProduct(args.product);
-      }
-    })
-  }
-})
+      },
+    });
+  },
+});
 
-const LMProductMutationPut: NexusExtendTypeDef<'Mutation'> = extendType({
+const LMProductMutationPut: NexusExtendTypeDef<"Mutation"> = extendType({
   type: "Mutation",
   definition(t: ObjectDefinitionBlock<string>) {
-    t.field('LMProductMutationPut', {
+    t.field("LMProductMutationPut", {
       type: "Boolean",
       args: {
         id: idArg(),
-        product: LMProductInput
+        product: LMProductInput,
       },
-      resolve: async (root: SourceValue<string>, args: ArgsValue<string, string>) => {
+      resolve: async (
+        root: SourceValue<string>,
+        args: ArgsValue<string, string>
+      ) => {
         const {id, product} = args;
         return productModel.updateProduct({_id: id, ...product});
-      }
-    })
-  }
-})
+      },
+    });
+  },
+});
 
-const LMProductMutationDelete: NexusExtendTypeDef<'Mutation'> = extendType({
+const LMProductMutationDelete: NexusExtendTypeDef<"Mutation"> = extendType({
   type: "Mutation",
   definition(t: ObjectDefinitionBlock<string>) {
-    t.field('LMProductMutationDelete', {
+    t.field("LMProductMutationDelete", {
       type: "Boolean",
       args: {
-        id: idArg()
+        id: idArg(),
       },
-      resolve: async (root: SourceValue<string>, args: ArgsValue<string, string>) => {
+      resolve: async (
+        root: SourceValue<string>,
+        args: ArgsValue<string, string>
+      ) => {
         return productModel.deleteProduct(args.id);
-      }
-    })
-  }
-})
+      },
+    });
+  },
+});
 
 export {
   LMProductProps,
@@ -151,5 +174,5 @@ export {
   LMProductQueryList,
   LMProductMutationPost,
   LMProductMutationPut,
-  LMProductMutationDelete
+  LMProductMutationDelete,
 };

@@ -12,7 +12,7 @@
     "skipLibCheck": true, // No revisa los type defs de las librerías importadas. Mejora mucho el rendimiento.
     // "strict": true, // Más "nazi" cuando chequea la sintaxis
     "forceConsistentCasingInFileNames": true, // Win no es case-sensitive en nombres de ficheros. Con esta opción fuerzas a que tsc lo sea
-    "moduleResolution": "nodenext", // Que sistema de módulos usará el código compilado
+    "moduleResolution": "node", // Que sistema de módulos usará el código compilado
     "target": "ESNext",
     "module": "NodeNext",
     "resolveJsonModule": true, // Poder importar .json
@@ -25,6 +25,7 @@
   "include": [ // A que ficheros se aplica la config. Muy útil para ESLint y transpialdores
     "./scripts/**/*.ts",
     "./src/**/*.ts",
+    "./src/**/*.test.ts",
     "./src/graphql/types/**/*.ts",
     "./src/graphql/index.ts"
   ],

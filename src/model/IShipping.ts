@@ -1,5 +1,5 @@
-import { LMShipping } from "lionmiss-core";
-import { LMBSearchParams } from "./LMB/index.js";
+import {LMShipping} from "lionmiss-core";
+import {LMBSearchParams} from "./LMB/index";
 
 interface IShipping {
   getShipping: (id: string) => Promise<LMShipping>;
@@ -9,4 +9,4 @@ interface IShipping {
   deleteShipping: (id: string) => Promise<boolean>;
 }
 
-export { IShipping };
+export {IShipping};

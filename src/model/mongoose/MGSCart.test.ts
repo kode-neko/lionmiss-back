@@ -1,12 +1,10 @@
-import { model } from "mongoose";
+import {model} from "mongoose";
 // import { LMCart } from "lionmiss-core";
-import { LMUserInfo } from "lionmiss-core";
-import { schemaUserInfo } from "./schemas/schemaUserInfo.js";
-import { MGSCart } from "./MGSCart.js";
+import {LMUserInfo} from "lionmiss-core";
+import {schemaUserInfo} from "./schemas/schemaUserInfo";
+import {MGSCart} from "./MGSCart";
 // import { setUp, dropDb, dropColls } from "../../test/model/MGS";
 // import { fixtureCart, fixtureUserInfo } from "../../test/fixtures";
-
-
 
 const UserInfoModel = model<LMUserInfo>("UserInfo", schemaUserInfo, "userInfo");
 

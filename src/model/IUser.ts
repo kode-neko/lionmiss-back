@@ -1,5 +1,5 @@
-import { LMUser } from "lionmiss-core";
-import { LMBSearchParams, LMBUser } from "./LMB/index.js";
+import {LMUser} from "lionmiss-core";
+import {LMBSearchParams, LMBUser} from "./LMB/index";
 
 interface IUser {
   getUser: (id: string) => Promise<LMBUser>;
@@ -10,4 +10,4 @@ interface IUser {
   getUserByName: (username: string) => Promise<LMUser>;
 }
 
-export { IUser };
+export {IUser};

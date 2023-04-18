@@ -1,39 +1,40 @@
-import { LMCart, LMCartProduct, LMUser } from "lionmiss-core";
-import { Model, model } from "mongoose";
-import { ICart } from "../ICart.js";
-import { schemaUser } from "./schemas/index.js";
-import { UpdateResult, DeleteResult } from "mongodb";
+import {LMCart, LMCartProduct, LMUser} from "lionmiss-core";
+import {Model, model} from "mongoose";
+import {ICart} from "../ICart";
+import {schemaUser} from "./schemas/index";
+import {UpdateResult, DeleteResult} from "mongodb";
 
 class MGSCart implements ICart {
   UserModel: Model<LMUser> = model<LMUser>("User", schemaUser, "user");
 
   getCart(username: string): Promise<LMCart> {
-    return this.UserModel.findOne({username})
-      .then((user: LMUser) => user.userInfo.cart);
+    return this.UserModel.findOne({username}).then(
+      (user: LMUser) => user.userInfo.cart
+    );
   }
 
   postCart(username: string, cart: LMCart): Promise<boolean> {
     return this.UserModel.updateOne(
-      { username },
-      { "userInfo.cart": cart },
-      { runValidators: true }
-    )
-      .then(({ modifiedCount }: UpdateResult) => modifiedCount > 0);
+      {username},
+      {"userInfo.cart": cart},
+      {runValidators: true}
+    ).then(({modifiedCount}: UpdateResult) => modifiedCount > 0);
   }
 
   updateCart(username: string, cart: LMCart): Promise<boolean> {
     return this.UserModel.findOneAndUpdate(
       {username},
-      { $set: { "userInfo.cart": {...cart} } },
-      { runValidators: true }
+      {$set: {"userInfo.cart": {...cart}}},
+      {runValidators: true}
     )
       .count()
       .then((count: number) => count > 0);
   }
 
   deleteCart(username: string): Promise<boolean> {
-    return this.UserModel.deleteOne({ _id: username })
-      .then(({ deletedCount }: DeleteResult) => deletedCount > 0);
+    return this.UserModel.deleteOne({_id: username}).then(
+      ({deletedCount}: DeleteResult) => deletedCount > 0
+    );
   }
 
   postProductCart(
@@ -42,8 +43,8 @@ class MGSCart implements ICart {
   ): Promise<boolean> {
     return this.UserModel.findOneAndUpdate(
       {username},
-      { $push: { "userInfo.cart.products": cartProduct } },
-      { runValidators: true }
+      {$push: {"userInfo.cart.products": cartProduct}},
+      {runValidators: true}
     )
       .count()
       .then((count: number) => count > 0);
@@ -58,25 +59,22 @@ class MGSCart implements ICart {
         username,
         "userInfo.cart.products._id": cartProduct._id,
       },
-      { $set: { "userInfo.cart.products.$": { ...cartProduct } } },
-      { runValidators: true }
+      {$set: {"userInfo.cart.products.$": {...cartProduct}}},
+      {runValidators: true}
     )
       .count()
       .then((count: number) => count > 0);
   }
 
-  deleteProductCart(
-    username: string,
-    idProduct: string
-  ): Promise<boolean> {
+  deleteProductCart(username: string, idProduct: string): Promise<boolean> {
     return this.UserModel.findByIdAndUpdate(
       {username},
-      { $pull: { "userInfo.cart.products": { _id: idProduct } } },
-      { runValidators: true }
+      {$pull: {"userInfo.cart.products": {_id: idProduct}}},
+      {runValidators: true}
     )
       .count()
       .then((count: number) => count > 0);
   }
 }
 
-export { MGSCart };
+export {MGSCart};

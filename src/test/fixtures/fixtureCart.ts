@@ -1,7 +1,7 @@
-import { faker } from "@faker-js/faker";
-import { LMCart, LMSize, LMColor } from "lionmiss-core";
-import { fixtureProducts } from "./fixtureProducts.js";
-import { fixturePromo } from "./fixturePromo.js";
+import {faker} from "@faker-js/faker";
+import {LMCart, LMSize, LMColor} from "lionmiss-core";
+import {fixtureProducts} from "./fixtureProducts";
+import {fixturePromo} from "./fixturePromo";
 
 const {database} = faker;
 
@@ -19,4 +19,4 @@ const fixtureCart: LMCart = {
   taxes: 21,
 };
 
-export { fixtureCart };
+export {fixtureCart};

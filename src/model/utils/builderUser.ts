@@ -1,8 +1,8 @@
-import { IUser } from "../IUser.js";
-import { MGSUser } from "../mongoose/index.js";
+import {IUser} from "../IUser";
+import {MGSUser} from "../mongoose/index";
 
 function builderUser(): IUser {
   return new MGSUser();
 }
 
-export { builderUser };
+export {builderUser};

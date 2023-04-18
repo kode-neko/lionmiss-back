@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { ctrlCountry as country } from "../controller/index.js";
+import {Router} from "express";
+import {ctrlCountry as country} from "../controller/index";
 
 const router = Router();
 
