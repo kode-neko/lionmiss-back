@@ -8,8 +8,7 @@ const {database} = faker;
 const fixtureUser: LMUser = {
   _id: database.mongodbObjectId(),
   username: "test",
-  pass: "$2b$12$OpBFL509uHcSg8gPaCuNqOBxacVTA51.MOGmS3x3KowFZNZNtrSvW",
-  salt: "$2b$12$OpBFL509uHcSg8gPaCuNqO",
+  pass: "$2b$10$IMF7ZerWQFJwCddWgNs4beKBRBY5U5VDVNvpF.aTRbRpQGowCS4Su",
   userInfo: fixtureUsersInfo[0],
 };
 

@@ -66,7 +66,6 @@ const LMUser: NexusObjectTypeDef<string> = objectType({
   definition(t: ObjectDefinitionBlock<string>) {
     t.id("_id"), t.nonNull.string("username");
     t.nonNull.string("pass");
-    t.nonNull.string("salt");
     t.nonNull.field("userInfo", {
       type: LMUserInfo,
     });
@@ -78,7 +77,6 @@ const LMUserInput: NexusInputObjectTypeDef<string> = inputObjectType({
   definition(t: InputDefinitionBlock<string>) {
     t.id("_id"), t.string("username");
     t.string("pass");
-    t.string("salt");
     t.field("userInfo", {
       type: LMUserInfoInput,
     });

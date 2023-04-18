@@ -41,7 +41,6 @@ class MGSUser implements IUser {
     const userPersist: LMUser = {
       username,
       pass: hash,
-      salt,
       userInfo,
     };
     const userModel: ModelLMUser = new this.UserModel(userPersist);
@@ -59,20 +58,17 @@ class MGSUser implements IUser {
     const {username, pass, ...rest} = user;
     return this.UserModel.findOne({username})
       .then((found: LMUser) => {
-        let salt: string;
         let hash: string;
         if (pass) {
-          salt = genSaltSync();
+          const salt: string = genSaltSync();
           hash = hashSync(pass, salt);
         } else {
-          salt = found.salt;
           hash = found.pass;
         }
         const userUpdate: LMUser = {
           _id: found._id,
           username,
           pass: hash,
-          salt,
           userInfo: {...rest},
         };
         return this.UserModel.updateOne({username}, userUpdate);

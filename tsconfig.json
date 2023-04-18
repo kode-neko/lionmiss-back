@@ -25,11 +25,10 @@
   "include": [ // A que ficheros se aplica la config. Muy útil para ESLint y transpialdores
     "./scripts/**/*.ts",
     "./src/**/*.ts",
-    "./src/**/*.test.ts",
-    "./src/graphql/types/**/*.ts",
-    "./src/graphql/index.ts"
+    "./src/**/*.test.ts"
   ],
   "exclude": [ // Dentro de los ficheros que se aplican, cuales no hacerlo
     // "src/**/*.test.ts",
+    // "./src/graphql/**/*.ts",
   ]
 }
