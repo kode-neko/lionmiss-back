@@ -1,7 +1,7 @@
 import basicAuth, {BasicAuthResult} from "basic-auth";
 import {Request, Response} from "express";
 import {builderUser} from "../../model/utils/index";
-import isEmpty from "is-obj-empty";
+import isEmpty from "empty-lite";
 import {LMUser} from "lionmiss-core";
 import {LMBSearchParams, LMBUser} from "../../model/LMB/index";
 import {IUser} from "../../model/IUser";

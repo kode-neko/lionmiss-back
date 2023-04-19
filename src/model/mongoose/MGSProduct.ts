@@ -34,7 +34,7 @@ class MGSProduct implements IProduct {
     return productModel
       .validate()
       .then(() => productModel.save())
-      .then((product: LMProduct) => product);
+      .then((p: LMProduct) => p);
   }
 
   updateProduct(product: LMProduct): Promise<boolean> {

@@ -1,16 +1,15 @@
 paths:
-  /products/{id}:
+  /product/{id}:
     get:
       summary: Get product by id
       tags:
         - Product
-      security:
-        - bearerAuth: ["patata", "popo"]
       parameters:
         - in: path
           name: id
           schema:
             type: string
+            default: ecfa0fba3ca399bd5fb84fdf
           required: true
           description: The user id
       responses:
@@ -20,7 +19,6 @@ paths:
           description: Product not found
         500:
           description: Some server error
-
     delete:
       summary: Delete product by id
       tags:
@@ -38,7 +36,7 @@ paths:
         500:
           description: Some server error
 
-  /products/all:
+  /product/all:
     get:
       summary: Get all products
       tags:
@@ -49,7 +47,7 @@ paths:
         500:
           description: Some server error
 
-  /products:
+  /product:
     post:
       summary: Create new product
       tags:
@@ -60,12 +58,19 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/LMProduct"
+            example:
+              name: producto
+              price: 100
+              description: descripción
+              details: []
+              colors: [red]
+              unds: 10
+              imgs: []
       responses:
         201:
           description: Product created
         500:
           description: Some server error
-
     put:
       summary: Update product
       tags:
@@ -76,6 +81,15 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/LMProduct"
+            example:
+              _id: ecfa0fba3ca399bd5fb84fdf
+              name: producto
+              price: 100
+              description: descripción
+              details: []
+              colors: [red]
+              unds: 10
+              imgs: []
       responses:
         200:
           description: Product updated

@@ -35,7 +35,7 @@ class MGSShipping implements IShipping {
     return shippingModel
       .validate()
       .then(() => shippingModel.save())
-      .then((shipping: LMShipping) => shipping);
+      .then((s: LMShipping) => s);
   }
 
   updateShipping(shipping: LMShipping): Promise<boolean> {

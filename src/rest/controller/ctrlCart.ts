@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import {ICart} from "../../model/index";
-import isEmpty from "is-obj-empty";
+import isEmpty from "empty-lite";
 import {LMCart} from "lionmiss-core";
 import {builderCart} from "../../model/utils/builderCart";
 import {

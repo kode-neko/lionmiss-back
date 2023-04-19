@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import path, {join} from "path";
+import {join} from "path";
 import {Mongoose, connect, set as setMongoose} from "mongoose";
 import {ApolloServer, BaseContext} from "@apollo/server";
 import {
@@ -8,17 +8,11 @@ import {
 } from "@apollo/server/standalone";
 import {makeSchema} from "nexus";
 import * as allTypes from "./schema/index.js";
-import {fileURLToPath} from "url";
 import {NexusGraphQLSchema} from "nexus/dist/core.js";
-import jwt, {JwtPayload} from "jsonwebtoken";
-import {LMUser} from "lionmiss-core";
 import {builderUser} from "../model/utils/builderUser.js";
 import {IUser} from "../model/IUser.js";
 
 dotenv.config();
-
-// const __filename: string = fileURLToPath(import.meta.url);
-// const __dirname: string = path.dirname(__filename);
 
 export const schema: NexusGraphQLSchema = makeSchema({
   types: allTypes,

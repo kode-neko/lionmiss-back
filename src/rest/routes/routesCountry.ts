@@ -1,7 +1,7 @@
 import {Router} from "express";
 import {ctrlCountry as country} from "../controller/index";
 
-const router = Router();
+const router: Router = Router();
 
 router.get("/all", country.getCountryAll);
 

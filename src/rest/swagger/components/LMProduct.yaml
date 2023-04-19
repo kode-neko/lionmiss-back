@@ -27,6 +27,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/LMColor"
+        unds:
+          type: integer
         imgs:
           type: array
           items:

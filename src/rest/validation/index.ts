@@ -1,55 +1,58 @@
 export {
   validAddress,
   validAddressId
-} from './validAddress.js';
+} from './validAddress';
 export {
   validCountry
-} from './validCountry.js';
+} from './validCountry';
 export {
   validCreditCard,
   validCreditCardId
-} from './validCreditCard.js';
+} from './validCreditCard';
 export {
   validImg,
   validImgId
-} from './validImg.js';
+} from './validImg';
 export { 
   validLocale 
-} from './validLocales.js';
+} from './validLocales';
 export {
   validMeasures
-} from './validMeasures.js';
+} from './validMeasures';
 export {
   validPromo
-} from './validPromo.js';
+} from './validPromo';
 export { 
   validPropsBuy 
-} from './validPropsBuy.js';
+} from './validPropsBuy';
+export {
+  validSearchParams
+} from './validSearchParams'
 export {
   validId, 
   validParamSearch
-} from './validCommon.js'
+} from './validCommon'
 export {
   validProduct,
   validProductId,
   validProductProps,
   validProductPropsId
-} from './validProduct/index.js';
+} from './validProduct/index';
 export {
   validCart,
   validCartId,
   validCartProduct,
   validCartProductId
-} from './validCart/index.js';
+} from './validCart/index';
 export {
   validUser
-} from './validUser.js';
+} from './validUser';
 export {
   validCommentsId, 
   validComments
-} from './validComment.js';
+} from './validComment';
 
 export {
   validShipping,
   validShippingId
-} from './validShipping.js';
+} from './validShipping';

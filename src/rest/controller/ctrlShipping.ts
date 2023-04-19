@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import {builderShipping} from "../../model/utils/index";
-import isEmpty from "is-obj-empty";
+import isEmpty from "empty-lite";
 import {IShipping} from "../../model/index";
 import {LMShipping} from "lionmiss-core";
 import {LMBSearchParams} from "../../model/LMB/LMBSearchParms";
