@@ -1,0 +1,28 @@
+components:
+  schemas:
+    LMComment:
+      type: object
+      required:
+        - comment
+        - date
+        - ratting
+        - measures
+        - user
+        - imgs
+      properties:
+        _id:
+          type: string
+        comment:
+          type: "#/components/schemas/LMSize"
+        date:
+          type: string
+        ratting:
+          type: number
+        measures:
+          $ref: "#/components/schemas/LMMeasures"
+        user:
+          $ref: "#/components/schemas/LMUser"
+        imgs:
+          type: array
+          items:
+            $ref: "#/components/schemas/LMImg"

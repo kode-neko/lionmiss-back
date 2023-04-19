@@ -1,0 +1,34 @@
+components:
+  schemas:
+    LMSize:
+      type: string
+      enum:
+        - xs
+        - s
+        - m
+        - l
+        - xl
+        - xxl
+    LMColor:
+      type: string
+      enum:
+        - red
+        - orange
+        - yellow
+        - green
+        - aqua
+        - blue
+        - purple
+        - pink
+        - white
+        - black
+    LMPromoType:
+      type: string
+      enum:
+        - Percent
+        - Qty
+      properties:
+        key:
+          type: string
+        value:
+          type: string

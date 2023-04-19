@@ -1,0 +1,12 @@
+components:
+  schemas:
+    LMPromo:
+      type: object
+      required:
+        - type
+        - qty
+      properties:
+        type:
+          $ref: "#/components/schemas/LMPromoType"
+        qty:
+          type: number

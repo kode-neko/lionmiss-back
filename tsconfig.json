@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "rootDir": "./", // Directorio raiz
+    "outDir": "./lib", // Lugar donde coloca el codigo transpilado
+    "declaration": true, // Crear los type defs (d.ts)
+    "lib": [ // Incluir los d.ts de librerías core
+      "DOM", // Propios del navegador
+      "ESNext" // Todas las funcs de la ultima versión de ES
+    ],
+    "allowJs": true, // Poder importar .js dentro de .ts y .tsx
+    "allowSyntheticDefaultImports": true, // Poder hacer 'import React from "react"'
+    "skipLibCheck": true, // No revisa los type defs de las librerías importadas. Mejora mucho el rendimiento.
+    // "strict": true, // Más "nazi" cuando chequea la sintaxis
+    "forceConsistentCasingInFileNames": true, // Win no es case-sensitive en nombres de ficheros. Con esta opción fuerzas a que tsc lo sea
+    "moduleResolution": "node", // Que sistema de módulos usará el código compilado
+    "target": "ESNext",
+    "module": "NodeNext",
+    "resolveJsonModule": true, // Poder importar .json
+    "isolatedModules": false, // Evita el uso de "type" en "import" y "export"
+    "noEmit": false, // Hay casos que no interesa que compile. Solo usarlo paar typechecking o que lo haga un transpialdor como babel o swc
+    // "jsx": "react", // Como traducir los jsx
+    "esModuleInterop": true, // Permitir importar CommonJs
+    "sourceMap": true,
+  },
+  "include": [ // A que ficheros se aplica la config. Muy útil para ESLint y transpialdores
+    "./src/**/*.ts",
+    "./src/**/*.test.ts"
+  ],
+  "exclude": [ // Dentro de los ficheros que se aplican, cuales no hacerlo
+    // "src/**/*.test.ts",
+    // "./src/graphql/**/*.ts",
+  ]
+}

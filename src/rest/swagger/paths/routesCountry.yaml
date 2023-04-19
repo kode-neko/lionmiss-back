@@ -1,0 +1,12 @@
+paths:
+
+  /country/all:
+    get:
+      summary: Get all countries
+      tags:
+        - Country
+      responses:
+        200:
+          description: Country list
+        500:
+          description: Some server error

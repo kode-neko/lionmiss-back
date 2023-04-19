@@ -1,0 +1,43 @@
+components:
+  schemas:
+    LMUser:
+      type: object
+      required:
+        - user
+        - favProducts
+      properties:
+        _id:
+          type: string
+        cart:
+          $ref: "#/components/schemas/LMProductProps"
+        user:
+          $ref: "#/components/schemas/LMProductProps"
+        favProducts:
+          type: string
+    LMUserInfo:
+      type: object
+      required:
+        - username
+        - avatar
+        - lang
+        - currency
+        - measures
+        - email
+        - addresses
+      properties:
+        username:
+          type: string
+        avatar:
+          $ref: "#/components/schemas/LMSize"
+        lang:
+          $ref: "#/components/schemas/LMColor"
+        currency:
+          type: number
+        measures:
+          $ref: "#/components/schemas/LMMeasures"
+        email:
+          $ref: "#/components/schemas/LMProduct"
+        addresses:
+          type: array
+          items:
+            $ref: "#/components/schemas/LMAddress"

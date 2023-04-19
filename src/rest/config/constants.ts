@@ -1,0 +1,5 @@
+const LIMIT_MAX_SEARCH = 50;
+
+export {
+  LIMIT_MAX_SEARCH
+}

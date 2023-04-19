@@ -1,0 +1,95 @@
+paths:
+
+  /cart/user/{idUser}:
+
+    get:
+      summary: Get a user shooping cart
+      tags:
+        - Cart
+      parameters:
+        - in: path
+          name: idUser
+          type: string
+          required: true
+      responses:
+        200:
+          description: The user cart
+        404:
+          description: The cart isn't found
+        500:
+          description: Some server error
+
+  /cart/product:
+
+    post:
+      summary: Insert product in the cart
+      tags:
+        - Cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idUser:
+                  type: string
+                cartProduct:
+                  $ref: "#/components/schemas/LMCart"
+      responses:
+        200:
+          description: Product inserted in the cart
+        404:
+          description: Cart not found
+        500:
+          description: Some server error
+
+    put:
+      summary: Modify product cart
+      tags: 
+        - Cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idUser:
+                  type: string
+                cartProduct:
+                  $ref: "#/components/schemas/LMCart"
+      responses:
+        200:
+          description: Product cart updated
+        400:
+          description: Cart not found
+        500:
+          description: Some server error
+
+  /cart/user/{idUser}/product/{idProduct}:
+
+    delete:
+      summary: Delete product cart
+      tags:
+        - Cart
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: string
+            example: patata
+        - in: path
+          name: idProduct
+          required: true
+          schema:
+            type: string
+            example: patata
+      responses:
+        200:
+          description: Deleted product in teh cart
+        404:
+          description: Cart not found
+        500:
+          description: Some server error

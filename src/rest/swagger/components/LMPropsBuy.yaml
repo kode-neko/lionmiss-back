@@ -1,0 +1,16 @@
+components:
+  schemas:
+    LMPropsBuy:
+      type: object
+      required:
+        - productId
+        - qty
+      properties:
+        productId:
+          type: string
+        color:
+          $ref: "#/components/schemas/LMSize"
+        size:
+          $ref: "#/components/schemas/LMSize"
+        qty:
+          type: number

@@ -1,0 +1,12 @@
+paths:
+
+  /locale/all:
+    get:
+      summary: Get all locales
+      tags:
+        - Locale
+      responses:
+        200:
+          description: Locale list
+        500:
+          description: Some server error
