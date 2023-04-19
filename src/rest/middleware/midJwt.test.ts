@@ -5,53 +5,52 @@ import midJwt from "./midJwt";
 import {NextFunction, Request, Response} from "express";
 import {faker} from "@faker-js/faker";
 import {default as jwt} from "jsonwebtoken";
-import {MongoMemoryServer} from "mongodb-memory-server";
-import {Collection, Db, MongoClient, ObjectId} from "mongodb";
+import {Collection, ObjectId} from "mongodb";
 import {fixtureUser, fixtureUsersInfo} from "../../test/fixtures";
 import path from "path";
-import {Mongoose, connect} from "mongoose";
+import {cleanDbTest, getDb, initDbTest} from "../../test/db";
 
 const {random} = faker;
 dotenv.config({path: path.resolve(process.cwd(), ".env.test")});
 
-describe("[Middleware | midJwt] Check user jwt token", () => {
-  let mongoMem: MongoMemoryServer;
-  let urlDb: string;
-  let client: MongoClient;
-  let db: Db;
-  let mongooseDb: Mongoose;
-
+describe("[Mid | midJwt] Check user jwt token", () => {
   let userInfoColl: Collection;
   let userColl: Collection;
 
   beforeAll(async () => {
-    mongoMem = await MongoMemoryServer.create();
-    urlDb = mongoMem.getUri();
-    client = new MongoClient(urlDb);
-    await client.connect();
-    db = client.db("lionmiss");
-    userInfoColl = await db.createCollection("userInfo");
-    userColl = await db.createCollection("user");
-
-    mongooseDb = await connect(urlDb + "lionmiss?authSource=lionmiss");
+    await initDbTest();
+    try {
+      userInfoColl = await getDb().createCollection("userInfo");
+      userColl = await getDb().createCollection("user");
+    } catch (err) {
+      console.error(err);
+    }
   });
 
   beforeEach(async () => {
-    await userInfoColl.insertOne(fixtureUsersInfo[0]);
-    await userColl.insertOne({...fixtureUser, _id: new ObjectId()});
+    try {
+      await userInfoColl.insertOne(fixtureUsersInfo[0]);
+      await userColl.insertOne({...fixtureUser, _id: new ObjectId()});
+    } catch (err) {
+      console.error(err);
+    }
   });
 
   afterEach(async () => {
-    await userInfoColl.deleteMany({});
-    await userColl.deleteMany({});
+    try {
+      await userInfoColl.deleteMany({});
+      await userColl.deleteMany({});
+    } catch (err) {
+      console.error(err);
+    }
   });
 
   afterAll(async () => {
-    // await userInfoColl.drop();
-    // await userColl.drop();
-    await mongooseDb.disconnect();
-    await client.close();
-    await mongoMem.stop();
+    try {
+      await cleanDbTest();
+    } catch (err) {
+      console.error(err);
+    }
   });
 
   test("There is no token", () => {
