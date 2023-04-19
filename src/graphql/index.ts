@@ -8,16 +8,34 @@ import {
 } from "@apollo/server/standalone";
 import {makeSchema} from "nexus";
 import * as allTypes from "./types";
-import * as allQueries from "./queries";
-import * as allMutations from "./mutations";
+import {
+  LMProductQuery,
+  LMProductQueryList,
+  LMCountryQueryList,
+  LMLocaleQueryList
+} from "./queries";
+import {
+  LMProductMutationPost,
+  LMProductMutationPut,
+  LMProductMutationDelete
+} from "./mutations";
 import {NexusGraphQLSchema} from "nexus/dist/core";
-import {builderUser} from "../model/utils/builderUser";
-import {IUser} from "../model/IUser";
+// import {builderUser} from "../model/utils/builderUser";
+// import {IUser} from "../model/IUser";
 
 dotenv.config();
 
 export const schema: NexusGraphQLSchema = makeSchema({
-  types: {...allTypes, ...allQueries, ...allMutations},
+  types: {
+    ...allTypes,   
+    LMProductQuery,
+    LMProductQueryList,
+    LMCountryQueryList,
+    LMLocaleQueryList,
+    LMProductMutationPost,
+    LMProductMutationPut,
+    LMProductMutationDelete
+  },
   outputs: {
     schema: join(__dirname, "lionmiss-schema.graphql"),
     typegen: join(__dirname, "lionmiss-typegen.ts"),
@@ -28,13 +46,11 @@ interface LMContext extends BaseContext {
   username: string;
 }
 
-const userModel: IUser = builderUser();
+// const userModel: IUser = builderUser();
 
 const context: (
   args: StandaloneServerContextFunctionArgument
-) => Promise<LMContext> = async ({
-  req,
-}: StandaloneServerContextFunctionArgument) => {
+) => Promise<LMContext> = async ({ req }: StandaloneServerContextFunctionArgument) => {
   /*
   const authHeader: string = req.headers['authorization'];
   const token: string = authHeader && authHeader.split(' ')[1];
@@ -52,7 +68,6 @@ const context: (
     throw Error('error.authorization');
   }
   */
-
   return {
     username: "test",
   };
