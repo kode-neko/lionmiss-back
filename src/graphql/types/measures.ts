@@ -3,10 +3,10 @@ import {
   NexusInputObjectTypeDef,
   NexusObjectTypeDef,
   ObjectDefinitionBlock,
+  inputObjectType,
+  objectType,
 } from "nexus/dist/core";
 import {LMSize} from "./enums";
-import pkg from "nexus/dist/core";
-const {inputObjectType, objectType} = pkg;
 
 const LMMeasures: NexusObjectTypeDef<string> = objectType({
   name: "LMMeasures",

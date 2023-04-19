@@ -1,11 +1,11 @@
-import pkg from "nexus";
 import {
   InputDefinitionBlock,
   NexusInputObjectTypeDef,
   NexusObjectTypeDef,
   ObjectDefinitionBlock,
+  inputObjectType,
+  objectType,
 } from "nexus/dist/core";
-const {inputObjectType, objectType} = pkg;
 
 const LMAdress: NexusObjectTypeDef<string> = objectType({
   name: "LMAdress",

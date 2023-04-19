@@ -3,9 +3,9 @@ import {
   NexusInputObjectTypeDef,
   NexusObjectTypeDef,
   ObjectDefinitionBlock,
+  inputObjectType,
+  objectType,
 } from "nexus/dist/core";
-import pkg from "nexus/dist/core";
-const {inputObjectType, objectType} = pkg;
 import {LMImg, LMImgInput} from "./img";
 import {LMMeasures, LMMeasuresInput} from "./measures";
 import {LMUser, LMUserInput} from "./user";

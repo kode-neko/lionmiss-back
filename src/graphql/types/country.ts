@@ -1,14 +1,11 @@
 import {
   InputDefinitionBlock,
-  NexusExtendTypeDef,
   NexusInputObjectTypeDef,
   NexusObjectTypeDef,
   ObjectDefinitionBlock,
+  inputObjectType,
+  objectType,
 } from "nexus/dist/core";
-import pkg from "nexus/dist/core";
-const {inputObjectType, objectType, extendType} = pkg;
-import {builderCountry} from "../../model/utils/builderCountry";
-import {ICountry} from "../../model/ICountry";
 
 const LMCountry: NexusObjectTypeDef<string> = objectType({
   name: "LMCountry",
@@ -30,18 +27,4 @@ const LMCountryInput: NexusInputObjectTypeDef<string> = inputObjectType({
   },
 });
 
-const countryModel: ICountry = builderCountry();
-
-const LMCountryQueryList: NexusExtendTypeDef<"Query"> = extendType({
-  type: "Query",
-  definition(t: ObjectDefinitionBlock<string>) {
-    t.list.field("LMCountryQueryList", {
-      type: "LMCountry",
-      resolve: async () => {
-        return countryModel.getCountryAll();
-      },
-    });
-  },
-});
-
-export {LMCountry, LMCountryInput, LMCountryQueryList};
+export {LMCountry, LMCountryInput};

@@ -1,6 +1,4 @@
-import {NexusInputObjectTypeDef, NexusObjectTypeDef} from "nexus/dist/core";
-import pkg from "nexus/dist/core";
-const {inputObjectType, objectType} = pkg;
+import {NexusInputObjectTypeDef, NexusObjectTypeDef, inputObjectType, objectType} from "nexus/dist/core";
 
 const LMImg: NexusObjectTypeDef<string> = objectType({
   name: "LMImg",

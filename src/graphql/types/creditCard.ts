@@ -3,9 +3,9 @@ import {
   NexusInputObjectTypeDef,
   NexusObjectTypeDef,
   ObjectDefinitionBlock,
+  inputObjectType,
+  objectType,
 } from "nexus/dist/core";
-import pkg from "nexus/dist/core";
-const {inputObjectType, objectType} = pkg;
 
 const LMCreditCard: NexusObjectTypeDef<string> = objectType({
   name: "LMCreditCard",

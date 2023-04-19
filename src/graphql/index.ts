@@ -7,15 +7,17 @@ import {
   StandaloneServerContextFunctionArgument,
 } from "@apollo/server/standalone";
 import {makeSchema} from "nexus";
-import * as allTypes from "./schema/index.js";
-import {NexusGraphQLSchema} from "nexus/dist/core.js";
-import {builderUser} from "../model/utils/builderUser.js";
-import {IUser} from "../model/IUser.js";
+import * as allTypes from "./types";
+import * as allQueries from "./queries";
+import * as allMutations from "./mutations";
+import {NexusGraphQLSchema} from "nexus/dist/core";
+import {builderUser} from "../model/utils/builderUser";
+import {IUser} from "../model/IUser";
 
 dotenv.config();
 
 export const schema: NexusGraphQLSchema = makeSchema({
-  types: allTypes,
+  types: {...allTypes, ...allQueries, ...allMutations},
   outputs: {
     schema: join(__dirname, "lionmiss-schema.graphql"),
     typegen: join(__dirname, "lionmiss-typegen.ts"),

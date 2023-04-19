@@ -1,6 +1,4 @@
-import {InputDefinitionBlock, NexusInputObjectTypeDef} from "nexus/dist/core";
-import pkg from "nexus/dist/core";
-const {inputObjectType} = pkg;
+import {InputDefinitionBlock, NexusInputObjectTypeDef, inputObjectType} from "nexus/dist/core";
 
 const LMParamsInput: NexusInputObjectTypeDef<string> = inputObjectType({
   name: "LMParams",

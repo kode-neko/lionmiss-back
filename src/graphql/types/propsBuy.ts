@@ -3,10 +3,10 @@ import {
   NexusInputObjectTypeDef,
   NexusObjectTypeDef,
   ObjectDefinitionBlock,
+  inputObjectType,
+  objectType,
 } from "nexus/dist/core";
 import {LMColor, LMSize} from "./enums";
-import pkg from "nexus/dist/core";
-const {inputObjectType, objectType} = pkg;
 
 const LMPropsBuy: NexusObjectTypeDef<string> = objectType({
   name: "LMPropsBuy",
