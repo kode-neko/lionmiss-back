@@ -1,5 +1,5 @@
-import { LMCountry } from "lionmiss-core";
-import { rawCountries } from './data/index.js';
+import {LMCountry} from "lionmiss-core";
+import {rawCountries} from "./data/index";
 
 const fixtureCountries: LMCountry[] = rawCountries.map((c) => ({
   name: c.country,
@@ -8,4 +8,4 @@ const fixtureCountries: LMCountry[] = rawCountries.map((c) => ({
   currencyName: c.currency_name,
 }));
 
-export { fixtureCountries };
+export {fixtureCountries};

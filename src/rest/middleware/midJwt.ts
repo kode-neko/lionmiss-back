@@ -9,10 +9,15 @@ const userModel: IUser = builderUser();
 
 async function midJwt(req: Request, res: Response, next: NextFunction) {
   const authHeader: string = req.headers["authorization"];
-  const token: string = authHeader && authHeader.split(" ")[1];
 
-  if (isEmpty(token)) {
+  if (isEmpty(authHeader)) {
     res.status(400).json({msj: "error.generic"});
+    return;
+  }
+
+  const token: string = authHeader.split(" ")[1];
+  if (isEmpty(token)) {
+    res.status(400).json({msj: "error.authorization"});
     return;
   }
 
