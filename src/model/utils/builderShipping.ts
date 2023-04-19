@@ -1,8 +1,8 @@
-import { IShipping } from "../IShipping.js";
-import { MGSShipping } from "../mongoose/index.js";
+import {IShipping} from "../IShipping";
+import {MGSShipping} from "../mongoose/index";
 
 function builderShipping(): IShipping {
   return new MGSShipping();
 }
 
-export { builderShipping };
+export {builderShipping};

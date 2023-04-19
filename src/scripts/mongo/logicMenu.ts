@@ -1,10 +1,10 @@
-import { Db } from "mongodb";
-// import createCollections from "./createDb.js";
-// import createUser from "./createDbUsers.js";
-import { dropCollections } from "./drop.js";
-import { insertData } from "./insertMockDataDb.js";
+import {Db} from "mongodb";
+// import createCollections from "./createDb";
+// import createUser from "./createDbUsers";
+import {dropCollections} from "./drop";
+import {insertData} from "./insertMockDataDb";
 
-const funcs: {[key: string]: (db: Db) => Promise<void> } = {
+const funcs: {[key: string]: (db: Db) => Promise<void>} = {
   createAll: async (db: Db) => {
     await insertData(db);
     // await createUser(db);

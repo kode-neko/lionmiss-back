@@ -1,7 +1,7 @@
-import { LMBLocale } from "./LMB/index.js";
+import {LMBLocale} from "./LMB/index";
 
 interface ILocale {
   getLocaleAll: () => Promise<LMBLocale[]>;
 }
 
-export { ILocale };
+export {ILocale};

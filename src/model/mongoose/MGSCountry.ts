@@ -1,19 +1,21 @@
-import { Model, model } from "mongoose";
-import { LMCountry } from "lionmiss-core";
-import { ICountry } from "../ICountry.js";
-import { schemaCountry } from "./schemas/index.js";
+import {Model, model} from "mongoose";
+import {LMCountry} from "lionmiss-core";
+import {ICountry} from "../ICountry";
+import {schemaCountry} from "./schemas/index";
 class MGSCountry implements ICountry {
-  CountryModel: Model<LMCountry> = model<LMCountry>("Country", schemaCountry, "country");
+  CountryModel: Model<LMCountry> = model<LMCountry>(
+    "Country",
+    schemaCountry,
+    "country"
+  );
 
   getCountry(id: string): Promise<LMCountry> {
-    return this.CountryModel.findById(id)
-      .then((country: LMCountry) => country);
+    return this.CountryModel.findById(id).then((country: LMCountry) => country);
   }
 
   getCountryAll(): Promise<LMCountry[]> {
-    return this.CountryModel.find({})
-      .then((list: LMCountry[]) => list);
+    return this.CountryModel.find({}).then((list: LMCountry[]) => list);
   }
 }
 
-export { MGSCountry };
+export {MGSCountry};

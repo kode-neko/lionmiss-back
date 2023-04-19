@@ -1,20 +1,28 @@
-import { Document, Model, model } from "mongoose";
-import { LMProduct } from "lionmiss-core";
-import { IProduct } from "../IProduct.js";
-import { schemaProduct } from "./schemas/index.js";
-import { LMBSearchParams } from "../LMB/index.js";
+import {Document, Model, model} from "mongoose";
+import {LMProduct} from "lionmiss-core";
+import {IProduct} from "../IProduct";
+import {schemaProduct} from "./schemas/index";
+import {LMBSearchParams} from "../LMB/index";
 
-type ModelLMProduct = Document<unknown, unknown, LMProduct> & Omit<LMProduct & Required<{ _id: string; }>, never>;
+type ModelLMProduct = Document<unknown, unknown, LMProduct> &
+  Omit<LMProduct & Required<{_id: string}>, never>;
 
 class MGSProduct implements IProduct {
-  ProductModel: Model<LMProduct> = model<LMProduct>("Product", schemaProduct, "product");
+  ProductModel: Model<LMProduct> = model<LMProduct>(
+    "Product",
+    schemaProduct,
+    "product"
+  );
 
   getProduct(id: string): Promise<LMProduct> {
-    return this.ProductModel.findById(id)
-      .then((product: LMProduct) => product);
+    return this.ProductModel.findById(id).then((product: LMProduct) => product);
   }
 
-  getProductAll({limit, offset, search = {}}: LMBSearchParams): Promise<LMProduct[]> {
+  getProductAll({
+    limit,
+    offset,
+    search = {},
+  }: LMBSearchParams): Promise<LMProduct[]> {
     return this.ProductModel.find(search)
       .skip(offset)
       .limit(limit)
@@ -23,7 +31,8 @@ class MGSProduct implements IProduct {
 
   postProduct(product: LMProduct): Promise<LMProduct> {
     const productModel: ModelLMProduct = new this.ProductModel(product);
-    return productModel.validate()
+    return productModel
+      .validate()
       .then(() => productModel.save())
       .then((product: LMProduct) => product);
   }
@@ -43,4 +52,4 @@ class MGSProduct implements IProduct {
   }
 }
 
-export { MGSProduct };
+export {MGSProduct};

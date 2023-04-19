@@ -1,7 +1,7 @@
-import { faker } from "@faker-js/faker";
-import { LMColor, LMProduct } from "lionmiss-core";
-import { fixtureImgs } from "./fixtureImgs.js";
-import { constants } from "./data/index.js";
+import {faker} from "@faker-js/faker";
+import {LMColor, LMProduct} from "lionmiss-core";
+import {fixtureImgs} from "./fixtureImgs";
+import {constants} from "./data/index";
 
 const {commerce, database} = faker;
 
@@ -31,4 +31,4 @@ const fixtureProducts: LMProduct[] = Array(constants.NUM_PRODUCTS)
     imgs: fixtureImgs.slice(0, 1),
   }));
 
-export { fixtureProducts };
+export {fixtureProducts};

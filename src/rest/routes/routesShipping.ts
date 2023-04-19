@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { ctrlShipping as shipping } from "../controller/index.js";
+import {Router} from "express";
+import {ctrlShipping as shipping} from "../controller/index";
 
 const router = Router();
 

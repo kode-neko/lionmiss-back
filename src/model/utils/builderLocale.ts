@@ -1,8 +1,8 @@
-import { ILocale } from "../ILocale.js";
-import { MGSLocale } from "../mongoose/index.js";
+import {ILocale} from "../ILocale";
+import {MGSLocale} from "../mongoose/index";
 
 function builderLocale(): ILocale {
   return new MGSLocale();
 }
 
-export { builderLocale };
+export {builderLocale};
