@@ -58,11 +58,12 @@ app.use(errorHandler);
 
 // Init DB
 setMongoose("strictQuery", true);
+const {DB_NAME, DB_USER, DB_USER_PASS} = process.env;
 const promiseDB: Promise<Mongoose> = connect(
-  "mongodb://localhost:27017/lionmiss?authSource=" + process.env.DB_NAME,
+  `mongodb://localhost:27017/lionmiss?authSource=${DB_NAME}`,
   {
-    user: process.env.DB_USER,
-    pass: process.env.DB_USER_PASS,
+    user: DB_USER,
+    pass: DB_USER_PASS,
   }
 );
 

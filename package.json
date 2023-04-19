@@ -14,6 +14,7 @@
     "dev:gql": "npx nodemon ./lib/src/graphql/index.js",
     "build": "npm run clean && tsc --project tsconfig.json",
     "build:dev": "tsc --watch --project tsconfig.json",
+    "docker:db": "docker run --publish 27027:27017 --name mongo-test --detach mongo",
     "db:menu": "node ./lib/scripts/mongo/index.js",
     "clean": "rm -rf ./dist ./lib",
     "lint": "eslint . --ext .ts",

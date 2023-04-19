@@ -6,7 +6,6 @@
     {
       "files": [
         "./jest.config.ts",
-        "./scripts/**/*.ts",
         "./src/**/*.ts",
         "./src/**/*.test.ts"
       ],

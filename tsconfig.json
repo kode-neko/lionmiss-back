@@ -23,7 +23,6 @@
     "sourceMap": true,
   },
   "include": [ // A que ficheros se aplica la config. Muy útil para ESLint y transpialdores
-    "./scripts/**/*.ts",
     "./src/**/*.ts",
     "./src/**/*.test.ts"
   ],

@@ -6,7 +6,7 @@ import {
   fixtureProducts,
   fixtureUser,
   fixtureUsersInfo,
-} from "../../src/test/fixtures/index";
+} from "../../test/fixtures";
 import {collections} from "./constants";
 import {Collection, Db, ObjectId} from "mongodb";
 

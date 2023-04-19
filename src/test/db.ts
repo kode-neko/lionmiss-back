@@ -1,29 +1,29 @@
 import {Db, MongoClient} from "mongodb";
-import {MongoMemoryServer} from "mongodb-memory-server";
 import {Mongoose, connect} from "mongoose";
 
-let mongoMem: MongoMemoryServer;
 let urlDb: string;
 let client: MongoClient;
 let db: Db;
 let mongooseDb: Mongoose;
 
 async function initDbTest(): Promise<void> {
-  // Mem
-  mongoMem = await MongoMemoryServer.create();
-  urlDb = mongoMem.getUri();
+  const {DB_HOST, DB_PORT, DB_NAME} = process.env;
+  urlDb = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
   // MongoDb
   client = new MongoClient(urlDb);
   await client.connect();
-  db = client.db("lionmiss");
+  db = client.db(DB_NAME);
   // Mongoose
-  mongooseDb = await connect(urlDb + "lionmiss?authSource=lionmiss");
+  mongooseDb = await connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`);
 }
 
 async function cleanDbTest(): Promise<void> {
-  await mongooseDb.disconnect();
-  await client.close();
-  await mongoMem.stop();
+  if (mongooseDb) {
+    await mongooseDb.disconnect();
+  }
+  if (client) {
+    await client.close();
+  }
 }
 
 function getDb(): Db {
