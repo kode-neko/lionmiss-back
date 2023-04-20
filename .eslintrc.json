@@ -5,9 +5,10 @@
   "overrides": [
     {
       "files": [
-        "./jest.config.ts",
         "./src/**/*.ts",
-        "./src/**/*.test.ts"
+        "./src/**/*.test.ts",
+        "./jest.config.ts",
+        "./webpack.config.ts"
       ],
       "excludedFiles": [
         // "src/**/*.test.ts",

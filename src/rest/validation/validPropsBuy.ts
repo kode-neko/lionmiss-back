@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { LMColor, LMPropsBuy, LMSize } from 'lionmiss-core';
-import { validateEnum } from '../utils/validUtils.js';
+import { validateEnum } from '../utils/validUtils';
 
 const validPropsBuy: Joi.ObjectSchema<LMPropsBuy> = Joi.object({
   productId: Joi

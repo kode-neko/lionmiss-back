@@ -24,7 +24,9 @@
   },
   "include": [ // A que ficheros se aplica la config. Muy útil para ESLint y transpialdores
     "./src/**/*.ts",
-    "./src/**/*.test.ts"
+    "./src/**/*.test.ts",
+    "./jest.config.ts",
+    "./webpack.config.ts"
   ],
   "exclude": [ // Dentro de los ficheros que se aplican, cuales no hacerlo
     // "src/**/*.test.ts",

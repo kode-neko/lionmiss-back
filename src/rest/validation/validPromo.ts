@@ -1,6 +1,6 @@
 import Joi, { PartialSchemaMap } from 'joi';
 import { LMPromo, LMPromoType } from 'lionmiss-core';
-import { validateEnum } from '../utils/validUtils.js';
+import { validateEnum } from '../utils/validUtils';
 
 const validPromo: PartialSchemaMap<LMPromo> = {
   type: Joi

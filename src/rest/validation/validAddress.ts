@@ -1,7 +1,7 @@
 import Joi, { PartialSchemaMap } from 'joi';
 import { LMAddress } from 'lionmiss-core';
-import { validId } from './validCommon.js';
-import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
+import { validId } from './validCommon';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils';
 
 const validAddress: PartialSchemaMap<LMAddress> = {
   name: Joi

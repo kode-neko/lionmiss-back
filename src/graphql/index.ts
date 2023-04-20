@@ -73,26 +73,35 @@ const context: (
   };
 };
 
-function init() {
+const {
+  GQL_HOST,
+  GQL_PORT,
+  DB_PORT,
+  DB_HOST,
+  DB_NAME,
+  DB_USER,
+  DB_USER_PASS
+} = process.env;
+
+function graphql() {
   //  DB config connect
   setMongoose("strictQuery", true);
-  const promiseDB: Promise<Mongoose> = connect(
-    "mongodb://localhost:27017/lionmiss?authSource=" + process.env.DB_NAME,
+  const promiseDB: Promise<Mongoose> = connect( `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=${DB_NAME}`,
     {
-      user: process.env.DB_USER,
-      pass: process.env.DB_USER_PASS,
+      user: DB_USER,
+      pass: DB_USER_PASS,
     }
   );
 
   // Connect DB + Init API GQL
   promiseDB
     .then(() => {
-      console.log(`🗃️  Connected to DB`);
+      console.log(`🗂️  Connected to DB`);
       const server: ApolloServer = new ApolloServer<BaseContext>({schema});
-      return startStandaloneServer(server, {context: context});
+      return startStandaloneServer(server, {context, listen: {port: Number(GQL_PORT), host: GQL_HOST}, });
     })
-    .then(({url}: {url: string}) => console.log(`🚀 Server is ready at ${url}`))
-    .catch((err: Error) => console.error("💀", err));
+    .then(({url}: {url: string}) => console.log(`🚀 Graphql server is ready at ${url}`))
+    .catch((err: Error) => console.error("💀 Error Grapql server:", err));
 }
 
-init();
+export default graphql;

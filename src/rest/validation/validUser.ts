@@ -1,10 +1,10 @@
 import Joi, { PartialSchemaMap } from 'joi';
 import { LMUser } from 'lionmiss-core';
-import { LMBUser } from '../../model/LMB/LMBUser.js';
-import { validMeasures } from './validMeasures.js';
-import { validAddress } from './validAddress.js';
-import { validCart } from './index.js';
-import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
+import { LMBUser } from '../../model/LMB/LMBUser';
+import { validMeasures } from './validMeasures';
+import { validAddress } from './validAddress';
+import { validCart } from './index';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils';
 
 const validUser: PartialSchemaMap<LMBUser> = {
   username: Joi
