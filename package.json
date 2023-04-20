@@ -10,15 +10,17 @@
     "start:rest": "node ./lib/src/rest/index.js",
     "start:gql": "node ./lib/src/graphql/index.js",
     "dev": "concurrently \"npm run dev:rest\" \"npm run dev:gql\"",
+    "dev:dist": "webpack-dev-server --mdoe develope",
     "dev:rest": "npx nodemon ./lib/src/rest/index.js",
     "dev:gql": "npx nodemon ./lib/src/graphql/index.js",
-    "build": "npm run clean && tsc --project tsconfig.json",
-    "build:dev": "tsc --watch --project tsconfig.json",
-    "docker:db": "docker run --publish 27027:27017 --name mongo-test --detach mongo",
+    "lib": "npm run clean && tsc --project tsconfig.json",
+    "lib:dev": "tsc --watch --project tsconfig.json",
+    "dist": "npx webpack --mode production",
     "db:menu": "node ./lib/scripts/mongo/index.js",
+    "test": "jest",
+    "test:db": "docker run --publish 27027:27017 --name mongo-test --detach mongo",
     "clean": "rm -rf ./dist ./lib",
-    "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "lint": "eslint . --ext .ts"
   },
   "dependencies": {
     "@apollo/server": "^4.6.0",
@@ -82,7 +84,10 @@
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.3",
-    "webpack": "^5.77.0",
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.3",
+    "webpack-node-externals": "^3.0.0",
     "wepack-cli": "^0.0.1-security",
     "yargs": "^17.7.1"
   }

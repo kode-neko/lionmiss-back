@@ -1,8 +1,8 @@
 import Joi, { PartialSchemaMap } from 'joi';
 import { LMCartProduct, LMColor, LMSize } from 'lionmiss-core';
-import { composeJoiPartialSchemaMap, validateEnum } from '../../utils/validUtils.js';
-import { validId } from '../validCommon.js';
-import { validProduct } from '../index.js';
+import { composeJoiPartialSchemaMap, validateEnum } from '../../utils/validUtils';
+import { validId } from '../validCommon';
+import { validProduct } from '../index';
 
 const validCartProduct: PartialSchemaMap<LMCartProduct> = {
   size: Joi

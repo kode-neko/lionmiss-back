@@ -1,8 +1,8 @@
 export {
   validCart,
   validCartId
-} from './validCart.js';
+} from './validCart';
 export {
   validCartProduct,
   validCartProductId
-} from './validCartProduct.js';
+} from './validCartProduct';

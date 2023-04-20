@@ -1,8 +1,8 @@
 import Joi, { PartialSchemaMap } from 'joi';
 import { LMShipping } from 'lionmiss-core';
-import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
-import { validId } from './validCommon.js';
-import { validCart } from './index.js';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils';
+import { validId } from './validCommon';
+import { validCart } from './index';
 
 const validShipping: PartialSchemaMap<LMShipping> = {
   _id: Joi

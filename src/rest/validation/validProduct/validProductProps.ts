@@ -1,7 +1,7 @@
 import Joi, { PartialSchemaMap } from 'joi';
 import { LMProductProps } from 'lionmiss-core';
-import { composeJoiPartialSchemaMap } from '../../utils/validUtils.js';
-import { validId } from '../validCommon.js';
+import { composeJoiPartialSchemaMap } from '../../utils/validUtils';
+import { validId } from '../validCommon';
 
 const validProductProps: PartialSchemaMap<LMProductProps> = {
   key: Joi

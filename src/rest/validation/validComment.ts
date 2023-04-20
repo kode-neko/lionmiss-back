@@ -1,8 +1,8 @@
 import Joi, { PartialSchemaMap } from 'joi';
 import { LMComment } from 'lionmiss-core';
-import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
-import { validId } from './validCommon.js';
-import { validImg, validMeasures, validUser } from './index.js';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils';
+import { validId } from './validCommon';
+import { validImg, validMeasures, validUser } from './index';
 
 const validComments: PartialSchemaMap<LMComment> = {
   comment: Joi
