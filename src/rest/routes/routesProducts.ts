@@ -1,6 +1,6 @@
 import {IRouter, Router} from "express";
 import {ctrlProduct as product} from "../controller/index";
-import {validProduct, validProductId} from "../validation/index.js";
+import {validProduct, validProductId} from "../validation/index";
 import {midJoiBody} from "../middleware/midJoi";
 import Joi, {Schema} from "joi";
 import { validSearchParams } from "../validation/validSearchParams";

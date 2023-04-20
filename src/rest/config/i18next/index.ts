@@ -1,5 +1,5 @@
 import { InitOptions } from 'i18next';
-import { en, es } from './locales/index.js';
+import { en, es } from './locales/index';
 
 const i18Config: InitOptions = {
   lng: 'en',

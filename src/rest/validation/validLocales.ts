@@ -1,5 +1,5 @@
 import Joi, { PartialSchemaMap } from 'joi';
-import { LMBLocale } from '../../model/LMB/LMBLocale.js';
+import { LMBLocale } from '../../model/LMB/LMBLocale';
 
 const validLocale: PartialSchemaMap<LMBLocale> = {
   name: Joi

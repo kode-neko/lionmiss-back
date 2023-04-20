@@ -1,8 +1,8 @@
 export {
   validProduct,
   validProductId
-} from './validProduct.js';
+} from './validProduct';
 export {
   validProductProps,
   validProductPropsId
-} from './validProductProps.js';
+} from './validProductProps';

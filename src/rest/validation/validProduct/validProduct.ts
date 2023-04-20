@@ -1,9 +1,9 @@
 import Joi, { PartialSchemaMap, Schema } from 'joi';
 import { LMColor, LMProduct } from 'lionmiss-core';
-import { validImgId } from '../validImg.js';
-import { composeJoiPartialSchemaMap, validateEnum } from '../../utils/validUtils.js';
-import { validId } from '../validCommon.js';
-import { validProductProps } from './validProductProps.js';
+import { validImgId } from '../validImg';
+import { composeJoiPartialSchemaMap, validateEnum } from '../../utils/validUtils';
+import { validId } from '../validCommon';
+import { validProductProps } from './validProductProps';
 
 const schemaValidProductProps: Schema = Joi.object(validProductProps);
 const schemaValidImgId: Schema = Joi.object(validImgId);

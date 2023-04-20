@@ -1,7 +1,7 @@
 import Joi, { PartialSchemaMap } from 'joi';
 import { LMImg } from 'lionmiss-core';
-import { composeJoiPartialSchemaMap } from '../utils/validUtils.js';
-import { validId } from './validCommon.js';
+import { composeJoiPartialSchemaMap } from '../utils/validUtils';
+import { validId } from './validCommon';
 
 const validImg: PartialSchemaMap<LMImg> = {
   src: Joi

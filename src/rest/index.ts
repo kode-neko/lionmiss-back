@@ -56,24 +56,37 @@ app.use(midNotFound);
 app.use(logHandler);
 app.use(errorHandler);
 
-// Init DB
-setMongoose("strictQuery", true);
-const {DB_NAME, DB_USER, DB_USER_PASS} = process.env;
-const promiseDB: Promise<Mongoose> = connect(
-  `mongodb://localhost:27017/lionmiss?authSource=${DB_NAME}`,
-  {
-    user: DB_USER,
-    pass: DB_USER_PASS,
-  }
-);
+const {
+  REST_HOST,
+  REST_PORT,
+  DB_PORT,
+  DB_HOST,
+  DB_NAME,
+  DB_USER,
+  DB_USER_PASS
+} = process.env;
 
-// Connect DB
-promiseDB
-  .then(() => {
-    console.log("🗂️  Connected to DB");
-    // Init server
-    app.listen(process.env.SERVER_PORT, () =>
-      console.log("🚀 API REST available on port " + process.env.SERVER_PORT)
-    );
-  })
-  .catch((err: Error) => console.error(err));
+function apiRest() {
+  // Init DB
+  setMongoose("strictQuery", true);
+  const promiseDB: Promise<Mongoose> = connect(
+    `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=${DB_NAME}`,
+    {
+      user: DB_USER,
+      pass: DB_USER_PASS,
+    }
+  );
+
+  // Connect DB
+  promiseDB
+    .then(() => {
+      console.log("🗂️  Connected to DB");
+      // Init server
+      app.listen(process.env.SERVER_PORT, () =>
+        console.log(`🚀 API REST is ready at ${REST_HOST}:${REST_PORT}`)
+      );
+    })
+    .catch((err: Error) => console.error(err));
+}
+
+export default apiRest
