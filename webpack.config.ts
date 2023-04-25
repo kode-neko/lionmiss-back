@@ -1,13 +1,7 @@
 import path from 'path';
 import {Configuration} from 'webpack';
-import {Configuration as DevServerConfiguration} from 'webpack-dev-server';
 import nodeExternals from 'webpack-node-externals';
 
-const devServer: DevServerConfiguration = {
-  static: path.join(__dirname, "./dist"),
-  compress: true,
-  port: 3012
-}
 const config: Configuration = {
   entry: path.resolve(__dirname, './src/index.ts'),
   target: 'node',
@@ -34,8 +28,7 @@ const config: Configuration = {
         ]
       }
     ]
-  },
-  devServer
+  }
 }
 
 export default config;
