@@ -6,7 +6,7 @@
   "author": "Kode Neko",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"npm run start:rest\" \"npm run start:gql\"",
+    "start": "node ./dist/bundle.js",
     "start:rest": "node ./lib/src/rest/index.js",
     "start:gql": "node ./lib/src/graphql/index.js",
     "dev": "concurrently \"npm run dev:rest\" \"npm run dev:gql\"",
