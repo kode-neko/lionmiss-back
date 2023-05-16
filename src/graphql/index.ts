@@ -101,7 +101,7 @@ function graphql() {
       return startStandaloneServer(server, {context, listen: {port: Number(GQL_PORT), host: GQL_HOST}, });
     })
     .then(({url}: {url: string}) => console.log(`🚀 Graphql server is ready at ${url}`))
-    .catch((err: Error) => console.error("💀 Error Grapql server:", err));
+    .catch((err: Error) => console.log("💀 Error Grapql server:", err));
 }
 
 export default graphql;

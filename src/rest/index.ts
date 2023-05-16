@@ -86,7 +86,7 @@ function apiRest() {
         console.log(`🚀 API REST is ready at ${REST_HOST}:${REST_PORT}`)
       );
     })
-    .catch((err: Error) => console.error(err));
+    .catch((err: Error) => console.log(err));
 }
 
 export default apiRest

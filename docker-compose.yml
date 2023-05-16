@@ -2,13 +2,14 @@ version: "3"
 services:
 
   kn-utils-server:
-    image: "node:latest"
-    user: "node"
+    image: node:latest
+    user: node
     working_dir: /home/node/app
     environment:
       - NODE_ENV=production
     volumes:
       - ./:/home/node/app
+      - ./scripts:/docker-entrypoint-initdb.d
     ports:
       - 3003:3001
     command: "npm run start"
@@ -16,12 +17,12 @@ services:
   kn-utils-db:
     image: mongo:latest
     restart: always
-    expose:
-      - 27017
+    ports:
+      - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "lionmiss-admin"
-      MONGO_INITDB_ROOT_PASSWORD: ";QVuV1as7OBN%-]"
-      MONGO_INITDB_DATABASE: "lionmiss"
+      MONGO_INITDB_ROOT_USERNAME: "${DB_ROOT}"
+      MONGO_INITDB_ROOT_PASSWORD: "${DB_ROOT_PASS}"
+      MONGO_INITDB_DATABASE: "${DB_NAME}"
 
 networks:
   kn-net:
