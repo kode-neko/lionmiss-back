@@ -5,7 +5,7 @@ import isEmpty from "empty-lite";
 import {LMUser} from "lionmiss-core";
 import {LMBSearchParams, LMBUser} from "../../model/LMB/index";
 import {IUser} from "../../model/IUser";
-import {hashSync} from "bcrypt";
+// import {hashSync} from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const userModel: IUser = builderUser();
@@ -58,8 +58,8 @@ async function login(req: Request, res: Response) {
   if (!user) return res.status(404).json({msj: "error.user"});
 
   // Check pass
-  if (hashSync(pass) !== user.pass)
-    return res.status(404).json({msj: "error.pass"});
+  /* if (hashSync(pass) !== user.pass)
+    return res.status(404).json({msj: "error.pass"}); */
 
   //Return token
   const token: string = jwt.sign({username: name}, process.env.KEY_TOKEN, {

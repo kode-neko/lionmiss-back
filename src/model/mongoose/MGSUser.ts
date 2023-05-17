@@ -4,7 +4,7 @@ import {Document, Model, model} from "mongoose";
 import {IUser} from "../IUser";
 import {LMBSearchParams, LMBUser} from "../LMB/index";
 import {schemaUser} from "./schemas/index";
-import {genSaltSync, hashSync} from "bcrypt";
+// import {genSaltSync, hashSync} from "bcrypt";
 
 type ModelLMUser = Document<unknown, unknown, LMUser> & Omit<LMUser, never>;
 
@@ -36,11 +36,12 @@ class MGSUser implements IUser {
 
   postUser(user: LMBUser): Promise<LMBUser> {
     const {username, pass, ...userInfo} = user;
-    const salt: string = genSaltSync();
-    const hash: string = hashSync(pass, salt);
+    // const salt: string = genSaltSync();
+    // const hash: string = hashSync(pass, salt);
     const userPersist: LMUser = {
       username,
-      pass: hash,
+      // pass: hash,
+      pass,
       userInfo,
     };
     const userModel: ModelLMUser = new this.UserModel(userPersist);
@@ -58,17 +59,18 @@ class MGSUser implements IUser {
     const {username, pass, ...rest} = user;
     return this.UserModel.findOne({username})
       .then((found: LMUser) => {
-        let hash: string;
+        /* let hash: string;
         if (pass) {
           const salt: string = genSaltSync();
           hash = hashSync(pass, salt);
         } else {
           hash = found.pass;
-        }
+        } */
         const userUpdate: LMUser = {
           _id: found._id,
           username,
-          pass: hash,
+          // pass: hash,
+          pass,
           userInfo: {...rest},
         };
         return this.UserModel.updateOne({username}, userUpdate);

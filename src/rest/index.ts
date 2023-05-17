@@ -21,7 +21,14 @@ import i18Config from "./config/i18next/index";
 import {errorHandler, logHandler} from "./middleware/midError";
 import midNotFound from "./middleware/midNotFound";
 
-dotenv.config();
+
+// Select .env doc
+if(process.env.NODE_ENV === 'development') {
+  dotenv.config({path: '.env.dev'});
+} else {
+  dotenv.config();
+}
+
 
 const app: Express = express();
 
@@ -66,27 +73,26 @@ const {
   DB_USER_PASS
 } = process.env;
 
-function apiRest() {
-  // Init DB
-  setMongoose("strictQuery", true);
-  const promiseDB: Promise<Mongoose> = connect(
-    `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=${DB_NAME}`,
-    {
-      user: DB_USER,
-      pass: DB_USER_PASS,
-    }
-  );
 
-  // Connect DB
-  promiseDB
-    .then(() => {
-      console.log("🗂️  Connected to DB");
-      // Init server
-      app.listen(process.env.SERVER_PORT, () =>
-        console.log(`🚀 API REST is ready at ${REST_HOST}:${REST_PORT}`)
-      );
-    })
-    .catch((err: Error) => console.log(err));
-}
+// Init DB
+setMongoose("strictQuery", true);
+const promiseDB: Promise<Mongoose> = connect(
+  `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=${DB_NAME}`,
+  {
+    user: DB_USER,
+    pass: DB_USER_PASS,
+  }
+);
 
-export default apiRest
+// Connect DB
+promiseDB
+  .then(() => {
+    console.log("🗂️  Connected to DB");
+    // Init server
+    app.listen(REST_PORT, () =>
+      console.log(`🚀  API REST is ready at ${REST_HOST}:${REST_PORT}`)
+    );
+  })
+  .catch((err: Error) => console.log("💀  Error REST server:", err));
+
+

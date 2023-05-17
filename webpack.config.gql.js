@@ -1,14 +1,14 @@
-import path from 'path';
-import {Configuration} from 'webpack';
-import nodeExternals from 'webpack-node-externals';
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-const config: Configuration = {
-  entry: path.resolve(__dirname, './src/index.ts'),
+const config = {
+  mode: "production",
+  entry: './src/graphql/index.ts',
   target: 'node',
   externals: [nodeExternals()],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, './dist')
+    path: path.resolve(__dirname, './dist/gql')
   },
   resolve: {
     extensions: ['.ts', '.js']
@@ -20,15 +20,16 @@ const config: Configuration = {
         use: 'ts-loader',
         include: [path.resolve(__dirname, "./src")],
         exclude: [
+          /src\/rest/,
           /node_modules/,
           /coverage/,
           /lib/,
           /dist/,
-          /src\/scripts/
+          /scripts/
         ]
       }
     ]
   }
 }
 
-export default config;
+module.exports = config;

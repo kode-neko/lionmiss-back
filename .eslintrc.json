@@ -13,6 +13,7 @@
       "excludedFiles": [
         // "src/**/*.test.ts",
         // "./src/graphql/**/*.ts",
+        "./webpack.config.*.js"
       ],
       "env": {
         "browser": true,

@@ -10,7 +10,7 @@ import {
 import {IUser} from "../../model/IUser";
 import {builderUser} from "../../model/utils/builderUser";
 import {LMUser} from "lionmiss-core";
-import {hashSync} from "bcrypt";
+// import {hashSync} from "bcrypt";
 import jwt from "jsonwebtoken";
 import {LMBUser} from "../../model/LMB/LMBUser";
 import { LMUserReturn, LMUserReturnInput } from "../types";
@@ -113,11 +113,12 @@ const LoginMutation: NexusExtendTypeDef<"Mutation"> = extendType({
         if (!user) throw Error("error.user");
 
         // Check pass
-        if (hashSync(pass) !== user.pass) throw Error("error.authorization");
+        // if (hashSync(pass) !== user.pass) throw Error("error.authorization");
 
         //Return token
         const token: string = jwt.sign(
-          {username: name},
+          // {username: name},
+          {username: ""},
           process.env.KEY_TOKEN,
           {algorithm: "RS256"}
         );

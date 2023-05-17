@@ -3,12 +3,21 @@ import getDb from "./dbConnection";
 import { insertData } from "./insertMockDataDb";
 import { dropCollections } from "./drop";
 
-dotenv.config();
-
-async function init() {
-  const [_, db] = await getDb();
-  await dropCollections(db);
-  await insertData(db);
+// Select .env doc
+if(process.env.NODE_ENV === 'development') {
+  dotenv.config({path: '.env.dev'});
+} else {
+  dotenv.config();
 }
 
-init();
+let db;
+
+getDb()
+  .then(([_, dbAux]) => {
+    db = dbAux;
+    return  dropCollections(db);
+  })
+  .then(() => insertData(db))
+  .then(() => console.log("🥳  Data inserted"))
+  .catch((err: Error) => console.log("💀  There is an error: " + err))
+  .finally(() => process.exit(1));
