@@ -3,7 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 
 const config = {
   mode: "production",
-  entry: './src/gql/index.ts',
+  entry: './src/graphql/index.ts',
   target: 'node',
   externals: [nodeExternals()],
   output: {

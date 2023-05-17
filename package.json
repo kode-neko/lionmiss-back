@@ -17,6 +17,7 @@
     "start:dev:db": "NODE_ENV=development node ./lib/src/scripts/mongo/index.js",
     "lib": "npx tsc --project tsconfig.json",
     "lib:dev": "npx tsc --watch --project tsconfig.json",
+    "dist": "npm run dist:rest && npm run dist:gql",
     "dist:rest": "npx webpack --config webpack.config.rest.js",
     "dist:gql": "npx webpack --config webpack.config.gql.js",
     "clean": "npm run clean:dist && npm run clean:lib",
