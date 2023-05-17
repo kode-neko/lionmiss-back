@@ -31,7 +31,7 @@ services:
       - ./:/home/node/app
     ports:
       - 3011:3011
-    command: "npm run start:gql"
+    command: "npm run start:gql:lib"
 
   db:
     image: mongo:latest
