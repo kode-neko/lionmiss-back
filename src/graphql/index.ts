@@ -23,7 +23,13 @@ import {NexusGraphQLSchema} from "nexus/dist/core";
 // import {builderUser} from "../model/utils/builderUser";
 // import {IUser} from "../model/IUser";
 
-dotenv.config();
+
+// Select .env doc
+if(process.env.NODE_ENV === 'development') {
+  dotenv.config({path: '.env.dev'});
+} else {
+  dotenv.config();
+}
 
 export const schema: NexusGraphQLSchema = makeSchema({
   types: {
@@ -83,25 +89,22 @@ const {
   DB_USER_PASS
 } = process.env;
 
-function graphql() {
-  //  DB config connect
-  setMongoose("strictQuery", true);
-  const promiseDB: Promise<Mongoose> = connect( `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=${DB_NAME}`,
-    {
-      user: DB_USER,
-      pass: DB_USER_PASS,
-    }
-  );
 
-  // Connect DB + Init API GQL
-  promiseDB
-    .then(() => {
-      console.log(`🗂️  Connected to DB`);
-      const server: ApolloServer = new ApolloServer<BaseContext>({schema});
-      return startStandaloneServer(server, {context, listen: {port: Number(GQL_PORT), host: GQL_HOST}, });
-    })
-    .then(({url}: {url: string}) => console.log(`🚀 Graphql server is ready at ${url}`))
-    .catch((err: Error) => console.log("💀 Error Grapql server:", err));
-}
+//  DB config connect
+setMongoose("strictQuery", true);
+const promiseDB: Promise<Mongoose> = connect( `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=${DB_NAME}`,
+  {
+    user: DB_USER,
+    pass: DB_USER_PASS,
+  }
+);
 
-export default graphql;
+// Connect DB + Init API GQL
+promiseDB
+  .then(() => {
+    console.log(`🗂️  Connected to DB`);
+    const server: ApolloServer = new ApolloServer<BaseContext>({schema});
+    return startStandaloneServer(server, {context, listen: {port: Number(GQL_PORT), host: GQL_HOST}, });
+  })
+  .then(({url}: {url: string}) => console.log(`🚀  Graphql server is ready at ${url}`))
+  .catch((err: Error) => console.log("💀  Error Grapql server:", err));

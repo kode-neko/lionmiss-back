@@ -4,7 +4,6 @@
     "outDir": "./lib", // Lugar donde coloca el codigo transpilado
     "declaration": true, // Crear los type defs (d.ts)
     "lib": [ // Incluir los d.ts de librerías core
-      "DOM", // Propios del navegador
       "ESNext" // Todas las funcs de la ultima versión de ES
     ],
     "allowJs": true, // Poder importar .js dentro de .ts y .tsx

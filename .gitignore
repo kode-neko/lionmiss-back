@@ -1,6 +1,7 @@
 node_modules
 .env
 .env.test
+.env.dev
 lib
 dist
-scripts/init.js
+scripts
