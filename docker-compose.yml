@@ -1,0 +1,52 @@
+version: "3"
+services:
+
+  rest:
+    image: node:latest
+    user: node
+    working_dir: /home/node/app
+    depends_on:
+      - db
+    networks:
+      - kn-net
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - 3010:3010
+    command: "npm run start:rest"
+
+  gql:
+    image: node:latest
+    user: node
+    working_dir: /home/node/app
+    depends_on:
+      - db
+    networks:
+      - kn-net
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - 3011:3011
+    command: "npm run start:gql:lib"
+
+  db:
+    image: mongo:latest
+    networks:
+      - kn-net
+    restart: always
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+    ports:
+      - 3013:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: ">7Xs,BXmvs"
+      MONGO_INITDB_DATABASE: "lionmiss"
+
+networks:
+  kn-net:
+    driver: bridge

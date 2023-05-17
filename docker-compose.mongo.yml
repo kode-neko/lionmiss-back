@@ -1,0 +1,14 @@
+version: "3"
+services:
+
+  db:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: ">7Xs,BXmvs"
+      MONGO_INITDB_DATABASE: "lionmiss"
