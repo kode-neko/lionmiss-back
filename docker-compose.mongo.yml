@@ -1,7 +1,7 @@
 version: "3"
 services:
 
-  dbtest:
+  db-test:
     image: mongo:latest
     restart: always
     volumes:

@@ -98,6 +98,7 @@ const promiseDB: Promise<Mongoose> = connect( `mongodb://${DB_HOST}:${DB_PORT}/$
     pass: DB_USER_PASS,
   }
 );
+console.log( `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=${DB_NAME}`);
 
 // Connect DB + Init API GQL
 promiseDB

@@ -18,9 +18,7 @@ import i18nextMiddleware from "i18next-http-middleware";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpecs from "./swagger/swagger";
 import i18Config from "./config/i18next/index";
-import {errorHandler, logHandler} from "./middleware/midError";
-import midNotFound from "./middleware/midNotFound";
-
+import { errorHandler, logHandler, midNotFound, midProtocol } from "./middleware";
 
 // Select .env doc
 if(process.env.NODE_ENV === 'development') {
@@ -29,7 +27,6 @@ if(process.env.NODE_ENV === 'development') {
   dotenv.config();
 }
 
-
 const app: Express = express();
 
 // Seguridad
@@ -37,6 +34,9 @@ app.use(cors());
 app.use(helmet());
 app.use(xssPurge());
 app.use(hpp());
+
+// Change https to http
+app.use(midProtocol);
 
 // i18Next
 i18next.use(i18nextMiddleware.LanguageDetector).init(i18Config);
