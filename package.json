@@ -12,7 +12,7 @@
     "undocker:mongo": "docker compose --file docker-compose.mongo.yml down",
     "start:rest": "node ./dist/rest/bundle.js",
     "start:gql": "node ./dist/gql/bundle.js",
-    "start:gql:lib": "node ./lib/src/graphql/index.js",
+    "start:gql:lib": "NODE_ENV=development node ./lib/src/graphql/index.js",
     "start:dev:rest": "NODE_ENV=development nodemon ./lib/src/rest/index.js",
     "start:dev:gql": "NODE_ENV=development nodemon ./lib/src/graphql/index.js",
     "lib": "npx tsc --project tsconfig.json",
