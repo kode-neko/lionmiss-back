@@ -30,7 +30,7 @@ services:
     volumes:
       - ./:/home/node/app
     ports:
-      - 3011:3011
+      - 3014:3011
     command: "npm run start:gql"
 
   db:
