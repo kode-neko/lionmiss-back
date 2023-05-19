@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 import {join} from "path";
 import {Mongoose, connect, set as setMongoose} from "mongoose";
-import {ApolloServer, BaseContext} from "@apollo/server";
+import {ApolloServer, ApolloServerPlugin, BaseContext} from "@apollo/server";
 import {
   startStandaloneServer,
   StandaloneServerContextFunctionArgument,
@@ -20,6 +20,10 @@ import {
   LMProductMutationDelete
 } from "./mutations";
 import {NexusGraphQLSchema} from "nexus/dist/core";
+import {
+  ApolloServerPluginLandingPageLocalDefault,
+  ApolloServerPluginLandingPageProductionDefault 
+} from '@apollo/server/plugin/landingPage/default';
 // import {builderUser} from "../model/utils/builderUser";
 // import {IUser} from "../model/IUser";
 
@@ -104,8 +108,21 @@ console.log( `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=${DB_NAME}`)
 promiseDB
   .then(() => {
     console.log(`🗂️  Connected to DB`);
-    const server: ApolloServer = new ApolloServer<BaseContext>({schema});
-    return startStandaloneServer(server, {context, listen: {port: Number(GQL_PORT), host: GQL_HOST}, });
+
+    let plugins: ApolloServerPlugin[] = [];
+    if (process.env.NODE_ENV === 'production') {
+      plugins = [ApolloServerPluginLandingPageProductionDefault({ embed: true, graphRef: 'myGraph@prod' })]
+    } else {
+      plugins = [ApolloServerPluginLandingPageLocalDefault({ embed: true })]
+    }
+
+    const server: ApolloServer = new ApolloServer({
+      schema,
+      plugins,
+      introspection: true
+    });
+
+    return startStandaloneServer(server, {context, listen: {port: Number(GQL_PORT)} });
   })
   .then(({url}: {url: string}) => console.log(`🚀  Graphql server is ready at ${url}`))
   .catch((err: Error) => console.log("💀  Error Grapql server:", err));
