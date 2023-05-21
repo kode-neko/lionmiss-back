@@ -49,6 +49,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 app.use(express.json());
 
 // Rutas
+app.use(logHandler);
 app.use("/cart", routesCart);
 app.use("/country", routesCountry);
 app.use("/locale", routesLocale);
@@ -59,8 +60,7 @@ app.use("/user", routesUser);
 // Not Found
 app.use(midNotFound);
 
-// Log & Error Handler
-app.use(logHandler);
+// Error Handler
 app.use(errorHandler);
 
 const {
