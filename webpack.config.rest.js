@@ -20,8 +20,7 @@ const config = {
         use: 'ts-loader',
         include: [path.resolve(__dirname, "./src")],
         exclude: [
-          /src\/rest/,
-          /node_modules/,
+          /src\/graphql/,
           /coverage/,
           /lib/,
           /dist/,
