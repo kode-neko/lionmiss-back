@@ -3,6 +3,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 const optionsSwaggerJsdoc: swaggerJsdoc.Options = {
   definition: {
     openapi: "3.0.0",
+    basePath: process.env.BASE_URL,
     info: {
       title: "Lion Miss API REST",
       version: "0.1.0",

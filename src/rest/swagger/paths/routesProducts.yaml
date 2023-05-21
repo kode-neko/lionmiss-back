@@ -9,7 +9,6 @@ paths:
           name: id
           schema:
             type: string
-            default: ecfa0fba3ca399bd5fb84fdf
           required: true
           description: The user id
       responses:
@@ -37,10 +36,31 @@ paths:
           description: Some server error
 
   /product/all:
-    get:
+    post:
       summary: Get all products
       tags:
         - Product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - limit
+                - offset
+                - search
+              properties:
+                limit:
+                  type: number
+                offset:
+                  type: number
+                search:
+                  type: object
+            example:
+              limit: 0
+              offset: 5
+              search: ""
       responses:
         200:
           description: Product list

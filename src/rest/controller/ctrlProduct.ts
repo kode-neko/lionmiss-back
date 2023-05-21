@@ -17,8 +17,9 @@ function getProduct(req: Request, res: Response): void {
 
 function getProductAll(req: Request, res: Response): void {
   const {limit, offset, search} = req.body;
+  const searchObj: {[key: string]: string} = search === "" ? {} : {name: search};
   productModel
-    .getProductAll({limit, offset, search})
+    .getProductAll({limit: Number(limit), offset: Number(offset), search: searchObj})
     .then((list: LMProduct[]) => res.status(200).json(list));
 }
 
