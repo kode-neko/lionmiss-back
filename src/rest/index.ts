@@ -16,7 +16,10 @@ import hpp from "hpp";
 import i18next from "i18next";
 import i18nextMiddleware from "i18next-http-middleware";
 import swaggerUi from "swagger-ui-express";
-import swaggerSpecs from "./swagger/swagger";
+import {
+  getSwaggerSpecs,
+  ctrlSwaggerSpecsDocs
+} from "./swagger";
 import i18Config from "./config/i18next/index";
 import { errorHandler, logHandler, midNotFound, midProtocol } from "./middleware";
 
@@ -26,6 +29,18 @@ if(process.env.NODE_ENV === 'development') {
 } else {
   dotenv.config();
 }
+
+const {
+  SWAGGER_APP,
+  SWAGGER_DOC,
+  REST_HOST,
+  REST_PORT,
+  DB_PORT,
+  DB_HOST,
+  DB_NAME,
+  DB_USER,
+  DB_USER_PASS
+} = process.env;
 
 const app: Express = express();
 
@@ -42,14 +57,19 @@ app.use(midProtocol);
 i18next.use(i18nextMiddleware.LanguageDetector).init(i18Config);
 app.use(i18nextMiddleware.handle(i18next));
 
+// Logs
+app.use(logHandler);
+
 // Swagger
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+const swaggerSpecs: object = getSwaggerSpecs();
+app.get(SWAGGER_DOC, ctrlSwaggerSpecsDocs(swaggerSpecs));
+app.use(SWAGGER_APP, swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
 
 // Json
 app.use(express.json());
 
 // Rutas
-app.use(logHandler);
 app.use("/cart", routesCart);
 app.use("/country", routesCountry);
 app.use("/locale", routesLocale);
@@ -62,17 +82,6 @@ app.use(midNotFound);
 
 // Error Handler
 app.use(errorHandler);
-
-const {
-  REST_HOST,
-  REST_PORT,
-  DB_PORT,
-  DB_HOST,
-  DB_NAME,
-  DB_USER,
-  DB_USER_PASS
-} = process.env;
-
 
 // Init DB
 setMongoose("strictQuery", true);
