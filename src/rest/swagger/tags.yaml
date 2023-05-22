@@ -11,3 +11,5 @@ tags:
 #    description: Shipping info
 #  - name: User
 #    description: User info
+servers:
+  - url: http://kodeneko.com/lionmiss/rest
